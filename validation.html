@@ -24,8 +24,6 @@
                         required="required"
                         placeholder=" "
                         class="input-name save-field user-name"
-                        input-by-pattern=""
-                        pattern="[a-zA-Zа-яА-Я\s]"
                         error-message="Используйте только буквы и пробел"
                         error-container="#first-name-errors"
                     />
@@ -74,8 +72,6 @@
                         class="input-password-first"
                         scroll-to-element-start-input=""
                         target-element="#registration_name"
-                        input-by-pattern=""
-                        pattern="[a-zA-Zа-яА-Я\d]"
                         error-message="Используйте только буквы и цифры"
                         error-container="#password-first-errors"
                     />
@@ -97,8 +93,6 @@
                         class="input-password-repeat"
                         scroll-to-element-start-input=""
                         target-element="#registration_name"
-                        input-by-pattern=""
-                        pattern="[a-zA-Zа-яА-Я\d]"
                         error-message="Используйте только буквы и цифры"
                         error-container="#password-second-errors"
                     />
@@ -111,9 +105,41 @@
                     class="prompt-password-repeat prompt-l"
                 ></span>
             </div>
+            <div class="registration-checkbox">
+                <input
+                    type="checkbox"
+                    id="registration_isAgreeTerms"
+                    name="registration[isAgreeTerms]"
+                    required="required"
+                    class="visually-hidden filter-input filter-input-checkbox save-field user-terms"
+                    value="1"
+                />
+                <label for="registration_isAgreeTerms"
+                    >Создавая профиль, вы принимаете условия
+                    <a
+                        style="display: inline-block; color: #2474bd"
+                        href="/user-agreement"
+                        >Пользовательского соглашения</a
+                    ></label
+                >
+            </div>
+            <div class="button-block">
+                <button
+                    type="submit"
+                    id="registration_submit"
+                    name="registration[submit]"
+                    class="button-submit"
+                >
+                    Подтвердить
+                </button>
+            </div>
         </form>
 
         <script>
+            const form = document.getElementById('registration-form');
+            const check = document.getElementById('registration_isAgreeTerms');
+            const btn = document.getElementById('registration_submit');
+
             const inputName = document.getElementById('registration_name');
             const error = document.querySelector('.prompt-name');
 
@@ -136,6 +162,7 @@
             const errorPasswordRepeat = document.querySelector(
                 '.prompt-password-repeat'
             );
+            btn.setAttribute('disabled', 'true');
 
             inputName.addEventListener('input', (e) => {
                 let i = e.target.value.length - 1;
@@ -148,25 +175,35 @@
                 if (validateName(e.target.value)) {
                     e.target.classList.remove('input-error');
                     error.innerHTML = '';
+                    vName = true;
                 }
 
                 if (!validateName(e.target.value)) {
                     e.target.classList.add('input-error');
+                    error.setAttribute('style', 'color: #ff7171;');
                     error.innerHTML = 'Только буквы, цифры и тире';
+                }
+
+                if (e.target.value.length < 2) {
+                    error.setAttribute('style', 'color: green');
+                    error.innerHTML = 'Минимальная длина пароля 6 символов';
                 }
 
                 if (e.target.value[0] === ' ') {
                     e.target.value = e.target.value.replace(/([ ])/gi, '');
+                    error.setAttribute('style', 'color: #ff7171;');
                     error.innerHTML = 'Пробел не может быть первым символом';
                 }
 
                 if (e.target.value.length > 32) {
                     e.target.value = e.target.value.substr(0, 32);
+                    error.setAttribute('style', 'color: #ff7171;');
                     error.innerHTML = 'Максимальное колличество символов';
                 }
 
                 if (e.target.value.match(/^[0-9]/)) {
                     e.target.value = e.target.value.replace(/[0-9]/, '');
+                    error.setAttribute('style', 'color: #ff7171;');
                     error.innerHTML = 'Имя не может начинаться на цифру';
                 }
 
@@ -186,6 +223,7 @@
                     e.target.value =
                         e.target.value.substr(0, i) +
                         e.target.value[i].replace(/[ ]/, '');
+                    error.setAttribute('style', 'color: #ff7171;');
                     error.innerHTML = 'Невозможно ввести два пробела';
                 }
 
@@ -196,6 +234,7 @@
                     e.target.value =
                         e.target.value.substr(0, i) +
                         e.target.value[i].replace(/[-]/, '');
+                    error.setAttribute('style', 'color: #ff7171;');
                     error.innerHTML = 'Невозможно ввести два знака тире';
                 }
 
@@ -203,6 +242,7 @@
                     /([.,_#:~`?/\\|!"№;%&*^$()'+@\[\]{}<>])/gi,
                     ''
                 );
+                vName = true;
             });
 
             inputEmail.addEventListener('input', (e) => {
@@ -250,11 +290,14 @@
             });
 
             inputPhone.addEventListener('input', (e) => {
+                if (e.target.value[0] != '+') {
+                    e.target.value = '+' + e.target.value;
+                }
+
                 if (validatePhone(e.target.value)) {
                     e.target.classList.remove('input-error');
                     errorPhone.innerHTML = '';
                 }
-
                 if (!validatePhone(e.target.value)) {
                     e.target.classList.add('input-error');
                     errorPhone.innerHTML = 'Не является номером телефона';
@@ -264,13 +307,17 @@
                     errorPhone.innerHTML =
                         'Максимальное допустимая длина номера';
                 }
+                if ((e.target.value[0] = '+')) {
+                    e.target.value =
+                        '+' + e.target.value.slice(1).replace(/[+]/, '');
+                }
                 if (
                     e.target.value.match(
-                        /([a-zA-Zа-яА-ЯёЁ,_#:~ `?/\\{}[\]\\|!"№;%&*^$<>||'])/gi
+                        /([a-zA-Zа-яА-ЯёЁ,_#:~ `?/\\{}[\]\\|!="№;%&*^$<>||'])/gi
                     )
                 ) {
                     e.target.value = e.target.value.replace(
-                        /([a-zA-Zа-яА-ЯёЁ,_#:~ `?/\\{}[\]\\|!"№;%&*^$<>||'])/gi,
+                        /([a-zA-Zа-яА-ЯёЁ,_#:~ `?/\\{}[\]\\|=!"№;%&*^$<>||'])/gi,
                         ''
                     );
                     errorPhone.innerHTML = 'Ввод запрещенных символов';
@@ -289,27 +336,50 @@
                     errorPassword.innerHTML =
                         'Используйте латинский алфавит и цифры';
                 }
+
+                if (e.target.value.length > 36) {
+                    e.target.value = e.target.value.substr(0, 36);
+                    errorPassword.setAttribute('style', 'color: #ff7171;');
+                    errorPassword.innerHTML =
+                        'Максимальное колличество символов';
+                }
+
                 if (e.target.value.length < 6) {
                     errorPassword.setAttribute('style', 'color: green');
                     errorPassword.innerHTML =
                         'Минимальная длина пароля 6 символов';
                 }
-                if (e.target.value.length > 36) {
-                    e.target.value = e.target.value.substr(0, 36);
-                    errorPassword.innerHTML =
-                        'Максимальное колличество символов';
-                }
+
                 e.target.value = e.target.value.replace(
                     /([а-яА-ЯёЁ.,_#:~ `?/\\|!"№;@{}%&*^$()'+-])/gi,
                     ''
                 );
-                lengthPassword = lengthPassword + e.target.value;
             });
 
             inputPasswordRepeat.addEventListener('input', (e) => {
                 e.target.value > inputPassword.value
                     ? (errorPasswordRepeat.innerHTML = 'Пароли не совпадают')
                     : (errorPasswordRepeat.innerHTML = '');
+            });
+
+            form.addEventListener('change', () => {
+                if (
+                    inputName.value.length &&
+                    inputEmail.value.length &&
+                    inputPhone.value.length &&
+                    inputPassword.value.length &&
+                    inputPasswordRepeat.value.length &&
+                    !error.textContent.length &&
+                    !errorEmail.textContent.length &&
+                    !errorPhone.textContent.length &&
+                    !errorPassword.textContent.length &&
+                    !errorPasswordRepeat.textContent.length &&
+                    check.checked
+                ) {
+                    btn.removeAttribute('disabled');
+                } else {
+                    btn.setAttribute('disabled', 'true');
+                }
             });
 
             function validateName(name) {
