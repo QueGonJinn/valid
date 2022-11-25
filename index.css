@@ -1,0 +1,77 @@
+html {
+    font-family: 'Roboto', sans-serif;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: #f3e9d2;
+}
+
+div {
+    display: flex;
+    flex-direction: column;
+}
+
+div input {
+    margin-bottom: 10px;
+}
+
+div input {
+    width: 400px;
+    background-color: #f3e9d2;
+    border: 1px solid #114b5f;
+    color: #114b5f;
+    padding: 16px 0 16px 10px;
+    border-radius: 4px;
+    font-size: 20px;
+}
+
+div input::placeholder {
+    color: #7c7c8a;
+}
+
+.input-error {
+    outline: 2px solid red !important;
+}
+
+.input-error,
+.input-error::placeholder {
+    color: red;
+}
+
+.error {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: red;
+}
+
+.prompt-name {
+    display: block;
+    margin: 10px 0;
+    font-size: 16px;
+    color: #ff7171;
+}
+
+.prompt-email {
+    display: block;
+    margin: 10px 0;
+    font-size: 16px;
+    color: #ff7171;
+}
+
+.prompt-phone {
+    display: block;
+    margin: 10px 0;
+    font-size: 16px;
+    color: #ff7171;
+}
+
+.registration-block {
+    display: flex;
+    flex-direction: column;
+}

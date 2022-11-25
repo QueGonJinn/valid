@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="./index.css" />
+        <title>Telegram Validation</title>
+    </head>
+    <body>
+        <form id="registration-form" class="registration-list" action="">
+            <div class="registration-block">
+                <div class="registration-name">
+                    <input
+                        type="text"
+                        id="registration_name"
+                        name="registration[name]"
+                        required="required"
+                        placeholder=" "
+                        class="input-name save-field user-name"
+                        input-by-pattern=""
+                        pattern="[a-zA-Zа-яА-Я\s]"
+                        error-message="Используйте только буквы и пробел"
+                        error-container="#first-name-errors"
+                    />
+                    <label for="registration_name" class="form-label"
+                        >Ваше имя</label
+                    >
+                </div>
+                <span id="first-name-errors" class="prompt-name"></span>
+                <div class="registration-email">
+                    <input
+                        type="email"
+                        id="registration_email"
+                        name="registration[email]"
+                        required="required"
+                        placeholder=" "
+                        class="input-email registration-email-field save-field user-email"
+                        oninput="this.value = this.value.toLowerCase();"
+                    />
+                    <label for="registration_email" class="form-label"
+                        >e-mail</label
+                    >
+                </div>
+                <span id="first-name-errors" class="prompt-email"></span>
+                <div class="registration-phone">
+                    <input
+                        type="tel"
+                        id="registration_phone"
+                        name="registration[phone]"
+                        required="required"
+                        placeholder=" "
+                        class="input-phone phone-with-codeuser-phone"
+                        error-message="Используйте только цифры"
+                    />
+                    <label for="registration_phone" class="form-label"
+                        >Номер телефона</label
+                    >
+                </div>
+                <span id="first-name-errors" class="prompt-phone"></span>
+                <div class="registration-password-first">
+                    <input
+                        type="password"
+                        id="registration_password_first"
+                        name="registration[password][first]"
+                        required="required"
+                        placeholder=" "
+                        class="input-password-first"
+                        scroll-to-element-start-input=""
+                        target-element="#registration_name"
+                        input-by-pattern=""
+                        pattern="[a-zA-Zа-яА-Я\d]"
+                        error-message="Используйте только буквы и цифры"
+                        error-container="#password-first-errors"
+                    />
+                    <label for="registration_password_first" class="form-label"
+                        >Пароль</label
+                    >
+                </div>
+                <span
+                    id="password-first-errors"
+                    class="prompt-password-first prompt-l"
+                ></span>
+                <div class="registration-password-repeat">
+                    <input
+                        type="password"
+                        id="registration_password_second"
+                        name="registration[password][second]"
+                        required="required"
+                        placeholder=" "
+                        class="input-password-repeat"
+                        scroll-to-element-start-input=""
+                        target-element="#registration_name"
+                        input-by-pattern=""
+                        pattern="[a-zA-Zа-яА-Я\d]"
+                        error-message="Используйте только буквы и цифры"
+                        error-container="#password-second-errors"
+                    />
+                    <label for="registration_password_second" class="form-label"
+                        >Повторите пароль</label
+                    >
+                </div>
+                <span
+                    id="password-second-errors"
+                    class="prompt-password-repeat prompt-l"
+                ></span>
+            </div>
+        </form>
+
+        <script>
+            const inputName = document.getElementById('registration_name');
+            const error = document.querySelector('.prompt-name');
+
+            const inputEmail = document.getElementById('registration_email');
+            const errorEmail = document.querySelector('.prompt-email');
+
+            const inputPhone = document.getElementById('registration_phone');
+            const errorPhone = document.querySelector('.prompt-phone');
+
+            const inputPassword = document.getElementById(
+                'registration_password_first'
+            );
+            const errorPassword = document.querySelector(
+                '.prompt-password-first'
+            );
+
+            const inputPasswordRepeat = document.getElementById(
+                'registration_password_second'
+            );
+            const errorPasswordRepeat = document.querySelector(
+                '.prompt-password-repeat'
+            );
+
+            inputName.addEventListener('input', (e) => {
+                let i = e.target.value.length - 1;
+
+                if (e.target.value.match(/^[a-zA-Zа-яА-ЯёЁ]/)) {
+                    let s = e.target.value;
+                    e.target.value = s[0].toUpperCase() + s.slice(1);
+                }
+
+                if (validateName(e.target.value)) {
+                    e.target.classList.remove('input-error');
+                    error.innerHTML = '';
+                }
+
+                if (!validateName(e.target.value)) {
+                    e.target.classList.add('input-error');
+                    error.innerHTML = 'Только буквы, цифры и тире';
+                }
+
+                if (e.target.value[0] === ' ') {
+                    e.target.value = e.target.value.replace(/([ ])/gi, '');
+                    error.innerHTML = 'Пробел не может быть первым символом';
+                }
+
+                if (e.target.value.length > 32) {
+                    e.target.value = e.target.value.substr(0, 32);
+                    error.innerHTML = 'Максимальное колличество символов';
+                }
+
+                if (e.target.value.match(/^[0-9]/)) {
+                    e.target.value = e.target.value.replace(/[0-9]/, '');
+                    error.innerHTML = 'Имя не может начинаться на цифру';
+                }
+
+                if (
+                    e.target.value[i - 1] === ' ' ||
+                    e.target.value[i - 1] === '-'
+                ) {
+                    e.target.value =
+                        e.target.value.substr(0, i) +
+                        e.target.value[i].toUpperCase();
+                }
+
+                if (
+                    e.target.value[i - 1] === ' ' &&
+                    e.target.value[i] === ' '
+                ) {
+                    e.target.value =
+                        e.target.value.substr(0, i) +
+                        e.target.value[i].replace(/[ ]/, '');
+                    error.innerHTML = 'Невозможно ввести два пробела';
+                }
+
+                if (
+                    e.target.value[i - 1] === '-' &&
+                    e.target.value[i] === '-'
+                ) {
+                    e.target.value =
+                        e.target.value.substr(0, i) +
+                        e.target.value[i].replace(/[-]/, '');
+                    error.innerHTML = 'Невозможно ввести два знака тире';
+                }
+
+                e.target.value = e.target.value.replace(
+                    /([.,_#:~`?/\\|!"№;%&*^$()'+@\[\]{}<>])/gi,
+                    ''
+                );
+            });
+
+            inputEmail.addEventListener('input', (e) => {
+                let i = e.target.value.length - 1;
+                if (validateEmail(e.target.value)) {
+                    e.target.classList.remove('input-error');
+                    errorEmail.innerHTML = '';
+                }
+
+                if (!validateEmail(e.target.value)) {
+                    e.target.classList.add('input-error');
+                    errorEmail.innerHTML = 'Не является Email адресом';
+                }
+
+                if (
+                    e.target.value[i - 1] === '@' &&
+                    e.target.value[i] === '@'
+                ) {
+                    e.target.value =
+                        e.target.value.substr(0, i) +
+                        e.target.value[i].replace(/[@]/, '');
+                    errorEmail.innerHTML = 'Невозможно ввести два символа @';
+                }
+                if (
+                    e.target.value[i - 1] === '.' &&
+                    e.target.value[i] === '.'
+                ) {
+                    e.target.value =
+                        e.target.value.substr(0, i) +
+                        e.target.value[i].replace(/[.]/, '');
+                    errorEmail.innerHTML = 'Невозможно ввести два символа .';
+                }
+
+                if (
+                    e.target.value.match(
+                        /([а-яА-ЯёЁ,_#:~ `?/\\|!"№;%&*^$()<>{}||'+-])/gi
+                    )
+                ) {
+                    e.target.value = e.target.value.replace(
+                        /([а-яА-ЯёЁ,_#:~ `?/\\|!"№;%&*^$()<>{}||'+-])/gi,
+                        ''
+                    );
+                    errorEmail.innerHTML = 'Ввод запрещенных символов';
+                }
+            });
+
+            inputPhone.addEventListener('input', (e) => {
+                if (validatePhone(e.target.value)) {
+                    e.target.classList.remove('input-error');
+                    errorPhone.innerHTML = '';
+                }
+
+                if (!validatePhone(e.target.value)) {
+                    e.target.classList.add('input-error');
+                    errorPhone.innerHTML = 'Не является номером телефона';
+                }
+                if (
+                    e.target.value.match(
+                        /([a-zA-Zа-яА-ЯёЁ,_#:~ `?/\\{}[\]\\|!"№;%&*^$<>||'])/gi
+                    )
+                ) {
+                    e.target.value = e.target.value.replace(
+                        /([a-zA-Zа-яА-ЯёЁ,_#:~ `?/\\{}[\]\\|!"№;%&*^$<>||'])/gi,
+                        ''
+                    );
+                    errorPhone.innerHTML = 'Ввод запрещенных символов';
+                }
+            });
+
+            inputPassword.addEventListener('input', (e) => {
+                if (validatePassword(e.target.value)) {
+                    e.target.classList.remove('input-error');
+                    errorPassword.innerHTML = '';
+                }
+
+                if (!validatePassword(e.target.value)) {
+                    e.target.classList.add('input-error');
+                    errorPassword.innerHTML =
+                        'Используйте латинский алфавит и цифры';
+                }
+                if (e.target.value.length < 6) {
+                    errorPassword.innerHTML =
+                        'Минимальная длина пароля 6 символов';
+                }
+                if (e.target.value.length > 36) {
+                    e.target.value = e.target.value.substr(0, 36);
+                    errorPassword.innerHTML =
+                        'Максимальное колличество символов';
+                }
+                e.target.value = e.target.value.replace(
+                    /([а-яА-ЯёЁ.,_#:~ `?/\\|!"№;@{}%&*^$()'+-])/gi,
+                    ''
+                );
+                lengthPassword = lengthPassword + e.target.value;
+            });
+
+            inputPasswordRepeat.addEventListener('input', (e) => {
+                e.target.value != inputPassword.value
+                    ? (errorPasswordRepeat.innerHTML = 'Пароли не совпадают')
+                    : (errorPasswordRepeat.innerHTML = '');
+            });
+
+            function validateName(name) {
+                return String(name).match(/^[a-zA-Zа-яА-ЯёЁ0-9 -]+$/);
+            }
+            function validateEmail(email) {
+                return String(email).match(
+                    /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu
+                );
+            }
+            function validatePhone(phone) {
+                return String(phone).match(/(?:\+|\d)[\d\-\(\) ]{9,}\d/g);
+            }
+            function validatePassword(password) {
+                return String(password).match(/[a-zA-Z0-9]+$/);
+            }
+        </script>
+    </body>
+</html>
