@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="./index.css" />
+        <title>Telegram Validation</title>
+    </head>
+    <body>
+        <form
+            id="login-form1"
+            true=""
+            class="registration-list login-form login-form1"
+            action="/login"
+            method="post"
+            novalidate=""
+        >
+            <input
+                type="hidden"
+                id="login__token"
+                name="login[_token]"
+                value="45abe56941e1fe1dbf6f5b617d5acf.naQXom2UDFGKsiBtJCU1cm6Blop-ywXS2Qca97oeLoY.pM1n2j7kbzzm9mZaUWN3NDfH49ohsWK6slVqmsJJV97k4FXKPfNcZ-_ISw"
+            />
+            <fieldset>
+                <h1 class="fieldset-title">Вход</h1>
+                <div class="registration-block">
+                    <div class="registration-email">
+                        <input
+                            type="email"
+                            id="login_username"
+                            name="login[username]"
+                            required="required"
+                            placeholder=" "
+                            class="input type-username"
+                            data-change-type="tel"
+                            data-change-placeholder=" "
+                        />
+                        <label for="login_username" class="form-label"
+                            >&nbsp;&nbsp;Ваш e-mail или
+                            телефон&nbsp;&nbsp;</label
+                        >
+                    </div>
+                    <div class="registration-pas">
+                        <input
+                            type="password"
+                            id="login_password"
+                            name="login[password]"
+                            required="required"
+                            placeholder=" "
+                            class="input-pas"
+                        />
+                        <label for="login_password" class="form-label"
+                            >&nbsp;&nbsp;Пароль&nbsp;&nbsp;</label
+                        >
+
+                        <span class="prompt" style="color: red"></span>
+                    </div>
+                    <div class="forgot-password-block">
+                        <a href="/forgot-password" class="pas"
+                            >Забыли пароль?</a
+                        >
+                    </div>
+                    <span class="prompt" style="color: red"></span>
+                </div>
+                <button
+                    type="submit"
+                    id="login_submit"
+                    name="login[submit]"
+                    class="button button-show"
+                >
+                    Войти
+                </button>
+
+                <a class="fieldset-link-reg" href="/registration"
+                    >Зарегистрироваться</a
+                >
+                <div class="description_other">© 2021 Autoparus.com</div>
+            </fieldset>
+        </form>
+
+        <script>
+            const form = document.getElementById('login-form1');
+            const inputEmail = document.getElementById('login_username');
+            const inputPassword = document.getElementById('login_password');
+            const button = document.getElementById('login_submit');
+            button.style.background = '#4a5b79e3';
+            button.setAttribute('disabled', 'true');
+
+            form.addEventListener('change', () => {
+                if (inputEmail.value.length && inputPassword.value.length) {
+                    button.removeAttribute('disabled');
+                    button.style.background = '#1a5b99e3';
+                } else {
+                    button.style.background = '#4a5b79e3';
+                    button.setAttribute('disabled', 'true');
+                }
+            });
+        </script>
+    </body>
+</html>
