@@ -259,6 +259,11 @@
                     e.target.classList.add('input-error');
                     errorPhone.innerHTML = 'Не является номером телефона';
                 }
+                if (e.target.value.length > 15) {
+                    e.target.value = e.target.value.substr(0, 15);
+                    errorPhone.innerHTML =
+                        'Максимальное допустимая длина номера';
+                }
                 if (
                     e.target.value.match(
                         /([a-zA-Zа-яА-ЯёЁ,_#:~ `?/\\{}[\]\\|!"№;%&*^$<>||'])/gi
@@ -280,10 +285,12 @@
 
                 if (!validatePassword(e.target.value)) {
                     e.target.classList.add('input-error');
+                    errorPassword.setAttribute('style', 'color: #ff7171;');
                     errorPassword.innerHTML =
                         'Используйте латинский алфавит и цифры';
                 }
                 if (e.target.value.length < 6) {
+                    errorPassword.setAttribute('style', 'color: green');
                     errorPassword.innerHTML =
                         'Минимальная длина пароля 6 символов';
                 }
@@ -300,7 +307,7 @@
             });
 
             inputPasswordRepeat.addEventListener('input', (e) => {
-                e.target.value != inputPassword.value
+                e.target.value > inputPassword.value
                     ? (errorPasswordRepeat.innerHTML = 'Пароли не совпадают')
                     : (errorPasswordRepeat.innerHTML = '');
             });
