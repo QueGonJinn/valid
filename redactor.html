@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="./index.css" />
+		<title>Telegram Validation</title>
+	</head>
+	<body>
+		<form
+			id="personal-data-form"
+			class="form-base-profile user-form"
+			method="post"
+			style="padding-bottom: 0"
+			novalidate=""
+			enctype="multipart/form-data"
+		>
+			<input
+				type="hidden"
+				id="personal_data__token"
+				name="personal_data[_token]"
+				value="b368149c9600ae971cb067c0ccd.uhGPLY7U4JLS3AfSjCiWG0xGiuKVhgg9-ezEqzfUBg4.g2f1bsOzkKOAvzKI02CjRC826ZTQ4lAKm6SPxX23cV3NPN1V54yL4ZaFcA"
+			/>
+
+			<div id="main-container" class="main-container">
+				<div class="registrations-container">
+					<!-- NAME -->
+					<div class="registartion registration-name">
+						<input
+							type="text"
+							id="personal_data_name"
+							name="personal_data[name]"
+							required="required"
+							class="input-form input-name save-field"
+							placeholder=" "
+							value="ефывф"
+						/>
+
+						<label class="form-label">Имя</label>
+					</div>
+
+					<!-- EMAIL -->
+					<div class="registartion registration-email">
+						<input
+							type="email"
+							id="personal_data_email"
+							name="personal_data[email]"
+							required="required"
+							class="input-form input-email save-field"
+							placeholder=" "
+							value="leshtest@gmail.com"
+						/>
+
+						<label class="form-label">E-mail</label>
+					</div>
+
+					<!-- PHONE -->
+					<div class="registartion registration-email">
+						<input
+							type="text"
+							id="personal_data_phone"
+							name="personal_data[phone]"
+							required="required"
+							class="input-form input-email save-field"
+							placeholder=" "
+							value="+375333352256"
+						/>
+
+						<label class="form-label">Телефон</label>
+					</div>
+				</div>
+				<div class="website">
+					<!-- WEBSITE -->
+					<input
+						type="text"
+						id="personal_data_website"
+						name="personal_data[website]"
+						class="input-form input-website"
+						placeholder=" "
+					/>
+					<label class="form-label">Website</label>
+				</div>
+
+				<div class="button-block">
+					<button
+						type="submit"
+						id="personal_data_submit"
+						name="personal_data[submit]"
+						class="button-submit"
+					>
+						Подтвердить
+					</button>
+				</div>
+
+				<span id="message-form"></span>
+			</div>
+		</form>
+
+		<script>
+			const phoneInput = document.getElementById('personal_data_phone');
+			const webInput = document.getElementById('personal_data_website');
+			const closeFr = document.createElement('button');
+			const iframeWrapper = document.createElement('div');
+			iframeWrapper.classList.add('iframe-wrapper');
+			closeFr.classList.add('button-iframe');
+			const frame = document.createElement('iframe');
+			frame.classList.add('iframe');
+			frame.setAttribute('scrolling', 'no');
+
+			const textNode = document.createTextNode('Закрыть');
+			closeFr.append(textNode);
+
+			phoneInput.addEventListener('input', (e) => {
+				let j = e.target.value.length - 1;
+				let i = getCaretPos(phoneInput);
+
+				if (e.target.value[j - 1] === ' ' && e.target.value[j] === ' ') {
+					e.target.value = e.target.value.substr(0, j - 1) + e.target.value[j].replace(/[ ]/, '');
+				}
+
+				if (e.target.value[i - 1] === ' ') {
+					console.log(e.target.value[i]);
+					e.target.value =
+						e.target.value.slice(0, i) +
+						e.target.value[i].replace(/[ ]/, '') +
+						e.target.value.slice(i + 1, j + 1);
+				}
+
+				e.target.value = e.target.value.replace(
+					/([a-zA-Zа-яА-ЯёЁ.,_#:-~=`?/\\|"№;%&*^$'@\[\]{}<>])/gi,
+					'',
+				);
+			});
+
+			webInput.addEventListener('input', (e) => {
+				e.target.value = e.target.value.replace('https://', '');
+				e.target.value = e.target.value.replace('www.', '');
+				e.target.value = e.target.value.split('/')[0];
+				frame.src = `https://${e.target.value}/`;
+
+				insertAfter(webInput, frame);
+				insertAfter(frame, closeFr);
+
+				closeFr.addEventListener('click', (e) => {
+					e.preventDefault();
+					frame.hidden = true;
+					closeFr.hidden = true;
+				});
+			});
+			if (webInput.value !== 0) {
+				webInput.addEventListener('click', (e) => {
+					frame.src = `https://${e.target.value}/`;
+					frame.hidden = false;
+					closeFr.hidden = false;
+					closeFr.addEventListener('click', (e) => {
+						e.preventDefault();
+						frame.hidden = true;
+						closeFr.hidden = true;
+					});
+				});
+			}
+
+			function getCaretPos(input) {
+				if (input.createTextRange) {
+					var range = document.selection.createRange.duplicate();
+					range.moveStart('character', -input.value.length);
+					return range.text.length;
+				} else {
+					return input.selectionStart;
+				}
+			}
+			function insertAfter(referenceNode, newNode) {
+				referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+			}
+		</script>
+	</body>
+</html>
