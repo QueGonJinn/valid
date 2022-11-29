@@ -70,3 +70,23 @@ cityInput.addEventListener('input', (e) => {
 		}
 	}
 });
+addressInput.addEventListener('input', (e) => {
+	const originalText = e.target.value;
+	const symbolArray = ['-', ' ', '/', ':', ';', '.', ',', '#', '№', '`'];
+	if (e.target.value.length > 0) {
+		let clearString = e.target.value
+			.slice(1, e.target.value.length)
+			.replaceAll(/[^А-Яа-яa-zA-Z0-9 /:;.,#№`-]/g, '');
+		symbolArray.forEach((symbol) => {
+			clearString = clearString.replaceAll(symbol.repeat(2), symbol);
+		});
+		e.target.value =
+			e.target.value[0].toUpperCase().replace(/[^А-Яа-яa-zA-Z0-9]/g, '') + clearString;
+		if (e.target.value.toLowerCase() === originalText.toLowerCase()) {
+			hideError(addressError);
+		} else {
+			if (symbolArray.includes(originalText[originalText.length - 1])) hideError(addressError);
+			else showError(e.target.parentNode, 'Только буквы, цифры и  ` . , ; : / # №', addressError);
+		}
+	}
+});

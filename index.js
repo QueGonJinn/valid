@@ -18,6 +18,7 @@ const nameInput = document.getElementById('personal_data_name');
 const emailInput = document.getElementById('personal_data_email');
 const countryInput = document.getElementById('personal_data_country');
 const cityInput = document.getElementById('personal_data_city');
+const addressInput = document.getElementById('personal_data_address');
 
 function validate(elem) {
 	return String(elem).match(/[a-zA-Z0-9-._]+$/);
@@ -50,6 +51,10 @@ function validateEmail(email) {
 	return String(email).match(
 		/^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu,
 	);
+}
+
+function validateAddress(name) {
+	return String(name).match(/^[a-zA-Zа-яА-ЯёЁ0-9,.#№ `:;/-]+$/);
 }
 
 nameInput.addEventListener('input', (e) => {
@@ -177,6 +182,48 @@ cityInput.addEventListener('input', (e) => {
 		cityInput.setAttribute('style', 'color: #ff7171;');
 	}
 	e.target.value = e.target.value.replace(/([.,_#:~`?/\\|!"№;%&*^$()'+@\[\]{}<>])/gi, '');
+});
+
+addressInput.addEventListener('input', (e) => {
+	let i = e.target.value.length - 1;
+	if (e.target.value.match(/^[a-zA-Zа-яА-ЯёЁ]/)) {
+		let s = e.target.value;
+		e.target.value = s[0].toUpperCase() + s.slice(1);
+	}
+	if (validateAddress(e.target.value)) {
+		addressInput.removeAttribute('style', 'color: #ff7171;');
+	}
+	if (!validateAddress(e.target.value)) {
+		addressInput.setAttribute('style', 'color: #ff7171;');
+	}
+	if (e.target.value.length > 50) {
+		e.target.value = e.target.value.substr(0, 50);
+		addressInput.setAttribute('style', 'color: #ff7171;');
+	}
+	if (
+		e.target.value[i - 1] === ' ' ||
+		e.target.value[i - 1] === '-' ||
+		e.target.value[i - 1] === '.'
+	) {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].toUpperCase();
+	}
+	if (e.target.value[i - 1] === ' ' && e.target.value[i] === ' ') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[ ]/, '');
+		addressInput.setAttribute('style', 'color: #ff7171;');
+	}
+	if (e.target.value[i - 1] === '-' && e.target.value[i] === '-') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[-]/, '');
+		addressInput.setAttribute('style', 'color: #ff7171;');
+	}
+	if (e.target.value[i - 1] === '.' && e.target.value[i] === '.') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[.]/, '');
+		addressInput.setAttribute('style', 'color: #ff7171;');
+	}
+	if (e.target.value[i - 1] === ',' && e.target.value[i] === ',') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[,]/, '');
+		addressInput.setAttribute('style', 'color: #ff7171;');
+	}
+	e.target.value = e.target.value.replace(/([_~?\\|!"%&*^$()'+@\[\]{}<>])/gi, '');
 });
 
 instagram.addEventListener('input', (e) => {
