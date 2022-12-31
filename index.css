@@ -156,3 +156,21 @@ div input::placeholder {
 .iframe:first-child {
 	overflow: hidden;
 }
+
+.page {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.block {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+.input-outter {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 1.5em;
+}

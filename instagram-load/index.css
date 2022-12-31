@@ -1,0 +1,23 @@
+body {
+	background: #2d4059;
+}
+
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 30px;
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+	align-items: center;
+}
+
+.profile-avatar {
+	width: 160px;
+	height: 160px;
+	box-shadow: 0 3px 20px rgb(0 0 0 / 8%);
+	border-radius: 50%;
+}
+.svg-instagram {
+	height: 4rem;
+}

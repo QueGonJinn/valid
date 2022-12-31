@@ -1,0 +1,167 @@
+const nameI = document.getElementById('personal_data_name');
+const email = document.getElementById('personal_data_email');
+const city = document.getElementById('personal_data_city');
+const searchQuery = document.getElementById('personal_data_searchQuery');
+const wrapperInputAll = document.querySelectorAll('.input-outter');
+
+let labelS = document.createElement('span');
+labelS.innerHTML = 'Минимальное колличество символов 25';
+labelS.setAttribute('style', 'color: #ff7171;');
+let labelQ = document.createElement('span');
+labelQ.innerHTML = 'Максимальное колличество символов 75';
+labelQ.setAttribute('style', 'color: #ff7171;');
+
+function validateName(name) {
+	return String(name).match(/^[a-zA-Zа-яА-ЯёЁ -]+$/);
+}
+
+function validateEmail(email) {
+	return String(email).match(
+		/^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu,
+	);
+}
+
+function validateCity(name) {
+	return String(name).match(/^[a-zA-Zа-яА-ЯёЁ -]+$/);
+}
+
+function validateSearchQuery(name) {
+	return String(name).match(/^[a-zA-Zа-яА-ЯёЁ0-9, -]+$/);
+}
+
+nameI.addEventListener('input', (e) => {
+	let i = e.target.value.length - 1;
+	if (e.target.value.match(/^[a-zA-Zа-яА-ЯёЁ]/)) {
+		let s = e.target.value;
+		e.target.value = s[0].toUpperCase() + s.slice(1);
+	}
+	if (validateName(e.target.value)) {
+		nameI.removeAttribute('style', 'color: #ff7171;');
+	}
+	if (!validateName(e.target.value)) {
+		nameI.setAttribute('style', 'color: #ff7171;');
+	}
+	if (e.target.value[i - 1] === ' ' || e.target.value[i - 1] === '-') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].toUpperCase();
+	}
+	if (e.target.value[i - 1] === ' ' && e.target.value[i] === ' ') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[ ]/, '');
+		nameI.setAttribute('style', 'color: #ff7171;');
+	}
+	if (e.target.value[i - 1] === '-' && e.target.value[i] === '-') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[-]/, '');
+		nameI.setAttribute('style', 'color: #ff7171;');
+	}
+	if (e.target.value.length > 25) {
+		e.target.value = e.target.value.substr(0, 25);
+		nameI.setAttribute('style', 'color: #ff7171;');
+	}
+	e.target.value = e.target.value.replace(/([0-9.,_#:~`?/\\|!"№;%&*^$()'+@\[\]{}<>])/gi, '');
+});
+
+email.addEventListener('input', (e) => {
+	let i = e.target.value.length - 1;
+	if (validateEmail(e.target.value)) {
+		e.target.classList.remove('input-error');
+		email.removeAttribute('style', 'color: #ff7171;');
+	}
+
+	if (!validateEmail(e.target.value)) {
+		e.target.classList.add('input-error');
+		email.setAttribute('style', 'color: #ff7171;');
+	}
+
+	if (e.target.value[i - 1] === '@' && e.target.value[i] === '@') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[@]/, '');
+		email.setAttribute('style', 'color: #ff7171;');
+	}
+	if (e.target.value[i - 1] === '.' && e.target.value[i] === '.') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[.]/, '');
+		email.setAttribute('style', 'color: #ff7171;');
+	}
+
+	if (e.target.value.match(/([а-яА-ЯёЁ,_#:~ `?/\\|!"№;%&*^$()<>{}||'+-])/gi)) {
+		e.target.value = e.target.value.replace(/([а-яА-ЯёЁ,_#:~ `?/\\|!"№;%&*^$()<>{}||'+-])/gi, '');
+		email.setAttribute('style', 'color: #ff7171;');
+	}
+});
+
+city.addEventListener('input', (e) => {
+	let i = e.target.value.length - 1;
+	if (e.target.value.match(/^[a-zA-Zа-яА-ЯёЁ]/)) {
+		let s = e.target.value;
+		e.target.value = s[0].toUpperCase() + s.slice(1);
+	}
+	if (validateCity(e.target.value)) {
+		city.removeAttribute('style', 'color: #ff7171;');
+	}
+	if (!validateCity(e.target.value)) {
+		city.setAttribute('style', 'color: #ff7171;');
+	}
+	if (e.target.value[i - 1] === ' ' || e.target.value[i - 1] === '-') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].toUpperCase();
+	}
+	if (e.target.value[i - 1] === ' ' && e.target.value[i] === ' ') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[ ]/, '');
+		city.setAttribute('style', 'color: #ff7171;');
+	}
+	if (e.target.value[i - 1] === '-' && e.target.value[i] === '-') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[-]/, '');
+		city.setAttribute('style', 'color: #ff7171;');
+	}
+	if (e.target.value.length > 25) {
+		e.target.value = e.target.value.substr(0, 25);
+		city.setAttribute('style', 'color: #ff7171;');
+	}
+	e.target.value = e.target.value.replace(/([0-9.,_#:~`?/\\|!"№;%&*^$()'+@\[\]{}<>])/gi, '');
+});
+
+searchQuery.addEventListener('input', (e) => {
+	let i = e.target.value.length - 1;
+	if (e.target.value.match(/^[a-zA-Zа-яА-ЯёЁ]/)) {
+		let s = e.target.value;
+		e.target.value = s[0].toUpperCase() + s.slice(1);
+	}
+	if (e.target.value.length < 25) {
+		searchQuery.setAttribute('style', 'color: #ff7171;');
+		wrapperInputAll[6].appendChild(labelS);
+	}
+	if (e.target.value.length === 25) {
+		searchQuery.setAttribute('style', 'color: #ff7171;');
+		wrapperInputAll[6].removeChild(labelS);
+	}
+	if (validateSearchQuery(e.target.value)) {
+		searchQuery.removeAttribute('style', 'color: #ff7171;');
+	}
+	if (!validateSearchQuery(e.target.value)) {
+		searchQuery.setAttribute('style', 'color: #ff7171;');
+	}
+	if (e.target.value[i - 1] === ' ' || e.target.value[i - 1] === '-') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].toUpperCase();
+	}
+	if (e.target.value[i - 1] === ' ' && e.target.value[i] === ' ') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[ ]/, '');
+		searchQuery.setAttribute('style', 'color: #ff7171;');
+	}
+	if (e.target.value[i - 1] === '-' && e.target.value[i] === '-') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[-]/, '');
+		searchQuery.setAttribute('style', 'color: #ff7171;');
+	}
+	if (e.target.value[i - 1] === ',' && e.target.value[i] === ',') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[,]/, '');
+		searchQuery.setAttribute('style', 'color: #ff7171;');
+	}
+
+	if (e.target.value.length > 75) {
+		e.target.value = e.target.value.substr(0, 75);
+		wrapperInputAll[6].appendChild(labelQ);
+		searchQuery.setAttribute('style', 'color: #ff7171;');
+	}
+	if (e.target.value.length < 75) {
+		e.target.value = e.target.value.substr(0, 75);
+		wrapperInputAll[6].removeChild(labelQ);
+		searchQuery.setAttribute('style', 'color: #ff7171;');
+	}
+
+	e.target.value = e.target.value.replace(/([._#:~`?/\\|!"№;%&*^$()'+@\[\]{}<>])/gi, '');
+});
