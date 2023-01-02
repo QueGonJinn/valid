@@ -157,7 +157,130 @@
 					</div>
 				</div>
 			</fieldset>
+			<fieldset class="block telegram-instagram">
+				<div class="select">
+					<div class="input-outter">
+						<label>Telegram </label>
+						<input
+							type="text"
+							id="personal_data_telegramAddress"
+							name="personal_data[telegramAddress]"
+							required="required"
+							placeholder="@..."
+							class="str-input"
+							style="display: inline-block"
+						/>
+					</div>
+				</div>
+				<div class="select">
+					<div class="input-outter">
+						<label>Instagram </label>
+						<input
+							type="text"
+							id="personal_data_instagramAddress"
+							name="personal_data[instagramAddress]"
+							required="required"
+							placeholder="Имя пользователя"
+							class="str-input"
+							style="display: inline-block"
+						/>
+					</div>
+				</div>
+			</fieldset>
+			<fieldset class="block">
+				<h2>Место расположения объекта торговли или услуги</h2>
+				<div class="select">
+					<div class="input-outter">
+						<label
+							>Адрес
+							<sup>
+								<button class="help open-popup-button" type="button" data-popup-id="2">
+									<svg viewBox="0 0 32 32" width="18px" height="18px">
+										<path
+											fill="#999999"
+											d="M 16 4 C 9.382813 4 4 9.382813 4 16 C 4 22.617188 9.382813 28 16 28 C 22.617188 28 28 22.617188 28 16 C 28 9.382813 22.617188 4 16 4 Z M 16 6 C 21.535156 6 26 10.464844 26 16 C 26 21.535156 21.535156 26 16 26 C 10.464844 26 6 21.535156 6 16 C 6 10.464844 10.464844 6 16 6 Z M 16 10 C 13.800781 10 12 11.800781 12 14 L 14 14 C 14 12.882813 14.882813 12 16 12 C 17.117188 12 18 12.882813 18 14 C 18 14.765625 17.507813 15.445313 16.78125 15.6875 L 16.375 15.8125 C 15.558594 16.082031 15 16.863281 15 17.71875 L 15 19 L 17 19 L 17 17.71875 L 17.40625 17.59375 C 18.945313 17.082031 20 15.621094 20 14 C 20 11.800781 18.199219 10 16 10 Z M 15 20 L 15 22 L 17 22 L 17 20 Z "
+										></path>
+									</svg>
+								</button>
+							</sup>
+						</label>
+						<input
+							type="text"
+							id="personal_data_address"
+							name="personal_data[address]"
+							required="required"
+							placeholder="Локация"
+							class="str-input"
+						/>
+					</div>
+				</div>
+				<span class="prompt">Для использования в&nbsp;бизнес&nbsp;аккаунтах</span>
+			</fieldset>
 		</section>
+		<div id="popup2" class="overlay2">
+			<section class="modal">
+				<h1 class="modal-title">Дополнительные данные</h1>
+				<div class="modal-text">
+					<p>
+						Это поле заполняется если Вы планируете создавать бизнес профиль или будите использовать
+						аккаунт для ссылки в рекламных или презентационных целях.
+					</p>
+
+					<p>
+						Если вы создаете Web-визитку как частное лицо, то можете оставить поле не заполненным, в
+						таком случае никакого адреса на вашей страничке не будет отображаться.
+					</p>
+
+					<p>
+						Укажите адрес магазина, торговой точки, пункта самовывоза или мастерской, офиса или
+						шоурума;&nbsp;при работаете только с доставкой товаров клиенту или по выезду - укажите
+						юридический адрес.
+					</p>
+
+					<p>
+						Индивидуальному предпринимателю достаточно указать только улицу и номера дома, если дом
+						частный, можно указать только улицу.
+					</p>
+
+					<p style="text-align: right">-23-</p>
+				</div>
+				<button class="modal-close close-popup-button" type="button" data-popup-id="2">
+					Закрыть
+				</button>
+			</section>
+		</div>
+		<div id="popup4" class="overlay4">
+			<section class="modal">
+				<h1 class="modal-title">Поддомен и поисковый запрос</h1>
+				<div class="modal-text">
+					<p>
+						<strong>Поддоменное имя</strong>&nbsp;- это Ваше уникальное имя на
+						платформе&nbsp;Autoparus.by, которое будет отображаться на первом месте Вашего URL
+						адреса.
+					</p>
+
+					<p>
+						Отнеситесь ответственно к выбору поддноменного имени, его не стоит менять в будущем, так
+						как при изменении&nbsp;Вы потеряете всю накопленную силу старого.
+					</p>
+
+					<p>
+						<strong>Поисковый запрос</strong> - это поисковая&nbsp;фраза по которой будет искаться в
+						интернете&nbsp;созданная Вами страница. Не путайте с ключевыми словами, в поисковый
+						запрос входят ключевые слова, но так, что бы получился логичный текст.
+					</p>
+
+					<p>
+						Оптимальный запрос - это 5-7 слов собранных в поисковой заголовок&nbsp;несушие четкий
+						понятный смысл как для ботов так и для людей. наиболее важные слова ставьте в начало
+						запроса.
+					</p>
+				</div>
+				<button class="modal-close close-popup-button" type="button" data-popup-id="4">
+					Закрыть
+				</button>
+			</section>
+		</div>
 		<script src="./index.js"></script>
 	</body>
 </html>
