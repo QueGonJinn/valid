@@ -346,11 +346,11 @@ telegram.addEventListener('input', (e) => {
 		e.target.value = e.target.value.replace(/[а-яА-ЯёЁ,#:~ `?=|!"№;{}%&*^$()'+]+$/, '');
 		telegram.setAttribute('style', 'color: #ff7171;');
 	}
-	if (e.target.value.length < 25) {
+	if (e.target.value.length < 4) {
 		telegram.setAttribute('style', 'color: #ff7171;');
 		telegaQ[1].appendChild(labelTelegram);
 	}
-	if (e.target.value.length === 25) {
+	if (e.target.value.length === 4) {
 		telegram.setAttribute('style', 'color: #ff7171;');
 		telegaQ[1].removeChild(labelTelegram);
 	}
@@ -366,11 +366,8 @@ telegram.addEventListener('input', (e) => {
 instagram.addEventListener('input', (e) => {
 	e.target.value = e.target.value.replace('https://', '');
 	e.target.value = e.target.value.replace('www.', '');
-	e.target.value = e.target.value.split('/')[0] + '/' + e.target.value.split('/')[1];
-	e.target.value = e.target.value.split('?')[0];
-	if (e.target.value.split('/')[0] !== 'instagram.com') {
-		e.target.value = 'instagram.com/' + e.target.value.split('/')[0];
-	}
+	e.target.value = e.target.value.replace('instagram.com/', '');
+
 	if (validate(e.target.value)) {
 		instagram.removeAttribute('style', 'color: #ff7171;');
 	}
