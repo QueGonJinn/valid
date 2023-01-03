@@ -1,6 +1,7 @@
 const nameI = document.getElementById('personal_data_name');
 const email = document.getElementById('personal_data_email');
 const city = document.getElementById('personal_data_city');
+const country = document.getElementById('personal_data_country');
 const searchQuery = document.getElementById('personal_data_searchQuery');
 const address = document.getElementById('personal_data_address');
 const instagram = document.getElementById('personal_data_instagramAddress');
@@ -24,7 +25,7 @@ labelQ.innerHTML = 'Максимальное колличество символ
 labelQ.setAttribute('style', 'color: #ff7171;');
 
 function validateName(name) {
-	return String(name).match(/^[a-zA-Zа-яА-ЯёЁ -]+$/);
+	return String(name).match(/^[a-zA-Zа-яА-ЯёЁ0-9 -]+$/);
 }
 
 function validateEmail(email) {
@@ -37,6 +38,10 @@ function validateCity(name) {
 	return String(name).match(/^[a-zA-Zа-яА-ЯёЁ -]+$/);
 }
 
+function validateCountry(name) {
+	return String(name).match(/^[a-zA-Zа-яА-ЯёЁ ]+$/);
+}
+
 function validateSearchQuery(name) {
 	return String(name).match(/^[a-zA-Zа-яА-ЯёЁ0-9, -]+$/);
 }
@@ -46,11 +51,11 @@ function validateAddress(name) {
 }
 
 function validate(elem) {
-	return String(elem).match(/[a-zA-Z0-9-._]+$/);
+	return String(elem).match(/[a-zA-Z0-9-_]+$/);
 }
 
 function validateTG(elem) {
-	return String(elem).match(/[a-zA-Z0-9-._]+$/);
+	return String(elem).match(/[a-zA-Z0-9-_]+$/);
 }
 
 nameI.addEventListener('input', (e) => {
@@ -88,7 +93,7 @@ nameI.addEventListener('input', (e) => {
 		e.target.value = '';
 		nameI.setAttribute('style', 'color: #ff7171;');
 	}
-	e.target.value = e.target.value.replace(/([0-9.,_#:~`?/\\|!"№;%&*^$()'+@\[\]{}<>])/gi, '');
+	e.target.value = e.target.value.replace(/([.,_#:~`?/\\|!"№;%&*^$()'+@\[\]{}<>])/gi, '');
 });
 
 email.addEventListener('input', (e) => {
@@ -160,6 +165,36 @@ city.addEventListener('input', (e) => {
 		e.target.value = '';
 	}
 	e.target.value = e.target.value.replace(/([0-9.,_#:~`?/\\|!"№;%&*^$()'+@\[\]{}<>])/gi, '');
+});
+
+country.addEventListener('input', (e) => {
+	let i = e.target.value.length - 1;
+	if (e.target.value.match(/^[a-zA-Zа-яА-ЯёЁ]/)) {
+		let s = e.target.value;
+		e.target.value = s[0].toUpperCase() + s.slice(1);
+	}
+	if (validateCountry(e.target.value)) {
+		country.removeAttribute('style', 'color: #ff7171;');
+	}
+	if (!validateCountry(e.target.value)) {
+		country.setAttribute('style', 'color: #ff7171;');
+	}
+	if (e.target.value[i - 1] === ' ') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].toUpperCase();
+	}
+	if (e.target.value[i - 1] === ' ' && e.target.value[i] === ' ') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[ ]/, '');
+		country.setAttribute('style', 'color: #ff7171;');
+	}
+	if (e.target.value.length > 25) {
+		e.target.value = e.target.value.substr(0, 25);
+		country.setAttribute('style', 'color: #ff7171;');
+	}
+	if (e.target.value[0] === ' ') {
+		e.target.value = '';
+		country.setAttribute('style', 'color: #ff7171;');
+	}
+	e.target.value = e.target.value.replace(/([0-9.,_#-:~`?/\\|!"№;%&*^$()'+@\[\]{}<>])/gi, '');
 });
 
 searchQuery.addEventListener('input', (e) => {
@@ -281,8 +316,8 @@ address.addEventListener('input', (e) => {
 		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[№]/, '');
 		address.setAttribute('style', 'color: #ff7171;');
 	}
-	if (e.target.value.length > 25) {
-		e.target.value = e.target.value.substr(0, 25);
+	if (e.target.value.length > 60) {
+		e.target.value = e.target.value.substr(0, 60);
 		address.setAttribute('style', 'color: #ff7171;');
 	}
 	if (e.target.value[0] === ' ') {
@@ -339,11 +374,11 @@ telegram.addEventListener('input', (e) => {
 
 	e.target.value = e.target.value.split('?')[0];
 
-	if (validate(e.target.value)) {
+	if (validateTG(e.target.value)) {
 		telegram.removeAttribute('style', 'color: #ff7171;');
 	}
-	if (!validate(e.target.value)) {
-		e.target.value = e.target.value.replace(/[а-яА-ЯёЁ,#:~ `?=|!"№;{}%&*^$()'+]+$/, '');
+	if (!validateTG(e.target.value)) {
+		e.target.value = e.target.value.replace(/[а-яА-ЯёЁ,#:~ `?=/\\|<>!"№;{.}%&*^$()'+]+$/, '');
 		telegram.setAttribute('style', 'color: #ff7171;');
 	}
 	if (e.target.value.length < 4) {
@@ -358,32 +393,50 @@ telegram.addEventListener('input', (e) => {
 		e.target.value = e.target.value.substr(0, 32);
 		telegram.setAttribute('style', 'color: #ff7171;');
 	}
+	if (e.target.value[0] === '-') {
+		e.target.value = '';
+		address.setAttribute('style', 'color: #ff7171;');
+	}
+	if (e.target.value[0] === '_') {
+		e.target.value = '';
+		address.setAttribute('style', 'color: #ff7171;');
+	}
 	e.target.value = e.target.value.replace('undefined', '');
 	e.target.value = e.target.value.replace('@', '');
 	e.target.value = e.target.value.replace('@@', '');
+	e.target.value = e.target.value.replace('--', '-');
+	e.target.value = e.target.value.replace('__', '_');
 });
 
 instagram.addEventListener('input', (e) => {
 	e.target.value = e.target.value.replace('https://', '');
 	e.target.value = e.target.value.replace('www.', '');
 	e.target.value = e.target.value.replace('instagram.com/', '');
-
+	e.target.value = e.target.value.split('/')[0];
 	if (validate(e.target.value)) {
 		instagram.removeAttribute('style', 'color: #ff7171;');
 	}
 	if (!validate(e.target.value)) {
-		e.target.value = e.target.value.replace(/[а-яА-ЯёЁ,#:~ `?=|!"№;{}%&*^$()'+]+$/, '');
+		e.target.value = e.target.value.replace(/[а-яА-ЯёЁ,#:~ `?=|!"№;{}%&*.^$<>()'+]+$/, '');
 		instagram.setAttribute('style', 'color: #ff7171;');
 	}
 	if (e.target.value.length > 44) {
 		e.target.value = e.target.value.substr(0, 44);
 		instagram.setAttribute('style', 'color: #ff7171;');
 	}
+	if (e.target.value[0] === '-') {
+		e.target.value = '';
+		address.setAttribute('style', 'color: #ff7171;');
+	}
+	if (e.target.value[0] === '_') {
+		e.target.value = '';
+		address.setAttribute('style', 'color: #ff7171;');
+	}
 	e.target.value = e.target.value.replace('undefined', '');
+	e.target.value = e.target.value.replace('--', '-');
+	e.target.value = e.target.value.replace('__', '_');
 	e.target.value = e.target.value.replace('@@', '@');
 });
-
-console.log(button[0]);
 
 button[2].addEventListener('click', () => {
 	modalOne.setAttribute('style', 'display: block');
