@@ -147,6 +147,233 @@
 				</li>
 			</ul>
 		</fieldset>
+		<fieldset class="block">
+			<h3>Варианты оплаты</h3>
+			<ul class="pay-block">
+				<li class="pay-option">
+					<input
+						type="checkbox"
+						id="seller_sellerCompany_workflow_isCash"
+						name="seller[sellerCompany][workflow][isCash]"
+						class="visually-hidden filter-input filter-input-checkbox"
+						value="1"
+					/>
+					<label for="seller_sellerCompany_workflow_isCash">Наличные деньги</label>
+				</li>
+				<li class="pay-option">
+					<input
+						type="checkbox"
+						id="seller_sellerCompany_workflow_isCashless"
+						name="seller[sellerCompany][workflow][isCashless]"
+						class="visually-hidden filter-input filter-input-checkbox"
+						value="1"
+					/>
+					<label for="seller_sellerCompany_workflow_isCashless">Безналичный расчет</label>
+				</li>
+				<li class="pay-option">
+					<input
+						type="checkbox"
+						id="seller_sellerCompany_workflow_isCreditCard"
+						name="seller[sellerCompany][workflow][isCreditCard]"
+						class="visually-hidden filter-input filter-input-checkbox"
+						value="1"
+					/>
+					<label for="seller_sellerCompany_workflow_isCreditCard">Кредитная карта</label>
+				</li>
+			</ul>
+		</fieldset>
+		<fieldset class="block">
+			<div class="input-outter">
+				<h3 class="pzd">О вас</h3>
+				<textarea
+					id="seller_sellerCompany_activityDescription"
+					name="seller[sellerCompany][activityDescription]"
+					rows="7"
+					class="textarea-pzd"
+					placeholder=" "
+				></textarea>
+			</div>
+		</fieldset>
+		<div class="wrapper-block">
+			<fieldset class="block-item" ng-init="isDelivery = false">
+				<h3>Доставка</h3>
+				<ul class="delivery-block">
+					<li class="delivery-option">
+						<input
+							type="radio"
+							id="seller_sellerCompany_workflow_delivery_0"
+							name="seller[sellerCompany][workflow][delivery]"
+							class="visually-hidden filter-input filter-input-radio"
+							ng-click="isDelivery = !isDelivery"
+							value="1"
+						/>
+						<label for="seller_sellerCompany_workflow_delivery_0">Да</label>
+					</li>
+					<li class="delivery-option">
+						<input
+							type="radio"
+							id="seller_sellerCompany_workflow_delivery_1"
+							name="seller[sellerCompany][workflow][delivery]"
+							class="visually-hidden filter-input filter-input-radio"
+							ng-click="isDelivery = !isDelivery"
+							value="0"
+							checked="checked"
+						/>
+						<label for="seller_sellerCompany_workflow_delivery_1">Нет</label>
+					</li>
+				</ul>
+				<div class="delivery-text" ng-show="isDelivery">
+					<textarea
+						id="seller_sellerCompany_workflow_deliveryDetail"
+						name="seller[sellerCompany][workflow][deliveryDetail]"
+						rows="3"
+						placeholder="Варианты, условия и цена доставки товара или условия выезда к клиенту"
+						class="textarea additional"
+					></textarea>
+				</div>
+			</fieldset>
+
+			<fieldset class="block-item" ng-init="isGuarantee = false">
+				<h3>Гарантия</h3>
+				<ul class="delivery-block">
+					<li class="delivery-option">
+						<input
+							type="radio"
+							id="seller_sellerCompany_workflow_guarantee_0"
+							name="seller[sellerCompany][workflow][guarantee]"
+							class="visually-hidden filter-input filter-input-radio"
+							ng-click="isGuarantee = !isGuarantee"
+							value="1"
+						/>
+						<label for="seller_sellerCompany_workflow_guarantee_0">Да</label>
+					</li>
+					<li class="delivery-option">
+						<input
+							type="radio"
+							id="seller_sellerCompany_workflow_guarantee_1"
+							name="seller[sellerCompany][workflow][guarantee]"
+							class="visually-hidden filter-input filter-input-radio"
+							ng-click="isGuarantee = !isGuarantee"
+							value="0"
+							checked="checked"
+						/>
+						<label for="seller_sellerCompany_workflow_guarantee_1">Нет</label>
+					</li>
+				</ul>
+
+				<div class="delivery-text" ng-show="isGuarantee">
+					<textarea
+						id="seller_sellerCompany_workflow_guaranteeDetail"
+						name="seller[sellerCompany][workflow][guaranteeDetail]"
+						rows="3"
+						placeholder="Гарантийные сроки и условия выполнения вами этих обязательств"
+						class="textarea additional"
+					></textarea>
+				</div>
+			</fieldset>
+		</div>
+		<fieldset class="block">
+			<h4>Номера телефонов</h4>
+			<div class="phone">
+				<div class="phone-block">
+					<input type="hidden" name="full_additional_phone1" />
+					<input
+						type="hidden"
+						id="seller_sellerCompany_additionalPhone"
+						name="seller[sellerCompany][additionalPhone]"
+						class="phone-with-code1"
+					/>
+					<span id="valid-number-1" class="check check-off" style="display: none"></span>
+				</div>
+
+				<div class="phone-block">
+					<input type="hidden" name="full_additional_phone2" />
+					<input
+						type="hidden"
+						id="seller_sellerCompany_additionalPhone2"
+						name="seller[sellerCompany][additionalPhone2]"
+						class="phone-with-code2"
+					/>
+					<span id="valid-number-2" class="check check-off" style="display: none"></span>
+				</div>
+
+				<div class="phone-block">
+					<input type="hidden" name="full_additional_phone3" />
+					<input
+						type="hidden"
+						id="seller_sellerCompany_additionalPhone3"
+						name="seller[sellerCompany][additionalPhone3]"
+						class="phone-with-code3"
+					/>
+					<span id="valid-number-3" class="check check-off" style="display: none"></span>
+				</div>
+			</div>
+		</fieldset>
+		<div class="advantages">
+			<h5>
+				Конкурентные преимущества
+				<sup>
+					<button class="help open-popup-button" data-popup-id="3" type="button">
+						<svg viewBox="0 0 32 32" width="18px" height="18px">
+							<path
+								fill="#757373"
+								d="M 16 4 C 9.382813 4 4 9.382813 4 16 C 4 22.617188 9.382813 28 16 28 C 22.617188 28 28 22.617188 28 16 C 28 9.382813 22.617188 4 16 4 Z M 16 6 C 21.535156 6 26 10.464844 26 16 C 26 21.535156 21.535156 26 16 26 C 10.464844 26 6 21.535156 6 16 C 6 10.464844 10.464844 6 16 6 Z M 16 10 C 13.800781 10 12 11.800781 12 14 L 14 14 C 14 12.882813 14.882813 12 16 12 C 17.117188 12 18 12.882813 18 14 C 18 14.765625 17.507813 15.445313 16.78125 15.6875 L 16.375 15.8125 C 15.558594 16.082031 15 16.863281 15 17.71875 L 15 19 L 17 19 L 17 17.71875 L 17.40625 17.59375 C 18.945313 17.082031 20 15.621094 20 14 C 20 11.800781 18.199219 10 16 10 Z M 15 20 L 15 22 L 17 22 L 17 20 Z "
+							></path>
+						</svg>
+					</button>
+				</sup>
+			</h5>
+			<div class="input-outter advantages-outter">
+				<textarea
+					id="seller_advantages_advantage1"
+					name="seller[advantages][advantage1]"
+					class="choice-input advantages-input"
+					placeholder=" "
+					rows="3"
+				></textarea>
+				<label class="label advantages-label" for="seller_advantages_advantage1">Первое</label>
+			</div>
+			<div class="input-outter advantages-outter">
+				<textarea
+					id="seller_advantages_advantage2"
+					name="seller[advantages][advantage2]"
+					class="choice-input advantages-input"
+					placeholder=" "
+					rows="3"
+				></textarea>
+				<label class="label advantages-label" for="seller_advantages_advantage2">Второе</label>
+			</div>
+			<div class="input-outter advantages-outter">
+				<textarea
+					id="seller_advantages_advantage3"
+					name="seller[advantages][advantage3]"
+					class="choice-input advantages-input"
+					placeholder=" "
+					rows="3"
+				></textarea>
+				<label class="label advantages-label" for="seller_advantages_advantage3">Третье</label>
+			</div>
+			<div class="input-outter advantages-outter">
+				<textarea
+					id="seller_advantages_advantage4"
+					name="seller[advantages][advantage4]"
+					class="choice-input advantages-input"
+					placeholder=" "
+					rows="3"
+				></textarea>
+				<label class="label advantages-label" for="seller_advantages_advantage4">Четвертое</label>
+			</div>
+			<div class="input-outter advantages-outter">
+				<textarea
+					id="seller_advantages_advantage5"
+					name="seller[advantages][advantage5]"
+					class="choice-input advantages-input"
+					placeholder=" "
+					rows="3"
+				></textarea>
+				<label class="label advantages-label" for="seller_advantages_advantage5">Пятое</label>
+			</div>
+		</div>
 		<script src="./index.js"></script>
 	</body>
 </html>
