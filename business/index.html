@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="../index.css" />
+		<title>Telegram Validation</title>
+	</head>
+	<body>
+		<fieldset class="block">
+			<h1>
+				Виды деятельности
+				<sup>
+					<button class="help open-popup-button" data-popup-id="1" type="button">
+						<svg viewBox="0 0 32 32" width="18px" height="18px">
+							<path
+								fill="#757373"
+								d="M 16 4 C 9.382813 4 4 9.382813 4 16 C 4 22.617188 9.382813 28 16 28 C 22.617188 28 28 22.617188 28 16 C 28 9.382813 22.617188 4 16 4 Z M 16 6 C 21.535156 6 26 10.464844 26 16 C 26 21.535156 21.535156 26 16 26 C 10.464844 26 6 21.535156 6 16 C 6 10.464844 10.464844 6 16 6 Z M 16 10 C 13.800781 10 12 11.800781 12 14 L 14 14 C 14 12.882813 14.882813 12 16 12 C 17.117188 12 18 12.882813 18 14 C 18 14.765625 17.507813 15.445313 16.78125 15.6875 L 16.375 15.8125 C 15.558594 16.082031 15 16.863281 15 17.71875 L 15 19 L 17 19 L 17 17.71875 L 17.40625 17.59375 C 18.945313 17.082031 20 15.621094 20 14 C 20 11.800781 18.199219 10 16 10 Z M 15 20 L 15 22 L 17 22 L 17 20 Z "
+							></path>
+						</svg>
+					</button>
+				</sup>
+			</h1>
+			<ul class="business-opt">
+				<div>
+					<li class="filter-option">
+						<input
+							type="checkbox"
+							id="seller_sellerCompany_isSparePartSeller"
+							name="seller[sellerCompany][isSparePartSeller]"
+							class="visually-hidden filter-input filter-input-checkbox"
+							value="1"
+						/>
+						<label for="seller_sellerCompany_isSparePartSeller">Авто-мото запчасти</label>
+					</li>
+					<li class="filter-option">
+						<input
+							type="checkbox"
+							id="seller_sellerCompany_isService"
+							name="seller[sellerCompany][isService]"
+							class="visually-hidden filter-input filter-input-checkbox"
+							value="1"
+						/>
+						<label for="seller_sellerCompany_isService">СТО / Автосервисы</label>
+					</li>
+					<li class="filter-option">
+						<input
+							type="checkbox"
+							id="seller_sellerCompany_isOther"
+							name="seller[sellerCompany][isOther]"
+							class="visually-hidden filter-input filter-input-checkbox"
+							value="1"
+						/>
+						<label for="seller_sellerCompany_isOther">Прочие</label>
+					</li>
+				</div>
+			</ul>
+		</fieldset>
+		<fieldset class="block">
+			<h2>
+				Регистрационные данные
+				<sup>
+					<button class="help open-popup-button" data-popup-id="2" type="button">
+						<svg viewBox="0 0 32 32" width="18px" height="18px">
+							<path
+								fill="#757373"
+								d="M 16 4 C 9.382813 4 4 9.382813 4 16 C 4 22.617188 9.382813 28 16 28 C 22.617188 28 28 22.617188 28 16 C 28 9.382813 22.617188 4 16 4 Z M 16 6 C 21.535156 6 26 10.464844 26 16 C 26 21.535156 21.535156 26 16 26 C 10.464844 26 6 21.535156 6 16 C 6 10.464844 10.464844 6 16 6 Z M 16 10 C 13.800781 10 12 11.800781 12 14 L 14 14 C 14 12.882813 14.882813 12 16 12 C 17.117188 12 18 12.882813 18 14 C 18 14.765625 17.507813 15.445313 16.78125 15.6875 L 16.375 15.8125 C 15.558594 16.082031 15 16.863281 15 17.71875 L 15 19 L 17 19 L 17 17.71875 L 17.40625 17.59375 C 18.945313 17.082031 20 15.621094 20 14 C 20 11.800781 18.199219 10 16 10 Z M 15 20 L 15 22 L 17 22 L 17 20 Z "
+							></path>
+						</svg>
+					</button>
+				</sup>
+			</h2>
+			<ul class="business-option">
+				<li class="input-outter">
+					<input
+						type="text"
+						id="seller_sellerCompany_companyName"
+						name="seller[sellerCompany][companyName]"
+						required="required"
+						placeholder=" "
+						class="choice-input"
+					/>
+					<label class="label orgname-label">Название организации или ИП</label>
+				</li>
+				<li class="input-outter">
+					<input
+						type="text"
+						id="seller_sellerCompany_unp"
+						name="seller[sellerCompany][unp]"
+						required="required"
+						placeholder=" "
+						class="choice-input input-unp"
+					/>
+
+					<label class="label">УНП</label>
+				</li>
+				<li class="input-outter">
+					<input
+						type="text"
+						id="seller_sellerCompany_city"
+						name="seller[sellerCompany][city]"
+						required="required"
+						class="choice-input name-select"
+						placeholder=" "
+						auto-сomplete-autoparus=""
+						method-search="searchCities"
+					/>
+					<label class="label-static">Город</label>
+				</li>
+				<li class="input-outter">
+					<input
+						type="text"
+						id="seller_sellerCompany_address"
+						name="seller[sellerCompany][address]"
+						required="required"
+						placeholder=" "
+						class="choice-input input-str"
+					/>
+					<label class="label">Юридический адрес</label>
+				</li>
+				<li class="input-outter">
+					<input
+						type="text"
+						id="seller_sellerCompany_siteAddress"
+						name="seller[sellerCompany][siteAddress]"
+						placeholder=" "
+						class="choice-input input-str input-long"
+					/>
+					<label class="label">Адрес вашего сайта</label>
+				</li>
+				<li class="input-outter">
+					<input
+						type="text"
+						id="seller_sellerCompany_linkImportAdverts"
+						name="seller[sellerCompany][linkImportAdverts]"
+						placeholder=" "
+						class="choice-input input-str input-long"
+					/>
+					<label class="label">Ссылка выгрузки товаров</label>
+				</li>
+			</ul>
+		</fieldset>
+		<script src="./index.js"></script>
+	</body>
+</html>
