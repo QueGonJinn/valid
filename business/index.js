@@ -38,8 +38,10 @@ const companyLink = document.getElementById('seller_sellerCompany_linkImportAdve
 
 const parrentBlock = document.querySelectorAll('.input-outter');
 
-parrentBlock.setAttribute('style', 'display: flex');
-parrentBlock.setAttribute('style', 'flex-direction: column');
+parrentBlock.forEach((e) => {
+	e.setAttribute('style', 'display: flex');
+	e.setAttribute('style', 'flex-direction: column');
+});
 
 const parrentBlockText = document.querySelectorAll('.delivery-text');
 
@@ -185,7 +187,7 @@ companyName.addEventListener('input', (e) => {
 		e.target.value = '';
 		companyName.setAttribute('style', 'color: #ff7171;');
 	}
-	e.target.value = e.target.value.replace(/([_#:~`?/\\|!"№;%*^$()'+@\[\]{}<>])/gi, '');
+	e.target.value = e.target.value.replace(/([_#:~`?/\\|!="№;%*^$()'+@\[\]{}<>])/gi, '');
 });
 
 companyUNP.addEventListener('input', (e) => {
@@ -240,7 +242,7 @@ companyUNP.addEventListener('input', (e) => {
 		  labelCompanyUNPMinMax.setAttribute('style', 'color: #2d4059;'))
 		: ((labelCompanyUNPMinMax.innerHTML = 'Min 5 - Max 20 символов'),
 		  labelCompanyUNPMinMax.setAttribute('style', 'color: #2d4059;'));
-	e.target.value = e.target.value.replace(/([_#:~`?/\\|!"«»,.№;%*^$()'+@\[\]{}<>&-])/gi, '');
+	e.target.value = e.target.value.replace(/([_#:~`?/\\|!"«»,.№;%*^$(=)'+@\[\]{}<>&-])/gi, '');
 });
 
 companyCity.addEventListener('input', (e) => {
@@ -393,7 +395,7 @@ companyAddres.addEventListener('input', (e) => {
 		: e.target.value[0] === '.'
 		? (e.target.value = '')
 		: (e.target.value = e.target.value);
-	e.target.value = e.target.value.replace(/([_~`?\\|!"«»%*^$()'+@\[\]{}<>])/gi, '');
+	e.target.value = e.target.value.replace(/([_~`?\\|!"«»%=*^$()'+@\[\]{}<>])/gi, '');
 });
 
 companySite.addEventListener('input', (e) => {
