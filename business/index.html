@@ -14,366 +14,613 @@
 		<title>Telegram Validation</title>
 	</head>
 	<body>
-		<fieldset class="block">
-			<h1>
-				Виды деятельности
-				<sup>
-					<button class="help open-popup-button" data-popup-id="1" type="button">
-						<svg viewBox="0 0 32 32" width="18px" height="18px">
-							<path
-								fill="#757373"
-								d="M 16 4 C 9.382813 4 4 9.382813 4 16 C 4 22.617188 9.382813 28 16 28 C 22.617188 28 28 22.617188 28 16 C 28 9.382813 22.617188 4 16 4 Z M 16 6 C 21.535156 6 26 10.464844 26 16 C 26 21.535156 21.535156 26 16 26 C 10.464844 26 6 21.535156 6 16 C 6 10.464844 10.464844 6 16 6 Z M 16 10 C 13.800781 10 12 11.800781 12 14 L 14 14 C 14 12.882813 14.882813 12 16 12 C 17.117188 12 18 12.882813 18 14 C 18 14.765625 17.507813 15.445313 16.78125 15.6875 L 16.375 15.8125 C 15.558594 16.082031 15 16.863281 15 17.71875 L 15 19 L 17 19 L 17 17.71875 L 17.40625 17.59375 C 18.945313 17.082031 20 15.621094 20 14 C 20 11.800781 18.199219 10 16 10 Z M 15 20 L 15 22 L 17 22 L 17 20 Z "
-							></path>
-						</svg>
-					</button>
-				</sup>
-			</h1>
-			<ul class="business-opt">
-				<div>
-					<li class="filter-option">
+		<div class="wrapper">
+			<section class="block-business-prof">
+				<div class="business" id="form-business-profile-container">
+					<form
+						id="business-data-form"
+						class="business-form"
+						method="post"
+						novalidate=""
+						enctype="multipart/form-data"
+					>
 						<input
-							type="checkbox"
-							id="seller_sellerCompany_isSparePartSeller"
-							name="seller[sellerCompany][isSparePartSeller]"
-							class="visually-hidden filter-input filter-input-checkbox"
-							value="1"
+							type="hidden"
+							id="seller__token"
+							name="seller[_token]"
+							value="f5c52ab8a816a481d7b9c740.11NZmKElbMToKZPLUrU66uY8_B_V5iSXxkrFH8xLvXE.4GsqzcdqLfKffcmPNdB0m411y1O6lWv9nnOTbbg9_BeTAXTvmHMDnbFTyg"
 						/>
-						<label for="seller_sellerCompany_isSparePartSeller">Авто-мото запчасти</label>
-					</li>
-					<li class="filter-option">
-						<input
-							type="checkbox"
-							id="seller_sellerCompany_isService"
-							name="seller[sellerCompany][isService]"
-							class="visually-hidden filter-input filter-input-checkbox"
-							value="1"
-						/>
-						<label for="seller_sellerCompany_isService">СТО / Автосервисы</label>
-					</li>
-					<li class="filter-option">
-						<input
-							type="checkbox"
-							id="seller_sellerCompany_isOther"
-							name="seller[sellerCompany][isOther]"
-							class="visually-hidden filter-input filter-input-checkbox"
-							value="1"
-						/>
-						<label for="seller_sellerCompany_isOther">Прочие</label>
-					</li>
-				</div>
-			</ul>
-		</fieldset>
-		<fieldset class="block">
-			<h2>
-				Регистрационные данные
-				<sup>
-					<button class="help open-popup-button" data-popup-id="2" type="button">
-						<svg viewBox="0 0 32 32" width="18px" height="18px">
-							<path
-								fill="#757373"
-								d="M 16 4 C 9.382813 4 4 9.382813 4 16 C 4 22.617188 9.382813 28 16 28 C 22.617188 28 28 22.617188 28 16 C 28 9.382813 22.617188 4 16 4 Z M 16 6 C 21.535156 6 26 10.464844 26 16 C 26 21.535156 21.535156 26 16 26 C 10.464844 26 6 21.535156 6 16 C 6 10.464844 10.464844 6 16 6 Z M 16 10 C 13.800781 10 12 11.800781 12 14 L 14 14 C 14 12.882813 14.882813 12 16 12 C 17.117188 12 18 12.882813 18 14 C 18 14.765625 17.507813 15.445313 16.78125 15.6875 L 16.375 15.8125 C 15.558594 16.082031 15 16.863281 15 17.71875 L 15 19 L 17 19 L 17 17.71875 L 17.40625 17.59375 C 18.945313 17.082031 20 15.621094 20 14 C 20 11.800781 18.199219 10 16 10 Z M 15 20 L 15 22 L 17 22 L 17 20 Z "
-							></path>
-						</svg>
-					</button>
-				</sup>
-			</h2>
-			<ul class="business-option">
-				<li class="input-outter">
-					<input
-						type="text"
-						id="seller_sellerCompany_companyName"
-						name="seller[sellerCompany][companyName]"
-						required="required"
-						placeholder=" "
-						class="choice-input"
-					/>
-					<label class="label orgname-label">Название организации или ИП</label>
-				</li>
-				<li class="input-outter">
-					<input
-						type="text"
-						id="seller_sellerCompany_unp"
-						name="seller[sellerCompany][unp]"
-						required="required"
-						placeholder=" "
-						class="choice-input input-unp"
-					/>
 
-					<label class="label">УНП</label>
-				</li>
-				<li class="input-outter">
-					<input
-						type="text"
-						id="seller_sellerCompany_city"
-						name="seller[sellerCompany][city]"
-						required="required"
-						class="choice-input name-select"
-						placeholder=" "
-						auto-сomplete-autoparus=""
-						method-search="searchCities"
-					/>
-					<label class="label-static">Город</label>
-				</li>
-				<li class="input-outter">
-					<input
-						type="text"
-						id="seller_sellerCompany_address"
-						name="seller[sellerCompany][address]"
-						required="required"
-						placeholder=" "
-						class="choice-input input-str"
-					/>
-					<label class="label">Юридический адрес</label>
-				</li>
-				<li class="input-outter">
-					<input
-						type="text"
-						id="seller_sellerCompany_siteAddress"
-						name="seller[sellerCompany][siteAddress]"
-						placeholder=" "
-						class="choice-input input-str input-long"
-					/>
-					<label class="label">Адрес вашего сайта</label>
-				</li>
-				<li class="input-outter">
-					<input
-						type="text"
-						id="seller_sellerCompany_linkImportAdverts"
-						name="seller[sellerCompany][linkImportAdverts]"
-						placeholder=" "
-						class="choice-input input-str input-long"
-					/>
-					<label class="label">Ссылка выгрузки товаров</label>
-				</li>
-			</ul>
-		</fieldset>
-		<fieldset class="block">
-			<h3>Варианты оплаты</h3>
-			<ul class="pay-block">
-				<li class="pay-option">
-					<input
-						type="checkbox"
-						id="seller_sellerCompany_workflow_isCash"
-						name="seller[sellerCompany][workflow][isCash]"
-						class="visually-hidden filter-input filter-input-checkbox"
-						value="1"
-					/>
-					<label for="seller_sellerCompany_workflow_isCash">Наличные деньги</label>
-				</li>
-				<li class="pay-option">
-					<input
-						type="checkbox"
-						id="seller_sellerCompany_workflow_isCashless"
-						name="seller[sellerCompany][workflow][isCashless]"
-						class="visually-hidden filter-input filter-input-checkbox"
-						value="1"
-					/>
-					<label for="seller_sellerCompany_workflow_isCashless">Безналичный расчет</label>
-				</li>
-				<li class="pay-option">
-					<input
-						type="checkbox"
-						id="seller_sellerCompany_workflow_isCreditCard"
-						name="seller[sellerCompany][workflow][isCreditCard]"
-						class="visually-hidden filter-input filter-input-checkbox"
-						value="1"
-					/>
-					<label for="seller_sellerCompany_workflow_isCreditCard">Кредитная карта</label>
-				</li>
-			</ul>
-		</fieldset>
-		<fieldset class="block">
-			<div class="input-outter">
-				<h3 class="pzd">О вас</h3>
-				<textarea
-					id="seller_sellerCompany_activityDescription"
-					name="seller[sellerCompany][activityDescription]"
-					rows="7"
-					class="textarea-pzd"
-					placeholder=" "
-				></textarea>
-			</div>
-		</fieldset>
-		<div class="wrapper-block">
-			<fieldset class="block-item" ng-init="isDelivery = false">
-				<h3>Доставка</h3>
-				<ul class="delivery-block">
-					<li class="delivery-option">
-						<input
-							type="radio"
-							id="seller_sellerCompany_workflow_delivery_0"
-							name="seller[sellerCompany][workflow][delivery]"
-							class="visually-hidden filter-input filter-input-radio"
-							ng-click="isDelivery = !isDelivery"
-							value="1"
-						/>
-						<label for="seller_sellerCompany_workflow_delivery_0">Да</label>
-					</li>
-					<li class="delivery-option">
-						<input
-							type="radio"
-							id="seller_sellerCompany_workflow_delivery_1"
-							name="seller[sellerCompany][workflow][delivery]"
-							class="visually-hidden filter-input filter-input-radio"
-							ng-click="isDelivery = !isDelivery"
-							value="0"
-							checked="checked"
-						/>
-						<label for="seller_sellerCompany_workflow_delivery_1">Нет</label>
-					</li>
-				</ul>
-				<div class="delivery-text" ng-show="isDelivery">
-					<textarea
-						id="seller_sellerCompany_workflow_deliveryDetail"
-						name="seller[sellerCompany][workflow][deliveryDetail]"
-						rows="3"
-						placeholder="Варианты, условия и цена доставки товара или условия выезда к клиенту"
-						class="textarea additional"
-					></textarea>
-				</div>
-			</fieldset>
+						<fieldset class="block">
+							<h1>
+								Виды деятельности
+								<sup>
+									<button class="help open-popup-button" data-popup-id="1" type="button">
+										<svg viewBox="0 0 32 32" width="18px" height="18px">
+											<path
+												fill="#757373"
+												d="M 16 4 C 9.382813 4 4 9.382813 4 16 C 4 22.617188 9.382813 28 16 28 C 22.617188 28 28 22.617188 28 16 C 28 9.382813 22.617188 4 16 4 Z M 16 6 C 21.535156 6 26 10.464844 26 16 C 26 21.535156 21.535156 26 16 26 C 10.464844 26 6 21.535156 6 16 C 6 10.464844 10.464844 6 16 6 Z M 16 10 C 13.800781 10 12 11.800781 12 14 L 14 14 C 14 12.882813 14.882813 12 16 12 C 17.117188 12 18 12.882813 18 14 C 18 14.765625 17.507813 15.445313 16.78125 15.6875 L 16.375 15.8125 C 15.558594 16.082031 15 16.863281 15 17.71875 L 15 19 L 17 19 L 17 17.71875 L 17.40625 17.59375 C 18.945313 17.082031 20 15.621094 20 14 C 20 11.800781 18.199219 10 16 10 Z M 15 20 L 15 22 L 17 22 L 17 20 Z "
+											></path>
+										</svg>
+									</button>
+								</sup>
+							</h1>
+							<ul class="business-opt">
+								<div>
+									<li class="filter-option">
+										<input
+											type="checkbox"
+											id="seller_sellerCompany_isSparePartSeller"
+											name="seller[sellerCompany][isSparePartSeller]"
+											class="visually-hidden filter-input filter-input-checkbox"
+											value="1"
+										/>
+										<label for="seller_sellerCompany_isSparePartSeller">Авто-мото запчасти</label>
+									</li>
+									<li class="filter-option">
+										<input
+											type="checkbox"
+											id="seller_sellerCompany_isService"
+											name="seller[sellerCompany][isService]"
+											class="visually-hidden filter-input filter-input-checkbox"
+											value="1"
+										/>
+										<label for="seller_sellerCompany_isService">СТО / Автосервисы</label>
+									</li>
+									<li class="filter-option">
+										<input
+											type="checkbox"
+											id="seller_sellerCompany_isOther"
+											name="seller[sellerCompany][isOther]"
+											class="visually-hidden filter-input filter-input-checkbox"
+											value="1"
+										/>
+										<label for="seller_sellerCompany_isOther">Прочие</label>
+									</li>
+								</div>
+							</ul>
+						</fieldset>
 
-			<fieldset class="block-item" ng-init="isGuarantee = false">
-				<h3>Гарантия</h3>
-				<ul class="delivery-block">
-					<li class="delivery-option">
-						<input
-							type="radio"
-							id="seller_sellerCompany_workflow_guarantee_0"
-							name="seller[sellerCompany][workflow][guarantee]"
-							class="visually-hidden filter-input filter-input-radio"
-							ng-click="isGuarantee = !isGuarantee"
-							value="1"
-						/>
-						<label for="seller_sellerCompany_workflow_guarantee_0">Да</label>
-					</li>
-					<li class="delivery-option">
-						<input
-							type="radio"
-							id="seller_sellerCompany_workflow_guarantee_1"
-							name="seller[sellerCompany][workflow][guarantee]"
-							class="visually-hidden filter-input filter-input-radio"
-							ng-click="isGuarantee = !isGuarantee"
-							value="0"
-							checked="checked"
-						/>
-						<label for="seller_sellerCompany_workflow_guarantee_1">Нет</label>
-					</li>
-				</ul>
+						<fieldset class="block">
+							<h2>
+								Регистрационные данные
+								<sup>
+									<button class="help open-popup-button" data-popup-id="2" type="button">
+										<svg viewBox="0 0 32 32" width="18px" height="18px">
+											<path
+												fill="#757373"
+												d="M 16 4 C 9.382813 4 4 9.382813 4 16 C 4 22.617188 9.382813 28 16 28 C 22.617188 28 28 22.617188 28 16 C 28 9.382813 22.617188 4 16 4 Z M 16 6 C 21.535156 6 26 10.464844 26 16 C 26 21.535156 21.535156 26 16 26 C 10.464844 26 6 21.535156 6 16 C 6 10.464844 10.464844 6 16 6 Z M 16 10 C 13.800781 10 12 11.800781 12 14 L 14 14 C 14 12.882813 14.882813 12 16 12 C 17.117188 12 18 12.882813 18 14 C 18 14.765625 17.507813 15.445313 16.78125 15.6875 L 16.375 15.8125 C 15.558594 16.082031 15 16.863281 15 17.71875 L 15 19 L 17 19 L 17 17.71875 L 17.40625 17.59375 C 18.945313 17.082031 20 15.621094 20 14 C 20 11.800781 18.199219 10 16 10 Z M 15 20 L 15 22 L 17 22 L 17 20 Z "
+											></path>
+										</svg>
+									</button>
+								</sup>
+							</h2>
+							<ul class="business-option">
+								<li class="input-outter">
+									<input
+										type="text"
+										id="seller_sellerCompany_companyName"
+										name="seller[sellerCompany][companyName]"
+										required="required"
+										placeholder=" "
+										class="choice-input"
+									/>
+									<label class="label orgname-label">Название организации или ИП</label>
+								</li>
+								<li class="input-outter">
+									<input
+										type="text"
+										id="seller_sellerCompany_unp"
+										name="seller[sellerCompany][unp]"
+										required="required"
+										placeholder=" "
+										class="choice-input input-unp"
+									/>
 
-				<div class="delivery-text" ng-show="isGuarantee">
-					<textarea
-						id="seller_sellerCompany_workflow_guaranteeDetail"
-						name="seller[sellerCompany][workflow][guaranteeDetail]"
-						rows="3"
-						placeholder="Гарантийные сроки и условия выполнения вами этих обязательств"
-						class="textarea additional"
-					></textarea>
+									<label class="label">УНП</label>
+								</li>
+								<li class="input-outter">
+									<input
+										type="text"
+										id="seller_sellerCompany_city"
+										name="seller[sellerCompany][city]"
+										required="required"
+										class="choice-input name-select"
+										placeholder=" "
+										auto-сomplete-autoparus=""
+										method-search="searchCities"
+									/>
+									<label class="label-static">Город</label>
+								</li>
+								<li class="input-outter">
+									<input
+										type="text"
+										id="seller_sellerCompany_address"
+										name="seller[sellerCompany][address]"
+										required="required"
+										placeholder=" "
+										class="choice-input input-str"
+									/>
+									<label class="label">Юридический адрес</label>
+								</li>
+								<li class="input-outter">
+									<input
+										type="text"
+										id="seller_sellerCompany_siteAddress"
+										name="seller[sellerCompany][siteAddress]"
+										placeholder=" "
+										class="choice-input input-str input-long"
+									/>
+									<label class="label">Адрес вашего сайта</label>
+								</li>
+								<li class="input-outter">
+									<input
+										type="text"
+										id="seller_sellerCompany_linkImportAdverts"
+										name="seller[sellerCompany][linkImportAdverts]"
+										placeholder=" "
+										class="choice-input input-str input-long"
+									/>
+									<label class="label">Ссылка выгрузки товаров</label>
+								</li>
+							</ul>
+						</fieldset>
+
+						<fieldset class="block">
+							<h3>Варианты оплаты</h3>
+							<ul class="pay-block">
+								<li class="pay-option">
+									<input
+										type="checkbox"
+										id="seller_sellerCompany_workflow_isCash"
+										name="seller[sellerCompany][workflow][isCash]"
+										class="visually-hidden filter-input filter-input-checkbox"
+										value="1"
+									/>
+									<label for="seller_sellerCompany_workflow_isCash">Наличные деньги</label>
+								</li>
+								<li class="pay-option">
+									<input
+										type="checkbox"
+										id="seller_sellerCompany_workflow_isCashless"
+										name="seller[sellerCompany][workflow][isCashless]"
+										class="visually-hidden filter-input filter-input-checkbox"
+										value="1"
+									/>
+									<label for="seller_sellerCompany_workflow_isCashless">Безналичный расчет</label>
+								</li>
+								<li class="pay-option">
+									<input
+										type="checkbox"
+										id="seller_sellerCompany_workflow_isCreditCard"
+										name="seller[sellerCompany][workflow][isCreditCard]"
+										class="visually-hidden filter-input filter-input-checkbox"
+										value="1"
+									/>
+									<label for="seller_sellerCompany_workflow_isCreditCard">Кредитная карта</label>
+								</li>
+							</ul>
+						</fieldset>
+
+						<fieldset class="block">
+							<h3>Время работы</h3>
+							<div class="time">
+								<div class="time-wrapper time-wrapper--border">
+									<div class="time-block">
+										<div class="time_new_mk">
+											<input
+												type="checkbox"
+												id="seller_sellerCompany_workflow_isMondayWork"
+												name="seller[sellerCompany][workflow][isMondayWork]"
+												class="visually-hidden filter-input checkbox-custom"
+												value="1"
+											/>
+											<label for="seller_sellerCompany_workflow_isMondayWork">Пн</label>
+										</div>
+
+										<div class="time_new_mk">
+											<input
+												type="checkbox"
+												id="seller_sellerCompany_workflow_isTuesdayWork"
+												name="seller[sellerCompany][workflow][isTuesdayWork]"
+												class="visually-hidden filter-input checkbox-custom"
+												value="1"
+											/>
+											<label for="seller_sellerCompany_workflow_isTuesdayWork">Вт</label>
+										</div>
+
+										<div class="time_new_mk">
+											<input
+												type="checkbox"
+												id="seller_sellerCompany_workflow_isWednesdayWork"
+												name="seller[sellerCompany][workflow][isWednesdayWork]"
+												class="visually-hidden filter-input checkbox-custom"
+												value="1"
+											/>
+											<label for="seller_sellerCompany_workflow_isWednesdayWork">Ср</label>
+										</div>
+
+										<div class="time_new_mk">
+											<input
+												type="checkbox"
+												id="seller_sellerCompany_workflow_isThursdayWork"
+												name="seller[sellerCompany][workflow][isThursdayWork]"
+												class="visually-hidden filter-input checkbox-custom"
+												value="1"
+											/>
+											<label for="seller_sellerCompany_workflow_isThursdayWork">Чт</label>
+										</div>
+
+										<div class="time_new_mk">
+											<input
+												type="checkbox"
+												id="seller_sellerCompany_workflow_isFridayWork"
+												name="seller[sellerCompany][workflow][isFridayWork]"
+												class="visually-hidden filter-input checkbox-custom"
+												value="1"
+											/>
+											<label for="seller_sellerCompany_workflow_isFridayWork">Пт</label>
+										</div>
+									</div>
+
+									<div class="time-m">
+										<input
+											type="time"
+											id="seller_sellerCompany_workflow_weekDaysStartAt"
+											name="seller[sellerCompany][workflow][weekDaysStartAt]"
+											class="time_work"
+										/>
+										<label for="seller_sellerCompany_workflow_weekDaysEndAt">_</label>
+										<input
+											type="time"
+											id="seller_sellerCompany_workflow_weekDaysEndAt"
+											name="seller[sellerCompany][workflow][weekDaysEndAt]"
+											class="time_work"
+										/>
+									</div>
+								</div>
+								<div class="time-wrapper">
+									<div class="time-block">
+										<div class="time_new_mk">
+											<input
+												type="checkbox"
+												id="seller_sellerCompany_workflow_isSaturdayWork"
+												name="seller[sellerCompany][workflow][isSaturdayWork]"
+												class="visually-hidden filter-input checkbox-custom"
+												value="1"
+											/>
+											<label for="seller_sellerCompany_workflow_isSaturdayWork">Сб</label>
+										</div>
+										<div class="time_new_mk">
+											<input
+												type="checkbox"
+												id="seller_sellerCompany_workflow_isSundayWork"
+												name="seller[sellerCompany][workflow][isSundayWork]"
+												class="visually-hidden filter-input checkbox-custom"
+												value="1"
+											/>
+											<label for="seller_sellerCompany_workflow_isSundayWork">Вс</label>
+										</div>
+									</div>
+									<div class="time-w">
+										<input
+											type="time"
+											id="seller_sellerCompany_workflow_weekendStartAt"
+											name="seller[sellerCompany][workflow][weekendStartAt]"
+											class="time_work"
+										/>
+										<label for="seller_sellerCompany_workflow_weekendEndAt">_</label>
+										<input
+											type="time"
+											id="seller_sellerCompany_workflow_weekendEndAt"
+											name="seller[sellerCompany][workflow][weekendEndAt]"
+											class="time_work"
+										/>
+									</div>
+								</div>
+							</div>
+						</fieldset>
+
+						<fieldset class="block">
+							<div class="input-outter">
+								<h3 class="pzd">О вас</h3>
+								<textarea
+									id="seller_sellerCompany_activityDescription"
+									name="seller[sellerCompany][activityDescription]"
+									rows="7"
+									class="textarea-pzd"
+									placeholder=" "
+								></textarea>
+							</div>
+						</fieldset>
+
+						<div class="wrapper-block">
+							<fieldset class="block-item" ng-init="isDelivery = false">
+								<h3>Доставка</h3>
+								<ul class="delivery-block">
+									<li class="delivery-option">
+										<input
+											type="radio"
+											id="seller_sellerCompany_workflow_delivery_0"
+											name="seller[sellerCompany][workflow][delivery]"
+											class="visually-hidden filter-input filter-input-radio"
+											ng-click="isDelivery = !isDelivery"
+											value="1"
+										/>
+										<label for="seller_sellerCompany_workflow_delivery_0">Да</label>
+									</li>
+									<li class="delivery-option">
+										<input
+											type="radio"
+											id="seller_sellerCompany_workflow_delivery_1"
+											name="seller[sellerCompany][workflow][delivery]"
+											class="visually-hidden filter-input filter-input-radio"
+											ng-click="isDelivery = !isDelivery"
+											value="0"
+											checked="checked"
+										/>
+										<label for="seller_sellerCompany_workflow_delivery_1">Нет</label>
+									</li>
+								</ul>
+								<div class="delivery-text" ng-show="isDelivery">
+									<textarea
+										id="seller_sellerCompany_workflow_deliveryDetail"
+										name="seller[sellerCompany][workflow][deliveryDetail]"
+										rows="3"
+										placeholder="Варианты, условия и цена доставки товара или условия выезда к клиенту"
+										class="textarea additional"
+									></textarea>
+								</div>
+							</fieldset>
+
+							<fieldset class="block-item" ng-init="isGuarantee = false">
+								<h3>Гарантия</h3>
+								<ul class="delivery-block">
+									<li class="delivery-option">
+										<input
+											type="radio"
+											id="seller_sellerCompany_workflow_guarantee_0"
+											name="seller[sellerCompany][workflow][guarantee]"
+											class="visually-hidden filter-input filter-input-radio"
+											ng-click="isGuarantee = !isGuarantee"
+											value="1"
+										/>
+										<label for="seller_sellerCompany_workflow_guarantee_0">Да</label>
+									</li>
+									<li class="delivery-option">
+										<input
+											type="radio"
+											id="seller_sellerCompany_workflow_guarantee_1"
+											name="seller[sellerCompany][workflow][guarantee]"
+											class="visually-hidden filter-input filter-input-radio"
+											ng-click="isGuarantee = !isGuarantee"
+											value="0"
+											checked="checked"
+										/>
+										<label for="seller_sellerCompany_workflow_guarantee_1">Нет</label>
+									</li>
+								</ul>
+
+								<div class="delivery-text" ng-show="isGuarantee">
+									<textarea
+										id="seller_sellerCompany_workflow_guaranteeDetail"
+										name="seller[sellerCompany][workflow][guaranteeDetail]"
+										rows="3"
+										placeholder="Гарантийные сроки и условия выполнения вами этих обязательств"
+										class="textarea additional"
+									></textarea>
+								</div>
+							</fieldset>
+						</div>
+
+						<fieldset class="block">
+							<h4>Номера телефонов</h4>
+							<div class="phone">
+								<div class="phone-block">
+									<input type="hidden" name="full_additional_phone1" />
+									<input
+										type="hidden"
+										id="seller_sellerCompany_additionalPhone"
+										name="seller[sellerCompany][additionalPhone]"
+										class="phone-with-code1"
+									/>
+									<span id="valid-number-1" class="check check-off" style="display: none"></span>
+								</div>
+
+								<div class="phone-block">
+									<input type="hidden" name="full_additional_phone2" />
+									<input
+										type="hidden"
+										id="seller_sellerCompany_additionalPhone2"
+										name="seller[sellerCompany][additionalPhone2]"
+										class="phone-with-code2"
+									/>
+									<span id="valid-number-2" class="check check-off" style="display: none"></span>
+								</div>
+
+								<div class="phone-block">
+									<input type="hidden" name="full_additional_phone3" />
+									<input
+										type="hidden"
+										id="seller_sellerCompany_additionalPhone3"
+										name="seller[sellerCompany][additionalPhone3]"
+										class="phone-with-code3"
+									/>
+									<span id="valid-number-3" class="check check-off" style="display: none"></span>
+								</div>
+							</div>
+						</fieldset>
+
+						<div class="advantages">
+							<h5>
+								Конкурентные преимущества
+								<sup>
+									<button class="help open-popup-button" data-popup-id="3" type="button">
+										<svg viewBox="0 0 32 32" width="18px" height="18px">
+											<path
+												fill="#757373"
+												d="M 16 4 C 9.382813 4 4 9.382813 4 16 C 4 22.617188 9.382813 28 16 28 C 22.617188 28 28 22.617188 28 16 C 28 9.382813 22.617188 4 16 4 Z M 16 6 C 21.535156 6 26 10.464844 26 16 C 26 21.535156 21.535156 26 16 26 C 10.464844 26 6 21.535156 6 16 C 6 10.464844 10.464844 6 16 6 Z M 16 10 C 13.800781 10 12 11.800781 12 14 L 14 14 C 14 12.882813 14.882813 12 16 12 C 17.117188 12 18 12.882813 18 14 C 18 14.765625 17.507813 15.445313 16.78125 15.6875 L 16.375 15.8125 C 15.558594 16.082031 15 16.863281 15 17.71875 L 15 19 L 17 19 L 17 17.71875 L 17.40625 17.59375 C 18.945313 17.082031 20 15.621094 20 14 C 20 11.800781 18.199219 10 16 10 Z M 15 20 L 15 22 L 17 22 L 17 20 Z "
+											></path>
+										</svg>
+									</button>
+								</sup>
+							</h5>
+							<div class="input-outter advantages-outter">
+								<textarea
+									id="seller_advantages_advantage1"
+									name="seller[advantages][advantage1]"
+									class="choice-input advantages-input"
+									placeholder=" "
+									rows="3"
+								></textarea>
+								<label class="label advantages-label" for="seller_advantages_advantage1"
+									>Первое</label
+								>
+							</div>
+							<div class="input-outter advantages-outter">
+								<textarea
+									id="seller_advantages_advantage2"
+									name="seller[advantages][advantage2]"
+									class="choice-input advantages-input"
+									placeholder=" "
+									rows="3"
+								></textarea>
+								<label class="label advantages-label" for="seller_advantages_advantage2"
+									>Второе</label
+								>
+							</div>
+							<div class="input-outter advantages-outter">
+								<textarea
+									id="seller_advantages_advantage3"
+									name="seller[advantages][advantage3]"
+									class="choice-input advantages-input"
+									placeholder=" "
+									rows="3"
+								></textarea>
+								<label class="label advantages-label" for="seller_advantages_advantage3"
+									>Третье</label
+								>
+							</div>
+							<div class="input-outter advantages-outter">
+								<textarea
+									id="seller_advantages_advantage4"
+									name="seller[advantages][advantage4]"
+									class="choice-input advantages-input"
+									placeholder=" "
+									rows="3"
+								></textarea>
+								<label class="label advantages-label" for="seller_advantages_advantage4"
+									>Четвертое</label
+								>
+							</div>
+							<div class="input-outter advantages-outter">
+								<textarea
+									id="seller_advantages_advantage5"
+									name="seller[advantages][advantage5]"
+									class="choice-input advantages-input"
+									placeholder=" "
+									rows="3"
+								></textarea>
+								<label class="label advantages-label" for="seller_advantages_advantage5"
+									>Пятое</label
+								>
+							</div>
+						</div>
+
+						<div class="advantages">
+							<h6>
+								Изображения
+								<sup>
+									<button class="help open-popup-button" data-popup-id="4" type="button">
+										<svg viewBox="0 0 32 32" width="18px" height="18px">
+											<path
+												fill="#757373"
+												d="M 16 4 C 9.382813 4 4 9.382813 4 16 C 4 22.617188 9.382813 28 16 28 C 22.617188 28 28 22.617188 28 16 C 28 9.382813 22.617188 4 16 4 Z M 16 6 C 21.535156 6 26 10.464844 26 16 C 26 21.535156 21.535156 26 16 26 C 10.464844 26 6 21.535156 6 16 C 6 10.464844 10.464844 6 16 6 Z M 16 10 C 13.800781 10 12 11.800781 12 14 L 14 14 C 14 12.882813 14.882813 12 16 12 C 17.117188 12 18 12.882813 18 14 C 18 14.765625 17.507813 15.445313 16.78125 15.6875 L 16.375 15.8125 C 15.558594 16.082031 15 16.863281 15 17.71875 L 15 19 L 17 19 L 17 17.71875 L 17.40625 17.59375 C 18.945313 17.082031 20 15.621094 20 14 C 20 11.800781 18.199219 10 16 10 Z M 15 20 L 15 22 L 17 22 L 17 20 Z "
+											></path>
+										</svg>
+									</button>
+								</sup>
+							</h6>
+							<input
+								type="file"
+								id="seller_generalImagesFile"
+								name="seller[generalImagesFile]"
+								type-object="private-office-business-general-images"
+								class="file-for-cropper cropper-image-dimension multiple-simple-images-field-file"
+								data-image-width="720"
+								data-image-height="480"
+								max-files="5"
+								style="margin-bottom: 20px"
+							/>
+							<input
+								type="hidden"
+								id="seller_generalImagesContainer"
+								name="seller[generalImagesContainer]"
+								class="multiple-simple-images-field"
+								value="[]"
+							/>
+							<div class="images-container row" owner="seller_generalImagesContainer"></div>
+						</div>
+
+						<div class="advantages">
+							<div class="textarea-bus-comment">
+								<h3 class="pzd">Комментарии</h3>
+								<textarea
+									id="seller_commentOrDescription"
+									name="seller[commentOrDescription]"
+									class="textarea-pzd"
+									placeholder=" "
+									rows="3"
+								></textarea>
+							</div>
+							<div class="input-youtube-embed">
+								<h3>YouTube видео</h3>
+								<div class="input-outter">
+									<input
+										type="text"
+										id="seller_social_youtubeLink"
+										name="seller[social][youtubeLink]"
+										class="choice-input advantages-input"
+										placeholder=" "
+									/>
+									<label class="label">embed ссылка c YouTube</label>
+								</div>
+							</div>
+						</div>
+
+						<div class="business-btn">
+							<button type="submit" id="seller_submit" name="seller[submit]" class="btn-filter">
+								Сохранить
+							</button>
+
+							<div id="preloader-view" style="display: none">
+								<span class="load">Ваши изменения и дополнения сохраняются</span>
+								<div>
+									<img
+										style="height: 50px; width: 50px"
+										class="presaver"
+										src="/img/preload-gear.svg"
+									/>
+								</div>
+							</div>
+							<span id="error-message" class="check check-off" style="display: none"></span>
+						</div>
+					</form>
+
+					<div class="subtext">
+						<p style="text-align: center">&nbsp;</p>
+
+						<p style="text-align: center">
+							Надеемся быть полезными в Вашей коммерческой деятельности.
+						</p>
+
+						<h3 style="color: #aaaaaa; font-style: italic; text-align: right">Autoparus.by</h3>
+
+						<p style="text-align: right">-12-</p>
+					</div>
 				</div>
-			</fieldset>
+			</section>
 		</div>
-		<fieldset class="block">
-			<h4>Номера телефонов</h4>
-			<div class="phone">
-				<div class="phone-block">
-					<input type="hidden" name="full_additional_phone1" />
-					<input
-						type="hidden"
-						id="seller_sellerCompany_additionalPhone"
-						name="seller[sellerCompany][additionalPhone]"
-						class="phone-with-code1"
-					/>
-					<span id="valid-number-1" class="check check-off" style="display: none"></span>
-				</div>
-
-				<div class="phone-block">
-					<input type="hidden" name="full_additional_phone2" />
-					<input
-						type="hidden"
-						id="seller_sellerCompany_additionalPhone2"
-						name="seller[sellerCompany][additionalPhone2]"
-						class="phone-with-code2"
-					/>
-					<span id="valid-number-2" class="check check-off" style="display: none"></span>
-				</div>
-
-				<div class="phone-block">
-					<input type="hidden" name="full_additional_phone3" />
-					<input
-						type="hidden"
-						id="seller_sellerCompany_additionalPhone3"
-						name="seller[sellerCompany][additionalPhone3]"
-						class="phone-with-code3"
-					/>
-					<span id="valid-number-3" class="check check-off" style="display: none"></span>
-				</div>
-			</div>
-		</fieldset>
-		<div class="advantages">
-			<h5>
-				Конкурентные преимущества
-				<sup>
-					<button class="help open-popup-button" data-popup-id="3" type="button">
-						<svg viewBox="0 0 32 32" width="18px" height="18px">
-							<path
-								fill="#757373"
-								d="M 16 4 C 9.382813 4 4 9.382813 4 16 C 4 22.617188 9.382813 28 16 28 C 22.617188 28 28 22.617188 28 16 C 28 9.382813 22.617188 4 16 4 Z M 16 6 C 21.535156 6 26 10.464844 26 16 C 26 21.535156 21.535156 26 16 26 C 10.464844 26 6 21.535156 6 16 C 6 10.464844 10.464844 6 16 6 Z M 16 10 C 13.800781 10 12 11.800781 12 14 L 14 14 C 14 12.882813 14.882813 12 16 12 C 17.117188 12 18 12.882813 18 14 C 18 14.765625 17.507813 15.445313 16.78125 15.6875 L 16.375 15.8125 C 15.558594 16.082031 15 16.863281 15 17.71875 L 15 19 L 17 19 L 17 17.71875 L 17.40625 17.59375 C 18.945313 17.082031 20 15.621094 20 14 C 20 11.800781 18.199219 10 16 10 Z M 15 20 L 15 22 L 17 22 L 17 20 Z "
-							></path>
-						</svg>
-					</button>
-				</sup>
-			</h5>
-			<div class="input-outter advantages-outter">
-				<textarea
-					id="seller_advantages_advantage1"
-					name="seller[advantages][advantage1]"
-					class="choice-input advantages-input"
-					placeholder=" "
-					rows="3"
-				></textarea>
-				<label class="label advantages-label" for="seller_advantages_advantage1">Первое</label>
-			</div>
-			<div class="input-outter advantages-outter">
-				<textarea
-					id="seller_advantages_advantage2"
-					name="seller[advantages][advantage2]"
-					class="choice-input advantages-input"
-					placeholder=" "
-					rows="3"
-				></textarea>
-				<label class="label advantages-label" for="seller_advantages_advantage2">Второе</label>
-			</div>
-			<div class="input-outter advantages-outter">
-				<textarea
-					id="seller_advantages_advantage3"
-					name="seller[advantages][advantage3]"
-					class="choice-input advantages-input"
-					placeholder=" "
-					rows="3"
-				></textarea>
-				<label class="label advantages-label" for="seller_advantages_advantage3">Третье</label>
-			</div>
-			<div class="input-outter advantages-outter">
-				<textarea
-					id="seller_advantages_advantage4"
-					name="seller[advantages][advantage4]"
-					class="choice-input advantages-input"
-					placeholder=" "
-					rows="3"
-				></textarea>
-				<label class="label advantages-label" for="seller_advantages_advantage4">Четвертое</label>
-			</div>
-			<div class="input-outter advantages-outter">
-				<textarea
-					id="seller_advantages_advantage5"
-					name="seller[advantages][advantage5]"
-					class="choice-input advantages-input"
-					placeholder=" "
-					rows="3"
-				></textarea>
-				<label class="label advantages-label" for="seller_advantages_advantage5">Пятое</label>
-			</div>
-		</div>
-		<script src="./index.min.js"></script>
+		<script src="./index.js"></script>
 	</body>
 </html>
