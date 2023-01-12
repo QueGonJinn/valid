@@ -38,6 +38,9 @@ const companyLink = document.getElementById('seller_sellerCompany_linkImportAdve
 
 const parrentBlock = document.querySelectorAll('.input-outter');
 
+parrentBlock.setAttribute('style', 'display: flex');
+parrentBlock.setAttribute('style', 'flex-direction: column');
+
 const parrentBlockText = document.querySelectorAll('.delivery-text');
 
 let labelCompanyNameMinMax = document.createElement('span');
