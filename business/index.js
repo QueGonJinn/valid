@@ -189,6 +189,17 @@ companyName.addEventListener('input', (e) => {
 	}
 	e.target.value = e.target.value.replace(/([_#:~`?/\\|!="№;%*^$()'+@\[\]{}<>])/gi, '');
 });
+companyName.addEventListener('focus', (e) => {
+	e.target.value.length > 30
+		? ((labelCompanyNameMinMax.innerHTML = 'Достигнут лимит введенных символов'),
+		  labelCompanyNameMinMax.setAttribute('style', 'color: #ff7171;'),
+		  (e.target.value = e.target.value.substr(0, 30)))
+		: e.target.value.length < 30 && e.target.value.length > 10
+		? ((labelCompanyNameMinMax.innerHTML = 'Max 30 символов'),
+		  labelCompanyNameMinMax.setAttribute('style', 'color: #2d4059;'))
+		: ((labelCompanyNameMinMax.innerHTML = 'Min 10 - Max 30 символов'),
+		  labelCompanyNameMinMax.setAttribute('style', 'color: #2d4059;'));
+});
 
 companyUNP.addEventListener('input', (e) => {
 	let i = e.target.value.length - 1;
@@ -243,6 +254,17 @@ companyUNP.addEventListener('input', (e) => {
 		: ((labelCompanyUNPMinMax.innerHTML = 'Min 5 - Max 20 символов'),
 		  labelCompanyUNPMinMax.setAttribute('style', 'color: #2d4059;'));
 	e.target.value = e.target.value.replace(/([_#:~`?/\\|!"«»,.№;%*^$(=)'+@\[\]{}<>&-])/gi, '');
+});
+companyUNP.addEventListener('focus', (e) => {
+	e.target.value.length > 20
+		? ((labelCompanyUNPMinMax.innerHTML = 'Достигнут лимит введенных символов'),
+		  labelCompanyUNPMinMax.setAttribute('style', 'color: #ff7171;'),
+		  (e.target.value = e.target.value.substr(0, 20)))
+		: e.target.value.length < 20 && e.target.value.length > 5
+		? ((labelCompanyUNPMinMax.innerHTML = 'Max 20 символов'),
+		  labelCompanyUNPMinMax.setAttribute('style', 'color: #2d4059;'))
+		: ((labelCompanyUNPMinMax.innerHTML = 'Min 5 - Max 20 символов'),
+		  labelCompanyUNPMinMax.setAttribute('style', 'color: #2d4059;'));
 });
 
 companyCity.addEventListener('input', (e) => {
@@ -306,6 +328,17 @@ companyCity.addEventListener('input', (e) => {
 		companyName.setAttribute('style', 'color: #ff7171;');
 	}
 	e.target.value = e.target.value.replace(/([_#:~`?/\\|!"«»,.№;%*^$(=)'+@\[\]{}<>&])/gi, '');
+});
+companyCity.addEventListener('focus', (e) => {
+	e.target.value.length > 20
+		? ((labelCityUNPMinMax.innerHTML = 'Достигнут лимит введенных символов'),
+		  labelCityUNPMinMax.setAttribute('style', 'color: #ff7171;'),
+		  (e.target.value = e.target.value.substr(0, 20)))
+		: e.target.value.length < 20 && e.target.value.length > 3
+		? ((labelCityUNPMinMax.innerHTML = 'Max 20 символов'),
+		  labelCityUNPMinMax.setAttribute('style', 'color: #2d4059;'))
+		: ((labelCityUNPMinMax.innerHTML = 'Min 3 - Max 20 символов'),
+		  labelCityUNPMinMax.setAttribute('style', 'color: #2d4059;'));
 });
 
 companyAddres.addEventListener('input', (e) => {
@@ -396,6 +429,17 @@ companyAddres.addEventListener('input', (e) => {
 		? (e.target.value = '')
 		: (e.target.value = e.target.value);
 	e.target.value = e.target.value.replace(/([_~`?\\|!"«»%=*^$()'+@\[\]{}<>])/gi, '');
+});
+companyAddres.addEventListener('focus', (e) => {
+	e.target.value.length > 45
+		? ((labelCompanyAddressMinMax.innerHTML = 'Достигнут лимит введенных символов'),
+		  labelCompanyAddressMinMax.setAttribute('style', 'color: #ff7171;'),
+		  (e.target.value = e.target.value.substr(0, 45)))
+		: e.target.value.length < 45 && e.target.value.length > 10
+		? ((labelCompanyAddressMinMax.innerHTML = 'Max 45 символов'),
+		  labelCompanyAddressMinMax.setAttribute('style', 'color: #2d4059;'))
+		: ((labelCompanyAddressMinMax.innerHTML = 'Min 10 - Max 45 символов'),
+		  labelCompanyAddressMinMax.setAttribute('style', 'color: #2d4059;'));
 });
 
 companySite.addEventListener('input', (e) => {
