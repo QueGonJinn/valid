@@ -486,7 +486,20 @@ companySite.addEventListener('input', (e) => {
 		? (e.target.value = '')
 		: e.target.value[0] === '^'
 		? (e.target.value = '')
+		: e.target.value[0] === '='
+		? (e.target.value = '')
 		: (e.target.value = e.target.value);
+});
+companySite.addEventListener('focus', (e) => {
+	e.target.value.length > 80
+		? ((labelCompanySiteMinMax.innerHTML = 'Достигнут лимит введенных символов'),
+		  labelCompanySiteMinMax.setAttribute('style', 'color: #ff7171;'),
+		  (e.target.value = e.target.value.substr(0, 80)))
+		: e.target.value.length < 20 && e.target.value.length > 20
+		? ((labelCompanySiteMinMax.innerHTML = 'Max 80 символов'),
+		  labelCompanySiteMinMax.setAttribute('style', 'color: #2d4059;'))
+		: ((labelCompanySiteMinMax.innerHTML = 'Min 20 - Max 80 символов'),
+		  labelCompanySiteMinMax.setAttribute('style', 'color: #2d4059;'));
 });
 
 companyLink.addEventListener('input', (e) => {
@@ -529,11 +542,24 @@ companyLink.addEventListener('input', (e) => {
 		? (e.target.value = '')
 		: e.target.value[0] === '*'
 		? (e.target.value = '')
-		: e.target.value[0] === '$'
+		: e.target.value[0] === '='
 		? (e.target.value = '')
 		: e.target.value[0] === '^'
 		? (e.target.value = '')
+		: e.target.value[0] === '$'
+		? (e.target.value = '')
 		: (e.target.value = e.target.value);
+});
+companyLink.addEventListener('focus', (e) => {
+	e.target.value.length > 80
+		? ((labelCompanyLinkMinMax.innerHTML = 'Достигнут лимит введенных символов'),
+		  labelCompanyLinkMinMax.setAttribute('style', 'color: #ff7171;'),
+		  (e.target.value = e.target.value.substr(0, 80)))
+		: e.target.value.length < 20 && e.target.value.length > 20
+		? ((labelCompanyLinkMinMax.innerHTML = 'Max 80 символов'),
+		  labelCompanyLinkMinMax.setAttribute('style', 'color: #2d4059;'))
+		: ((labelCompanyLinkMinMax.innerHTML = 'Min 20 - Max 80 символов'),
+		  labelCompanyLinkMinMax.setAttribute('style', 'color: #2d4059;'));
 });
 
 companyAbout.addEventListener('input', (e) => {
@@ -541,7 +567,15 @@ companyAbout.addEventListener('input', (e) => {
 		? ((labelCompanyAboutMinMax.innerHTML = 'Достигнут лимит введенных символов в размере 200'),
 		  labelCompanyAboutMinMax.setAttribute('style', 'color: #ff7171;'),
 		  (e.target.value = e.target.value.substr(0, 200)))
-		: ((labelCompanyAboutMinMax.innerHTML = ''),
+		: ((labelCompanyAboutMinMax.innerHTML = 'Max колличество символов 200'),
+		  labelCompanyAboutMinMax.setAttribute('style', 'color: #2d4059;'));
+});
+companyAbout.addEventListener('focus', (e) => {
+	e.target.value.length > 200
+		? ((labelCompanyAboutMinMax.innerHTML = 'Достигнут лимит введенных символов в размере 200'),
+		  labelCompanyAboutMinMax.setAttribute('style', 'color: #ff7171;'),
+		  (e.target.value = e.target.value.substr(0, 200)))
+		: ((labelCompanyAboutMinMax.innerHTML = 'Max колличество символов 200'),
 		  labelCompanyAboutMinMax.setAttribute('style', 'color: #2d4059;'));
 });
 
@@ -550,7 +584,15 @@ fieldDelivery.addEventListener('input', (e) => {
 		? ((labelCompanyDeliveryMinMax.innerHTML = 'Достигнут лимит введенных символов в размере 150'),
 		  labelCompanyDeliveryMinMax.setAttribute('style', 'color: #ff7171;'),
 		  (e.target.value = e.target.value.substr(0, 150)))
-		: ((labelCompanyDeliveryMinMax.innerHTML = ''),
+		: ((labelCompanyDeliveryMinMax.innerHTML = 'Max колличество символов 150'),
+		  labelCompanyDeliveryMinMax.setAttribute('style', 'color: #2d4059;'));
+});
+fieldDelivery.addEventListener('focus', (e) => {
+	e.target.value.length > 150
+		? ((labelCompanyDeliveryMinMax.innerHTML = 'Достигнут лимит введенных символов в размере 150'),
+		  labelCompanyDeliveryMinMax.setAttribute('style', 'color: #ff7171;'),
+		  (e.target.value = e.target.value.substr(0, 150)))
+		: ((labelCompanyDeliveryMinMax.innerHTML = 'Max колличество символов 150'),
 		  labelCompanyDeliveryMinMax.setAttribute('style', 'color: #2d4059;'));
 });
 
@@ -559,6 +601,14 @@ fielGuarantee.addEventListener('input', (e) => {
 		? ((labelCompanyGarntieMinMax.innerHTML = 'Достигнут лимит введенных символов в размере 150'),
 		  labelCompanyGarntieMinMax.setAttribute('style', 'color: #ff7171;'),
 		  (e.target.value = e.target.value.substr(0, 150)))
-		: ((labelCompanyGarntieMinMax.innerHTML = ''),
+		: ((labelCompanyGarntieMinMax.innerHTML = 'Max колличество символов 150'),
+		  labelCompanyGarntieMinMax.setAttribute('style', 'color: #2d4059;'));
+});
+fielGuarantee.addEventListener('focus', (e) => {
+	e.target.value.length > 150
+		? ((labelCompanyGarntieMinMax.innerHTML = 'Достигнут лимит введенных символов в размере 150'),
+		  labelCompanyGarntieMinMax.setAttribute('style', 'color: #ff7171;'),
+		  (e.target.value = e.target.value.substr(0, 150)))
+		: ((labelCompanyGarntieMinMax.innerHTML = 'Max колличество символов 150'),
 		  labelCompanyGarntieMinMax.setAttribute('style', 'color: #2d4059;'));
 });
