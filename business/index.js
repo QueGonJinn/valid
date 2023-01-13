@@ -41,13 +41,19 @@ const sellerAdvantagesThrid = document.getElementById('seller_advantages_advanta
 const sellerAdvantagesFour = document.getElementById('seller_advantages_advantage4');
 const sellerAdvantagesFives = document.getElementById('seller_advantages_advantage5');
 const coments = document.getElementById('seller_commentOrDescription');
+const youtubeLink = document.getElementById('seller_social_youtubeLink')
 
 const parrentBlock = document.querySelectorAll('.input-outter');
+console.log(parrentBlock);
 
 parrentBlock.forEach((e) => {
-	e.setAttribute('style', 'display: flex!important');
-	e.setAttribute('style', 'flex-direction: column!important');
+	e.setAttribute('style', 'display: flex!important');	
 });
+parrentBlock.forEach((e) => {
+	e.setAttribute('style', 'flex-direction: column!important');	
+});
+
+
 
 const parrentBlockText = document.querySelectorAll('.delivery-text');
 const parrentBlockComments = document.querySelector('.textarea-bus-comment');
@@ -111,6 +117,10 @@ labelCompanyGarntieMinMax.setAttribute('style', 'color: #2d4059;');
 let labelCommentsMinMax = document.createElement('span');
 parrentBlockComments.appendChild(labelCommentsMinMax);
 labelCommentsMinMax.setAttribute('style', 'color: #2d4059;');
+
+let labelYoutube = document.createElement('span');
+parrentBlock[12].appendChild(labelYoutube);
+labelYoutube.setAttribute('style', 'color: #2d4059;');
 
 function validateCompanyName(name) {
 	return String(name).match(/^[a-zA-Zа-яА-ЯёЁ0-9 ",.&«»-]+$/);
@@ -431,14 +441,14 @@ companyAddres.addEventListener('focus', (e) => {
 
 companySite.addEventListener('input', (e) => {
 	let i = e.target.value.length - 1;
-	e.target.value.length > 80
-		? ((labelCompanySiteMinMax.innerHTML = 'Достигнут лимит в 80 символов'),
+	e.target.value.length > 25
+		? ((labelCompanySiteMinMax.innerHTML = 'Достигнут лимит в 25 символов'),
 		  labelCompanySiteMinMax.setAttribute('style', 'color: #ff7171;'),
-		  (e.target.value = e.target.value.substr(0, 80)))
-		: e.target.value.length < 80 && e.target.value.length > 5
-		? ((labelCompanySiteMinMax.innerHTML = 'Max 80 символов'),
+		  (e.target.value = e.target.value.substr(0, 25)))
+		: e.target.value.length < 25 && e.target.value.length > 5
+		? ((labelCompanySiteMinMax.innerHTML = 'Max 25 символов'),
 		  labelCompanySiteMinMax.setAttribute('style', 'color: #2d4059;'))
-		: ((labelCompanySiteMinMax.innerHTML = 'Min 5 - Max 80 символов'),
+		: ((labelCompanySiteMinMax.innerHTML = 'Min 5 - Max 25 символов'),
 		  labelCompanySiteMinMax.setAttribute('style', 'color: #2d4059;'));
 
 	if (e.target.value.match(/^[_~#&/|,.`?\\|!"«»%=*^$()'+@\[\]{}<> -]/)) {		
@@ -446,16 +456,16 @@ companySite.addEventListener('input', (e) => {
 	}
 });
 companySite.addEventListener('focus', (e) => {
-	e.target.value.length > 80
-		? ((labelCompanySiteMinMax.innerHTML = 'Достигнут лимит в 80 символов'),
+	e.target.value.length > 25
+		? ((labelCompanySiteMinMax.innerHTML = 'Достигнут лимит в 25 символов'),
 		  labelCompanySiteMinMax.setAttribute('style', 'color: #ff7171;'),
-		  (e.target.value = e.target.value.substr(0, 80)))
-		: e.target.value.length < 80 && e.target.value.length > 5
-		? ((labelCompanySiteMinMax.innerHTML = 'Max 80 символов'),
+		  (e.target.value = e.target.value.substr(0, 25)))
+		: e.target.value.length < 25 && e.target.value.length > 5
+		? ((labelCompanySiteMinMax.innerHTML = 'Max 25 символов'),
 		  labelCompanySiteMinMax.setAttribute('style', 'color: #2d4059;'))
-		: ((labelCompanySiteMinMax.innerHTML = 'Min 5 - Max 80 символов'),
+		: ((labelCompanySiteMinMax.innerHTML = 'Min 5 - Max 25 символов'),
 		  labelCompanySiteMinMax.setAttribute('style', 'color: #2d4059;'));
-});
+})
 
 companyLink.addEventListener('input', (e) => {
 	let i = e.target.value.length - 1;
@@ -706,3 +716,39 @@ coments.addEventListener('focus', (e) => {
 		: ((labelCommentsMinMax.innerHTML = 'Max колличество символов 250'),
 		  labelCommentsMinMax.setAttribute('style', 'color: #2d4059;'));
 });
+
+youtubeLink.addEventListener('input', (e) => {
+	
+	if (e.target.value.match(/^[_~#&/|,.`?\\|!"«»%=*^$()'+@\[\]{}<> -]/)) {		
+		e.target.value = '';
+	}
+	let sYoutube = 'youtube.com/embed/'
+	e.target.value = e.target.value.replace('https://', '');
+	e.target.value = e.target.value.replace('www.', '');
+	e.target.value = sYoutube + e.target.value.split('v=')[1];
+
+	e.target.value.length > 80
+		? ((labelYoutube.innerHTML = 'Достигнут лимит в 80 символов'),
+		  labelYoutube.setAttribute('style', 'color: #ff7171;'),
+		  (e.target.value = e.target.value.substr(0, 80)))
+		: e.target.value.length < 80 && e.target.value.length > 20
+		? ((labelYoutube.innerHTML = 'Max 80 символов'),
+		  labelYoutube.setAttribute('style', 'color: #2d4059;'))
+		: ((labelYoutube.innerHTML = 'Min 20 - Max 80 символов'),
+		  labelYoutube.setAttribute('style', 'color: #2d4059;'));
+			
+	e.target.value = e.target.value.replace('undefined', '');
+})
+
+youtubeLink.addEventListener('focus', (e) => {
+	
+	e.target.value.length > 80
+		? ((labelYoutube.innerHTML = 'Достигнут лимит в 80 символов'),
+		  labelYoutube.setAttribute('style', 'color: #ff7171;'),
+		  (e.target.value = e.target.value.substr(0, 80)))
+		: e.target.value.length < 80 && e.target.value.length > 20
+		? ((labelYoutube.innerHTML = 'Max 80 символов'),
+		  labelYoutube.setAttribute('style', 'color: #2d4059;'))
+		: ((labelYoutube.innerHTML = 'Min 20 - Max 80 символов'),
+		  labelYoutube.setAttribute('style', 'color: #2d4059;'));
+})
