@@ -45,8 +45,8 @@ const coments = document.getElementById('seller_commentOrDescription');
 const parrentBlock = document.querySelectorAll('.input-outter');
 
 parrentBlock.forEach((e) => {
-	e.setAttribute('style', 'display: flex');
-	e.setAttribute('style', 'flex-direction: column');
+	e.setAttribute('style', 'display: flex!important');
+	e.setAttribute('style', 'flex-direction: column!important');
 });
 
 const parrentBlockText = document.querySelectorAll('.delivery-text');
@@ -435,10 +435,10 @@ companySite.addEventListener('input', (e) => {
 		? ((labelCompanySiteMinMax.innerHTML = 'Достигнут лимит в 80 символов'),
 		  labelCompanySiteMinMax.setAttribute('style', 'color: #ff7171;'),
 		  (e.target.value = e.target.value.substr(0, 80)))
-		: e.target.value.length < 80 && e.target.value.length > 10
+		: e.target.value.length < 80 && e.target.value.length > 6
 		? ((labelCompanySiteMinMax.innerHTML = 'Max 80 символов'),
 		  labelCompanySiteMinMax.setAttribute('style', 'color: #2d4059;'))
-		: ((labelCompanySiteMinMax.innerHTML = 'Min 10 - Max 80 символов'),
+		: ((labelCompanySiteMinMax.innerHTML = 'Min 6 - Max 80 символов'),
 		  labelCompanySiteMinMax.setAttribute('style', 'color: #2d4059;'));
 
 	if (e.target.value.match(/^[_~#&/|,.`?\\|!"«»%=*^$()'+@\[\]{}<> -]/)) {		
@@ -450,10 +450,10 @@ companySite.addEventListener('focus', (e) => {
 		? ((labelCompanySiteMinMax.innerHTML = 'Достигнут лимит в 80 символов'),
 		  labelCompanySiteMinMax.setAttribute('style', 'color: #ff7171;'),
 		  (e.target.value = e.target.value.substr(0, 80)))
-		: e.target.value.length < 80 && e.target.value.length > 10
+		: e.target.value.length < 80 && e.target.value.length > 6
 		? ((labelCompanySiteMinMax.innerHTML = 'Max 80 символов'),
 		  labelCompanySiteMinMax.setAttribute('style', 'color: #2d4059;'))
-		: ((labelCompanySiteMinMax.innerHTML = 'Min 10 - Max 80 символов'),
+		: ((labelCompanySiteMinMax.innerHTML = 'Min 6 - Max 80 символов'),
 		  labelCompanySiteMinMax.setAttribute('style', 'color: #2d4059;'));
 });
 
