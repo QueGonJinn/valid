@@ -47,10 +47,10 @@ const parrentBlock = document.querySelectorAll('.input-outter');
 console.log(parrentBlock);
 
 parrentBlock.forEach((e) => {
-	e.setAttribute('style', 'display: flex!important');	
+	e.setAttribute('style', 'display: flex;');	
 });
 parrentBlock.forEach((e) => {
-	e.setAttribute('style', 'flex-direction: column!important');	
+	e.setAttribute('style', 'flex-direction: column!important;');	
 });
 
 
