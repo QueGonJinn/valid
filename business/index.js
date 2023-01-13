@@ -44,7 +44,6 @@ const coments = document.getElementById('seller_commentOrDescription');
 const youtubeLink = document.getElementById('seller_social_youtubeLink')
 
 const parrentBlock = document.querySelectorAll('.input-outter');
-console.log(parrentBlock);
 
 parrentBlock.forEach((e) => {
 	e.setAttribute('style', 'display: flex;');	
@@ -725,7 +724,10 @@ youtubeLink.addEventListener('input', (e) => {
 	let sYoutube = 'youtube.com/embed/'
 	e.target.value = e.target.value.replace('https://', '');
 	e.target.value = e.target.value.replace('www.', '');
-	e.target.value = sYoutube + e.target.value.split('v=')[1];
+	if (e.target.value.includes('watch')) {
+		e.target.value = sYoutube + e.target.value.split('v=')[1];
+	}
+	
 
 	e.target.value.length > 80
 		? ((labelYoutube.innerHTML = 'Достигнут лимит в 80 символов'),
