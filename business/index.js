@@ -186,37 +186,8 @@ companyName.addEventListener('input', (e) => {
 		: ((labelCompanyNameMinMax.innerHTML = 'Min 10 - Max 30 символов'),
 		  labelCompanyNameMinMax.setAttribute('style', 'color: #2d4059;'));
 
-	if (e.target.value[0] === ' ') {
+	if (e.target.value.match(/^[_~#&/|,.`?\\|!"«»%=*^$()'+@\[\]{}<> -]/)) {		
 		e.target.value = '';
-		companyName.setAttribute('style', 'color: #ff7171;');
-	}
-	if (e.target.value[0] === '-') {
-		e.target.value = '';
-		companyName.setAttribute('style', 'color: #ff7171;');
-	}
-	if (e.target.value[0] === '.') {
-		e.target.value = '';
-		companyName.setAttribute('style', 'color: #ff7171;');
-	}
-	if (e.target.value[0] === ',') {
-		e.target.value = '';
-		companyName.setAttribute('style', 'color: #ff7171;');
-	}
-	if (e.target.value[0] === '-') {
-		e.target.value = '';
-		companyName.setAttribute('style', 'color: #ff7171;');
-	}
-	if (e.target.value[0] === '&') {
-		e.target.value = '';
-		companyName.setAttribute('style', 'color: #ff7171;');
-	}
-	if (e.target.value[0] === '»') {
-		e.target.value = '';
-		companyName.setAttribute('style', 'color: #ff7171;');
-	}
-	if (e.target.value[0] === '«') {
-		e.target.value = '';
-		companyName.setAttribute('style', 'color: #ff7171;');
 	}
 	e.target.value = e.target.value.replace(/([_#:~`?/\\|!="№;%*^$()'+@\[\]{}<>])/gi, '');
 });
@@ -284,6 +255,10 @@ companyUNP.addEventListener('input', (e) => {
 		  labelCompanyUNPMinMax.setAttribute('style', 'color: #2d4059;'))
 		: ((labelCompanyUNPMinMax.innerHTML = 'Min 5 - Max 20 символов'),
 		  labelCompanyUNPMinMax.setAttribute('style', 'color: #2d4059;'));
+
+	if (e.target.value.match(/^[_~#&/|,.`?\\|!"«»%=*^$()'+@\[\]{}<> -]/)) {		
+		e.target.value = '';
+	}
 	e.target.value = e.target.value.replace(/([_#:~`?/\\|!"«»,.№;%*^$(=)'+@\[\]{}<>&-])/gi, '');
 });
 companyUNP.addEventListener('focus', (e) => {
@@ -354,9 +329,8 @@ companyCity.addEventListener('input', (e) => {
 		e.target.value = '';
 		companyName.setAttribute('style', 'color: #ff7171;');
 	}
-	if (e.target.value[0] === '-') {
+	if (e.target.value.match(/^[_~#&/|,.`?\\|!"«»%=*^$()'+@\[\]{}<> -]/)) {		
 		e.target.value = '';
-		companyName.setAttribute('style', 'color: #ff7171;');
 	}
 	e.target.value = e.target.value.replace(/([_#:~`?/\\|!"«»,.№;%*^$(=)'+@\[\]{}<>&])/gi, '');
 });
@@ -438,27 +412,9 @@ companyAddres.addEventListener('input', (e) => {
 		: ((labelCompanyAddressMinMax.innerHTML = 'Min 10 - Max 45 символов'),
 		  labelCompanyAddressMinMax.setAttribute('style', 'color: #2d4059;'));
 
-	e.target.value[0] === '-'
-		? (e.target.value = '')
-		: e.target.value[0] === '#'
-		? (e.target.value = '')
-		: e.target.value[0] === '&'
-		? (e.target.value = '')
-		: e.target.value[0] === '№'
-		? (e.target.value = '')
-		: e.target.value[0] === ':'
-		? (e.target.value = '')
-		: e.target.value[0] === ';'
-		? (e.target.value = '')
-		: e.target.value[0] === '/'
-		? (e.target.value = '')
-		: e.target.value[0] === ' '
-		? (e.target.value = '')
-		: e.target.value[0] === ','
-		? (e.target.value = '')
-		: e.target.value[0] === '.'
-		? (e.target.value = '')
-		: (e.target.value = e.target.value);
+	if (e.target.value.match(/^[_~#&/|,.`?\\|!"«»%=*^$()'+@\[\]{}<> -]/)) {		
+		e.target.value = '';
+	}
 	e.target.value = e.target.value.replace(/([_~`?\\|!"«»%=*^$()'+@\[\]{}<>])/gi, '');
 });
 companyAddres.addEventListener('focus', (e) => {
@@ -479,57 +435,25 @@ companySite.addEventListener('input', (e) => {
 		? ((labelCompanySiteMinMax.innerHTML = 'Достигнут лимит в 80 символов'),
 		  labelCompanySiteMinMax.setAttribute('style', 'color: #ff7171;'),
 		  (e.target.value = e.target.value.substr(0, 80)))
-		: e.target.value.length < 20 && e.target.value.length > 20
+		: e.target.value.length < 80 && e.target.value.length > 10
 		? ((labelCompanySiteMinMax.innerHTML = 'Max 80 символов'),
 		  labelCompanySiteMinMax.setAttribute('style', 'color: #2d4059;'))
-		: ((labelCompanySiteMinMax.innerHTML = 'Min 20 - Max 80 символов'),
+		: ((labelCompanySiteMinMax.innerHTML = 'Min 10 - Max 80 символов'),
 		  labelCompanySiteMinMax.setAttribute('style', 'color: #2d4059;'));
 
-	e.target.value[0] === '-'
-		? (e.target.value = '')
-		: e.target.value[0] === '#'
-		? (e.target.value = '')
-		: e.target.value[0] === '&'
-		? (e.target.value = '')
-		: e.target.value[0] === '№'
-		? (e.target.value = '')
-		: e.target.value[0] === ':'
-		? (e.target.value = '')
-		: e.target.value[0] === ';'
-		? (e.target.value = '')
-		: e.target.value[0] === '/'
-		? (e.target.value = '')
-		: e.target.value[0] === ' '
-		? (e.target.value = '')
-		: e.target.value[0] === ','
-		? (e.target.value = '')
-		: e.target.value[0] === '.'
-		? (e.target.value = '')
-		: e.target.value[0] === '@'
-		? (e.target.value = '')
-		: e.target.value[0] === '!'
-		? (e.target.value = '')
-		: e.target.value[0] === '%'
-		? (e.target.value = '')
-		: e.target.value[0] === '*'
-		? (e.target.value = '')
-		: e.target.value[0] === '$'
-		? (e.target.value = '')
-		: e.target.value[0] === '^'
-		? (e.target.value = '')
-		: e.target.value[0] === '='
-		? (e.target.value = '')
-		: (e.target.value = e.target.value);
+	if (e.target.value.match(/^[_~#&/|,.`?\\|!"«»%=*^$()'+@\[\]{}<> -]/)) {		
+		e.target.value = '';
+	}
 });
 companySite.addEventListener('focus', (e) => {
 	e.target.value.length > 80
 		? ((labelCompanySiteMinMax.innerHTML = 'Достигнут лимит в 80 символов'),
 		  labelCompanySiteMinMax.setAttribute('style', 'color: #ff7171;'),
 		  (e.target.value = e.target.value.substr(0, 80)))
-		: e.target.value.length < 20 && e.target.value.length > 20
+		: e.target.value.length < 80 && e.target.value.length > 10
 		? ((labelCompanySiteMinMax.innerHTML = 'Max 80 символов'),
 		  labelCompanySiteMinMax.setAttribute('style', 'color: #2d4059;'))
-		: ((labelCompanySiteMinMax.innerHTML = 'Min 20 - Max 80 символов'),
+		: ((labelCompanySiteMinMax.innerHTML = 'Min 10 - Max 80 символов'),
 		  labelCompanySiteMinMax.setAttribute('style', 'color: #2d4059;'));
 });
 
@@ -539,57 +463,25 @@ companyLink.addEventListener('input', (e) => {
 		? ((labelCompanyLinkMinMax.innerHTML = 'Достигнут лимит в 80 символов'),
 		  labelCompanyLinkMinMax.setAttribute('style', 'color: #ff7171;'),
 		  (e.target.value = e.target.value.substr(0, 80)))
-		: e.target.value.length < 20 && e.target.value.length > 20
+		: e.target.value.length < 80 && e.target.value.length > 10
 		? ((labelCompanyLinkMinMax.innerHTML = 'Max 80 символов'),
 		  labelCompanyLinkMinMax.setAttribute('style', 'color: #2d4059;'))
-		: ((labelCompanyLinkMinMax.innerHTML = 'Min 20 - Max 80 символов'),
+		: ((labelCompanyLinkMinMax.innerHTML = 'Min 10 - Max 80 символов'),
 		  labelCompanyLinkMinMax.setAttribute('style', 'color: #2d4059;'));
 
-	e.target.value[0] === '-'
-		? (e.target.value = '')
-		: e.target.value[0] === '#'
-		? (e.target.value = '')
-		: e.target.value[0] === '&'
-		? (e.target.value = '')
-		: e.target.value[0] === '№'
-		? (e.target.value = '')
-		: e.target.value[0] === ':'
-		? (e.target.value = '')
-		: e.target.value[0] === ';'
-		? (e.target.value = '')
-		: e.target.value[0] === '/'
-		? (e.target.value = '')
-		: e.target.value[0] === ' '
-		? (e.target.value = '')
-		: e.target.value[0] === ','
-		? (e.target.value = '')
-		: e.target.value[0] === '.'
-		? (e.target.value = '')
-		: e.target.value[0] === '@'
-		? (e.target.value = '')
-		: e.target.value[0] === '!'
-		? (e.target.value = '')
-		: e.target.value[0] === '%'
-		? (e.target.value = '')
-		: e.target.value[0] === '*'
-		? (e.target.value = '')
-		: e.target.value[0] === '='
-		? (e.target.value = '')
-		: e.target.value[0] === '^'
-		? (e.target.value = '')
-		: e.target.value[0] === '$'
-		? (e.target.value = '')
-		: (e.target.value = e.target.value);
+	if (e.target.value.match(/^[_~#&/|,.`?\\|!"«»%=*^$()'+@\[\]{}<> -]/)) {		
+		e.target.value = '';
+	}
 });
 companyLink.addEventListener('focus', (e) => {
 	e.target.value.length > 80
 		? ((labelCompanyLinkMinMax.innerHTML = 'Достигнут лимит в 80 символов'),
 		  labelCompanyLinkMinMax.setAttribute('style', 'color: #ff7171;'),
 		  (e.target.value = e.target.value.substr(0, 80)))
-		: e.target.value.length < 20 && e.target.value.length > 20
+		: e.target.value.length < 80 && e.target.value.length > 20
 		? ((labelCompanyLinkMinMax.innerHTML = 'Max 80 символов'),
 		  labelCompanyLinkMinMax.setAttribute('style', 'color: #2d4059;'))
-		: ((labelCompanyLinkMinMax.innerHTML = 'Min 20 - Max 80 символов'),
+		: ((labelCompanyLinkMinMax.innerHTML = 'Min 10 - Max 80 символов'),
 		  labelCompanyLinkMinMax.setAttribute('style', 'color: #2d4059;'));
 });
 
@@ -597,6 +489,9 @@ companyAbout.addEventListener('input', (e) => {
 	if (e.target.value.match(/^[a-zA-Zа-яА-ЯёЁ]/)) {
 		let s = e.target.value;
 		e.target.value = s[0].toUpperCase() + s.slice(1);
+	}
+	if (e.target.value.match(/^[_~#&/|,.`?\\|!"«»%=*^$()'+@\[\]{}<> -]/)) {		
+		e.target.value = '';
 	}
 	e.target.value.length > 200
 		? ((labelCompanyAboutMinMax.innerHTML = 'Достигнут лимит в 200 символов'),
@@ -619,6 +514,9 @@ fieldDelivery.addEventListener('input', (e) => {
 		let s = e.target.value;
 		e.target.value = s[0].toUpperCase() + s.slice(1);
 	}
+	if (e.target.value.match(/^[_~#&/|,.`?\\|!"«»%=*^$()'+@\[\]{}<> -]/)) {		
+		e.target.value = '';
+	}
 	e.target.value.length > 150
 		? ((labelCompanyDeliveryMinMax.innerHTML = 'Достигнут лимит в 150 символов'),
 		  labelCompanyDeliveryMinMax.setAttribute('style', 'color: #ff7171;'),
@@ -640,6 +538,9 @@ fielGuarantee.addEventListener('input', (e) => {
 		let s = e.target.value;
 		e.target.value = s[0].toUpperCase() + s.slice(1);
 	}
+	if (e.target.value.match(/^[_~#&/|,.`?\\|!"«»%=*^$()'+@\[\]{}<> -]/)) {		
+		e.target.value = '';
+	}
 	e.target.value.length > 150
 		? ((labelCompanyGarntieMinMax.innerHTML = 'Достигнут лимит в 150 символов'),
 		  labelCompanyGarntieMinMax.setAttribute('style', 'color: #ff7171;'),
@@ -660,6 +561,9 @@ sellerAdvantagesFirst.addEventListener('input', (e) => {
 	if (e.target.value.match(/^[a-zA-Zа-яА-ЯёЁ]/)) {
 		let s = e.target.value;
 		e.target.value = s[0].toUpperCase() + s.slice(1);
+	}
+	if (e.target.value.match(/^[_~#&/|,.`?\\|!"«»%=*^$()'+@\[\]{}<> -]/)) {		
+		e.target.value = '';
 	}
 	e.target.value.length > 250
 		? ((labelSellerAdvantagesFirst.innerHTML = 'Достигнут лимит в 250 символов'),
@@ -683,6 +587,9 @@ sellerAdvantagesSecond.addEventListener('input', (e) => {
 		let s = e.target.value;
 		e.target.value = s[0].toUpperCase() + s.slice(1);
 	}
+	if (e.target.value.match(/^[_~#&/|,.`?\\|!"«»%=*^$()'+@\[\]{}<> -]/)) {		
+		e.target.value = '';
+	}
 	e.target.value.length > 250
 		? ((labelSellerAdvantagesSecond.innerHTML = 'Достигнут лимит в 250 символов'),
 		  labelSellerAdvantagesSecond.setAttribute('style', 'color: #ff7171;'),
@@ -704,6 +611,9 @@ sellerAdvantagesThrid.addEventListener('input', (e) => {
 	if (e.target.value.match(/^[a-zA-Zа-яА-ЯёЁ]/)) {
 		let s = e.target.value;
 		e.target.value = s[0].toUpperCase() + s.slice(1);
+	}
+	if (e.target.value.match(/^[_~#&/|,.`?\\|!"«»%=*^$()'+@\[\]{}<> -]/)) {		
+		e.target.value = '';
 	}
 	e.target.value.length > 250
 		? ((labelSellerAdvantagesThrid.innerHTML = 'Достигнут лимит в 250 символов'),
@@ -727,6 +637,9 @@ sellerAdvantagesFour.addEventListener('input', (e) => {
 		let s = e.target.value;
 		e.target.value = s[0].toUpperCase() + s.slice(1);
 	}
+	if (e.target.value.match(/^[_~#&/|,.`?\\|!"«»%=*^$()'+@\[\]{}<> -]/)) {		
+		e.target.value = '';
+	}
 	e.target.value.length > 250
 		? ((labelSellerAdvantagesFour.innerHTML = 'Достигнут лимит в 250 символов'),
 		  labelSellerAdvantagesFour.setAttribute('style', 'color: #ff7171;'),
@@ -749,6 +662,9 @@ sellerAdvantagesFives.addEventListener('input', (e) => {
 		let s = e.target.value;
 		e.target.value = s[0].toUpperCase() + s.slice(1);
 	}
+	if (e.target.value.match(/^[_~#&/|,.`?\\|!"«»%=*^$()'+@\[\]{}<> -]/)) {		
+		e.target.value = '';
+	}
 	e.target.value.length > 250
 		? ((labelSellerAdvantagesFives.innerHTML = 'Достигнут лимит в 250 символов'),
 		  labelSellerAdvantagesFives.setAttribute('style', 'color: #ff7171;'),
@@ -770,6 +686,9 @@ coments.addEventListener('input', (e) => {
 	if (e.target.value.match(/^[a-zA-Zа-яА-ЯёЁ]/)) {
 		let s = e.target.value;
 		e.target.value = s[0].toUpperCase() + s.slice(1);
+	}
+	if (e.target.value.match(/^[_~#&/|,.`?\\|!"«»%=*^$()'+@\[\]{}<> -]/)) {		
+		e.target.value = '';
 	}
 	e.target.value.length > 250
 		? ((labelCommentsMinMax.innerHTML = 'Достигнут лимит в 250 символов'),
