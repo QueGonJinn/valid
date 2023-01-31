@@ -1,0 +1,33 @@
+.description-wrapper {
+	max-width: 819px;
+}
+
+.slider {
+	width: 100%;
+	overflow: hidden;
+}
+
+.slider-line {
+	overflow: hidden;
+}
+
+.slider-slide {
+	width: 819px;
+	min-height: 1px;
+	float: left;
+}
+
+.slider-img {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: auto;
+	object-fit: cover;
+}
+
+.slider-img img {
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+}
