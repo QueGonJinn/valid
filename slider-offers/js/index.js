@@ -110,6 +110,12 @@ class Slider {
 		Array.from(this.slideNodes).forEach((slideNode) => {
 			return (slideNode.style.marginRight = `${this.settings.margin}px`);
 		});
+		if (this.size === 1) {
+			totalWrapper.style.visibility = 'hidden';
+		}
+		if (this.size === 1) {
+			this.dotsNode.style.visibility = 'hidden';
+		}
 	}
 
 	setEvents() {
