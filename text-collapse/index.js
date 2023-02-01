@@ -8,13 +8,13 @@ console.log(textHeight);
 
 textHeight <= 154 && textWidth <= 410
 	? moreDetails.classList.add('display-hide')
-	: textHeight <= 87 && textWidth >= 410
+	: textHeight <= 93 && textWidth >= 410
 	? moreDetails.classList.add('display-hide')
 	: moreDetails.classList.remove('display-hide');
 
 textHeight >= 154 && textWidth <= 410
 	? text.classList.add('collapse-text-mobile')
-	: textHeight >= 90 && textWidth >= 410
+	: textHeight >= 93 && textWidth >= 410
 	? text.classList.add('collapse-text')
 	: text.classList.remove('collapse-text');
 
