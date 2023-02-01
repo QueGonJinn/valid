@@ -45,6 +45,7 @@ class Slider {
 		this.stopDrag = this.stopDrag.bind(this);
 		this.dragging = this.dragging.bind(this);
 		this.setStylePosition = this.setStylePosition.bind(this);
+		this.setStylePositionReset = this.setStylePositionReset.bind(this);
 		this.clickDots = this.clickDots.bind(this);
 		this.moveToLeft = this.moveToLeft.bind(this);
 		this.moveToRight = this.moveToRight.bind(this);
@@ -239,6 +240,12 @@ class Slider {
 
 	setStylePosition() {
 		this.lineNode.style.transform = `translate3d(${this.x}px, 0, 0)`;
+	}
+
+	setStylePositionReset() {
+		this.lineNode.style.transform = `translate3d(${
+			this.x - this.width * this.currentSlide
+		}px, 0, 0)`;
 	}
 
 	setStyleTransition() {

@@ -1,0 +1,26 @@
+.info-btn {
+	cursor: pointer;
+}
+
+.company-name__info-about {
+	font-size: 22px;
+	line-height: 1.4em;
+}
+
+.collapse-text {
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+}
+
+.collapse-text-mobile {
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 5;
+	-webkit-box-orient: vertical;
+}
+
+.display-hide {
+	visibility: hidden;
+}
