@@ -32,6 +32,7 @@ class Slider {
 		this.moveToRight = this.moveToRight.bind(this);
 		this.changeCurrentSlide = this.changeCurrentSlide.bind(this);
 		this.changeActiveDotClass = this.changeActiveDotClass.bind(this);
+		this.setStyleTransitionEnd = this.setStyleTransitionEnd.bind(this);
 
 		this.manageHTML();
 		this.setParrameters();
@@ -83,6 +84,7 @@ class Slider {
 		this.x = -this.currentSlide * (this.width + this.settings.margin);
 
 		this.lineNode.style.width = `${this.size * (this.width + this.settings.margin)}px`;
+
 		this.setStylePosition();
 		Array.from(this.slideNodes).forEach((slideNode) => {
 			return (slideNode.style.width = `${this.width}px`);
@@ -143,14 +145,13 @@ class Slider {
 		this.dragX = evt.pageX;
 		const dragShift = this.dragX - this.clickX;
 		const easing = dragShift / 5;
-		this.x = Math.max(Math.min(this.startX + dragShift, easing), this.maximumX + easing);
+		this.x = this.startX + dragShift;
 		this.setStylePosition();
 
 		if (dragShift > 20 && dragShift > 0 && !this.currentSlideWasChange && this.currentSlide > 0) {
 			this.currentSlideWasChange = true;
 			this.currentSlide = this.currentSlide - 1;
 		}
-
 		if (
 			dragShift < -20 &&
 			dragShift < 0 &&
@@ -159,6 +160,16 @@ class Slider {
 		) {
 			this.currentSlideWasChange = true;
 			this.currentSlide = this.currentSlide + 1;
+		}
+
+		if (Math.abs(this.x) > this.width * this.size - this.width + 20) {
+			this.currentSlide = 0;
+			this.setStyleTransitionEnd();
+		}
+
+		if (this.x > 0) {
+			this.currentSlide = this.size - 1;
+			this.setStyleTransitionEnd();
 		}
 	}
 
@@ -226,6 +237,10 @@ class Slider {
 
 	setStyleTransition() {
 		this.lineNode.style.transition = `all 0.25s ease 0s`;
+	}
+
+	setStyleTransitionEnd() {
+		this.lineNode.style.transition = `all 0s ease 0s`;
 	}
 
 	resetStyleTransition() {

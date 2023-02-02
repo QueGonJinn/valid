@@ -160,6 +160,16 @@ class Slider {
 			this.currentSlideWasChange = true;
 			this.currentSlide = this.currentSlide + 1;
 		}
+
+		if (Math.abs(this.x) > this.width * this.size - this.width + 20) {
+			this.currentSlide = 0;
+			this.setStyleTransitionEnd();
+		}
+
+		if (this.x > 0) {
+			this.currentSlide = this.size - 1;
+			this.setStyleTransitionEnd();
+		}
 	}
 
 	clickDots(evt) {
