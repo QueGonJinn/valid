@@ -12,7 +12,7 @@
 }
 
 .swiper-next {
-	width: 60%;
+	width: 100%;
 	margin: 0 auto;
 }
 
@@ -33,6 +33,7 @@
 }
 
 .slider-line {
+	width: 100%;
 	overflow: hidden;
 	touch-action: none;
 	-webkit-touch-action: none;
@@ -52,16 +53,17 @@
 	align-items: center;
 	height: auto;
 	object-fit: cover;
-	width: 100%;
+
 	pointer-events: none;
 }
 
 .swiper-slide-three img {
 	width: 100%;
+	height: auto;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-
+	object-fit: cover;
 	pointer-events: none;
 }
 
@@ -76,14 +78,6 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-between;
-}
-
-.action-img {
-	max-width: 130px;
-	border-radius: 100%;
-	margin-bottom: 30px;
-	width: 100%;
-	pointer-events: none;
 }
 
 .dot {
