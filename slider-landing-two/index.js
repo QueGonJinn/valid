@@ -265,10 +265,10 @@ function debounce(func, time = 100) {
 	};
 }
 
-new Slider(document.querySelector('.slider-one'), {
+new Slider(document.getElementById('slider-one'), {
 	margin: 10,
 });
 
-new Slider(document.querySelector('.slider-three'), {
+new Slider(document.getElementById('slider-three'), {
 	margin: 10,
 });

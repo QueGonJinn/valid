@@ -161,7 +161,7 @@ class Slider {
 			this.currentSlide = this.currentSlide + 1;
 		}
 
-		if (Math.abs(this.x) > this.width * this.size - this.width + 20) {
+		if (Math.abs(this.x) > this.width * this.size - this.width + 30) {
 			this.currentSlide = 0;
 			this.setStyleTransitionEnd();
 		}
@@ -237,6 +237,9 @@ class Slider {
 	setStyleTransition() {
 		this.lineNode.style.transition = `all 0.25s ease 0s`;
 	}
+	setStyleTransitionEnd() {
+		this.lineNode.style.transition = `all 0s ease 0s`;
+	}
 
 	resetStyleTransition() {
 		this.lineNode.style.transition = `all 0s ease 0s`;
@@ -260,10 +263,14 @@ function debounce(func, time = 100) {
 	};
 }
 
-new Slider(document.querySelector('.slider-one'), {
+new Slider(document.getElementById('slider-one'), {
 	margin: 10,
 });
 
-new Slider(document.querySelector('.slider-two'), {
+new Slider(document.getElementById('slider-two'), {
+	margin: 10,
+});
+
+new Slider(document.getElementById('slider-three'), {
 	margin: 10,
 });
