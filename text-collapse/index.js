@@ -6,6 +6,8 @@ const moreDetails = document.querySelector('.info-btn');
 
 console.log(textHeight);
 
+console.log(text.offsetHeight / parseInt(text.style.fontSize));
+
 textHeight <= 154 && textWidth <= 410
 	? moreDetails.classList.add('display-hide')
 	: textHeight <= 93 && textWidth >= 410

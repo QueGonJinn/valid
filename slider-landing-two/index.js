@@ -254,6 +254,6 @@ new Slider(document.querySelector('.slider-one'), {
 	margin: 10,
 });
 
-new Slider(document.querySelector('.slider-two'), {
+new Slider(document.querySelector('.slider-three'), {
 	margin: 10,
 });
