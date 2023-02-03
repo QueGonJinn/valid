@@ -135,12 +135,12 @@ class Slider {
 		this.x = Math.max(Math.min(this.startX + dragShift, easing), this.maximumX + easing);
 		this.setStylePosition();
 
-		if (dragShiftY > 50) {
+		if (dragShiftY > 60) {
 			console.log(dragShiftY);
-			window.scrollBy(0, -450);
+			window.scrollBy(0, -280);
 		}
-		if (dragShiftY < -50) {
-			window.scrollBy(0, 450);
+		if (dragShiftY < -60) {
+			window.scrollBy(0, 280);
 		}
 
 		if (dragShift > 80 && dragShift > 0 && !this.currentSlideWasChange && this.currentSlide > 0) {
@@ -156,17 +156,7 @@ class Slider {
 		) {
 			this.currentSlideWasChange = true;
 			this.currentSlide = this.currentSlide + 1;
-		}
-
-		if (Math.abs(this.x) > this.width * this.size - this.width + 30) {
-			this.currentSlide = 0;
-			this.setStyleTransitionEnd();
-		}
-
-		if (this.x > 0) {
-			this.currentSlide = this.size - 1;
-			this.setStyleTransitionEnd();
-		}
+		}	
 	}
 
 	clickDots(evt) {
