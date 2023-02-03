@@ -4,9 +4,8 @@ const SliderSlideClassName = 'slider-slide';
 const SliderDotsClassName = 'slider-dot';
 const SliderDotClassName = 'dot';
 const SliderDotsActiveClassName = 'dot-active';
-const SliderNavClassName = 'nav';
-const SliderNavLeftClassName = 'nav-left';
-const SliderNavRightClassName = 'nav-right';
+
+const scrolling = document.querySelector('.wrapper');
 
 const parrent = document.querySelector('.slider-block');
 const totalWrapper = document.createElement('div');
@@ -47,8 +46,6 @@ class Slider {
 		this.setStylePosition = this.setStylePosition.bind(this);
 		this.setStylePositionReset = this.setStylePositionReset.bind(this);
 		this.clickDots = this.clickDots.bind(this);
-		this.moveToLeft = this.moveToLeft.bind(this);
-		this.moveToRight = this.moveToRight.bind(this);
 		this.changeCurrentSlide = this.changeCurrentSlide.bind(this);
 		this.changeActiveDotClass = this.changeActiveDotClass.bind(this);
 
@@ -56,20 +53,13 @@ class Slider {
 		this.setParrameters();
 		this.setEvents();
 	}
+
 	manageHTML() {
 		this.containerNode.classList.add(SliderClassName);
 		this.containerNode.innerHTML = `
 			<div class="${SliderLineClassName}">
 				${this.containerNode.innerHTML}
-			</div>
-			<div class="${SliderNavClassName}">
-				<button class="${SliderNavLeftClassName}">
-					
-				</button>
-				<button class="${SliderNavRightClassName}">
-					
-				</button>
-			</div>
+			</div>			
 			<div class="${SliderDotsClassName}"></div>
 		`;
 
@@ -92,16 +82,16 @@ class Slider {
 			.join('');
 
 		this.dotNodes = this.dotsNode.querySelectorAll(`.${SliderDotClassName}`);
-		console.log(this.dotNodes.length);
-		this.navLeft = this.containerNode.querySelector(`.${SliderNavLeftClassName}`);
-		this.navRight = this.containerNode.querySelector(`.${SliderNavRightClassName}`);
 	}
 
 	setParrameters() {
 		const coordsContainer = this.containerNode.getBoundingClientRect();
+		this.height = coordsContainer.height;
+
 		this.width = coordsContainer.width;
 		this.maximumX = -(this.size - 1) * (this.width + this.settings.margin);
 		this.x = -this.currentSlide * (this.width + this.settings.margin);
+		this.y = this.height;
 
 		this.lineNode.style.width = `${this.size * (this.width + this.settings.margin)}px`;
 		this.setStylePosition();
@@ -126,10 +116,7 @@ class Slider {
 		this.lineNode.addEventListener('pointerdown', this.startDrag);
 		window.addEventListener('pointerup', this.stopDrag);
 		window.addEventListener('pointercancel', this.stopDrag);
-
 		this.dotsNode.addEventListener('click', this.clickDots);
-		this.navLeft.addEventListener('click', this.moveToLeft);
-		this.navRight.addEventListener('click', this.moveToRight);
 	}
 
 	destroyEvents() {
@@ -137,10 +124,7 @@ class Slider {
 		this.lineNode.removeEventListener('pointerdown', this.startDrag);
 		window.removeEventListener('pointerup', this.stopDrag);
 		window.removeEventListener('pointercancel', this.stopDrag);
-
 		this.dotsNode.removeEventListener('click', this.clickDots);
-		this.navLeft.removeEventListener('click', this.moveToLeft);
-		this.navRight.removeEventListener('click', this.moveToRight);
 	}
 
 	resizeSlider() {
@@ -150,7 +134,8 @@ class Slider {
 	startDrag(evt) {
 		this.currentSlideWasChange = false;
 		this.clickX = evt.pageX;
-		this.startX = this.x + 35;
+		this.clickY = evt.pageY;
+		this.startX = this.x;
 		this.resetStyleTransition();
 		window.addEventListener('pointermove', this.dragging);
 	}
@@ -164,20 +149,31 @@ class Slider {
 	}
 
 	dragging(evt) {
-		evt.preventDefault();
 		this.dragX = evt.pageX;
+		this.dragY = evt.pageY;
+
+		let dragShiftY = this.dragY - this.clickY;
 		const dragShift = this.dragX - this.clickX;
 		const easing = dragShift / 5;
+
 		this.x = Math.max(Math.min(this.startX + dragShift, easing), this.maximumX + easing);
 		this.setStylePosition();
 
-		if (dragShift > 100 && dragShift > 0 && !this.currentSlideWasChange && this.currentSlide > 0) {
+		if (dragShiftY > 0) {
+			console.log(dragShiftY);
+			window.scrollBy(0, -200);
+		}
+		if (dragShiftY < 0) {
+			window.scrollBy(0, 200);
+		}
+
+		if (dragShift > 20 && dragShift > 0 && !this.currentSlideWasChange && this.currentSlide > 0) {
 			this.currentSlideWasChange = true;
 			this.currentSlide = this.currentSlide - 1;
 		}
 
 		if (
-			dragShift < -100 &&
+			dragShift < -20 &&
 			dragShift < 0 &&
 			!this.currentSlideWasChange &&
 			this.currentSlide < this.size - 1
@@ -185,7 +181,6 @@ class Slider {
 			this.currentSlideWasChange = true;
 			this.currentSlide = this.currentSlide + 1;
 		}
-		evt.stopPropagation();
 	}
 
 	clickDots(evt) {
@@ -205,23 +200,6 @@ class Slider {
 		}
 
 		this.currentSlide = dotNumber;
-		this.changeCurrentSlide();
-	}
-
-	moveToLeft() {
-		if (this.currentSlide <= 0) {
-			return;
-		}
-		this.currentSlide = this.currentSlide - 1;
-		this.changeCurrentSlide();
-	}
-
-	moveToRight() {
-		if (this.currentSlide >= this.size - 1) {
-			return;
-		}
-
-		this.currentSlide = this.currentSlide + 1;
 		this.changeCurrentSlide();
 	}
 
@@ -253,10 +231,6 @@ class Slider {
 
 	setStyleTransition() {
 		this.lineNode.style.transition = `all 0.25s ease 0s`;
-	}
-
-	setStyleTransitionEnd() {
-		this.lineNode.style.transition = `all 0s ease 0s`;
 	}
 
 	resetStyleTransition() {

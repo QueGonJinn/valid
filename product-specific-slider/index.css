@@ -1,6 +1,15 @@
+html {
+	scroll-behavior: smooth;
+}
 .description-wrapper {
 	max-width: 640px;
 	max-height: 450px;
+	scroll-snap-align: start;
+}
+
+.section-scroll {
+	overflow-y: auto;
+	scroll-snap-type: y;
 }
 
 .slider-block {
