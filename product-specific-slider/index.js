@@ -164,6 +164,7 @@ class Slider {
 	}
 
 	dragging(evt) {
+		evt.preventDefault();
 		this.dragX = evt.pageX;
 		const dragShift = this.dragX - this.clickX;
 		const easing = dragShift / 5;
@@ -184,6 +185,7 @@ class Slider {
 			this.currentSlideWasChange = true;
 			this.currentSlide = this.currentSlide + 1;
 		}
+		evt.stopPropagation();
 	}
 
 	clickDots(evt) {
