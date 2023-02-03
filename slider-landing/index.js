@@ -4,9 +4,6 @@ const SliderSlideClassName = 'slider-slide';
 const SliderDotsClassName = 'slider-dot';
 const SliderDotClassName = 'dot';
 const SliderDotsActiveClassName = 'dot-active';
-const SliderNavClassName = 'nav';
-const SliderNavLeftClassName = 'nav-left';
-const SliderNavRightClassName = 'nav-right';
 
 class Slider {
 	constructor(elem, options = {}) {
@@ -28,8 +25,7 @@ class Slider {
 		this.setStylePosition = this.setStylePosition.bind(this);
 		this.setStylePositionReset = this.setStylePositionReset.bind(this);
 		this.clickDots = this.clickDots.bind(this);
-		this.moveToLeft = this.moveToLeft.bind(this);
-		this.moveToRight = this.moveToRight.bind(this);
+
 		this.changeCurrentSlide = this.changeCurrentSlide.bind(this);
 		this.changeActiveDotClass = this.changeActiveDotClass.bind(this);
 
@@ -43,12 +39,7 @@ class Slider {
 			<div class="${SliderLineClassName}">
 				${this.containerNode.innerHTML}
 			</div>
-			<div class="${SliderNavClassName}">
-				<button class="${SliderNavLeftClassName}">
-				</button>
-				<button class="${SliderNavRightClassName}">
-				</button>
-			</div>
+			
 			<div class="${SliderDotsClassName}"></div>
 		`;
 
@@ -71,9 +62,6 @@ class Slider {
 			.join('');
 
 		this.dotNodes = this.dotsNode.querySelectorAll(`.${SliderDotClassName}`);
-
-		this.navLeft = this.containerNode.querySelector(`.${SliderNavLeftClassName}`);
-		this.navRight = this.containerNode.querySelector(`.${SliderNavRightClassName}`);
 	}
 
 	setParrameters() {
@@ -104,8 +92,6 @@ class Slider {
 		window.addEventListener('pointercancel', this.stopDrag);
 
 		this.dotsNode.addEventListener('click', this.clickDots);
-		this.navLeft.addEventListener('click', this.moveToLeft);
-		this.navRight.addEventListener('click', this.moveToRight);
 	}
 
 	destroyEvents() {
@@ -115,8 +101,6 @@ class Slider {
 		window.removeEventListener('pointercancel', this.stopDrag);
 
 		this.dotsNode.removeEventListener('click', this.clickDots);
-		this.navLeft.removeEventListener('click', this.moveToLeft);
-		this.navRight.removeEventListener('click', this.moveToRight);
 	}
 
 	resizeSlider() {
@@ -126,6 +110,7 @@ class Slider {
 	startDrag(evt) {
 		this.currentSlideWasChange = false;
 		this.clickX = evt.pageX;
+		this.clickY = evt.pageY;
 		this.startX = this.x;
 		this.resetStyleTransition();
 		window.addEventListener('pointermove', this.dragging);
@@ -141,18 +126,30 @@ class Slider {
 
 	dragging(evt) {
 		this.dragX = evt.pageX;
+		this.dragY = evt.pageY;
+
+		let dragShiftY = this.dragY - this.clickY;
 		const dragShift = this.dragX - this.clickX;
 		const easing = dragShift / 5;
+
 		this.x = Math.max(Math.min(this.startX + dragShift, easing), this.maximumX + easing);
 		this.setStylePosition();
 
-		if (dragShift > 20 && dragShift > 0 && !this.currentSlideWasChange && this.currentSlide > 0) {
+		if (dragShiftY > 50) {
+			console.log(dragShiftY);
+			window.scrollBy(0, -450);
+		}
+		if (dragShiftY < -50) {
+			window.scrollBy(0, 450);
+		}
+
+		if (dragShift > 80 && dragShift > 0 && !this.currentSlideWasChange && this.currentSlide > 0) {
 			this.currentSlideWasChange = true;
 			this.currentSlide = this.currentSlide - 1;
 		}
 
 		if (
-			dragShift < -20 &&
+			dragShift < -80 &&
 			dragShift < 0 &&
 			!this.currentSlideWasChange &&
 			this.currentSlide < this.size - 1
@@ -189,23 +186,6 @@ class Slider {
 		}
 
 		this.currentSlide = dotNumber;
-		this.changeCurrentSlide();
-	}
-
-	moveToLeft() {
-		if (this.currentSlide <= 0) {
-			return;
-		}
-		this.currentSlide = this.currentSlide - 1;
-		this.changeCurrentSlide();
-	}
-
-	moveToRight() {
-		if (this.currentSlide >= this.size - 1) {
-			return;
-		}
-
-		this.currentSlide = this.currentSlide + 1;
 		this.changeCurrentSlide();
 	}
 
@@ -264,13 +244,5 @@ function debounce(func, time = 100) {
 }
 
 new Slider(document.getElementById('slider-one'), {
-	margin: 10,
-});
-
-new Slider(document.getElementById('slider-two'), {
-	margin: 10,
-});
-
-new Slider(document.getElementById('slider-three'), {
 	margin: 10,
 });
