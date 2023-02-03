@@ -150,7 +150,7 @@ class Slider {
 	startDrag(evt) {
 		this.currentSlideWasChange = false;
 		this.clickX = evt.pageX;
-		this.startX = this.x;
+		this.startX = this.x + 35;
 		this.resetStyleTransition();
 		window.addEventListener('pointermove', this.dragging);
 	}
