@@ -161,10 +161,10 @@ class Slider {
 
 		if (dragShiftY > 0) {
 			console.log(dragShiftY);
-			window.scrollBy(0, -400);
+			window.scrollBy(0, -600);
 		}
 		if (dragShiftY < 0) {
-			window.scrollBy(0, 400);
+			window.scrollBy(0, 600);
 		}
 
 		if (dragShift > 80 && dragShift > 0 && !this.currentSlideWasChange && this.currentSlide > 0) {
