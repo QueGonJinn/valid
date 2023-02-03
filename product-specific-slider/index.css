@@ -6,6 +6,9 @@ html {
 	max-height: 450px;
 	scroll-snap-align: start;
 }
+.textt {
+	max-width: 640px;
+}
 
 .section-scroll {
 	overflow-y: auto;

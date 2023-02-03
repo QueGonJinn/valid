@@ -161,19 +161,19 @@ class Slider {
 
 		if (dragShiftY > 0) {
 			console.log(dragShiftY);
-			window.scrollBy(0, -200);
+			window.scrollBy(0, -400);
 		}
 		if (dragShiftY < 0) {
-			window.scrollBy(0, 200);
+			window.scrollBy(0, 400);
 		}
 
-		if (dragShift > 20 && dragShift > 0 && !this.currentSlideWasChange && this.currentSlide > 0) {
+		if (dragShift > 80 && dragShift > 0 && !this.currentSlideWasChange && this.currentSlide > 0) {
 			this.currentSlideWasChange = true;
 			this.currentSlide = this.currentSlide - 1;
 		}
 
 		if (
-			dragShift < -20 &&
+			dragShift < -80 &&
 			dragShift < 0 &&
 			!this.currentSlideWasChange &&
 			this.currentSlide < this.size - 1
