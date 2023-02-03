@@ -159,11 +159,11 @@ class Slider {
 		this.x = Math.max(Math.min(this.startX + dragShift, easing), this.maximumX + easing);
 		this.setStylePosition();
 
-		if (dragShiftY > 0) {
+		if (dragShiftY > 50) {
 			console.log(dragShiftY);
 			window.scrollBy(0, -600);
 		}
-		if (dragShiftY < 0) {
+		if (dragShiftY < -50) {
 			window.scrollBy(0, 600);
 		}
 
