@@ -240,7 +240,7 @@ class Slider {
 	}
 
 	setStylePosition() {
-		this.lineNode.style.transform = `translate3d(${this.x}px, 0, 0)`;
+		this.lineNode.style.transform = `translateX(${this.x}px, 0, 0)`;
 	}
 
 	setStylePositionReset() {
