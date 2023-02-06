@@ -175,16 +175,11 @@ class Slider {
 
 		if (Math.abs(dragShiftY) > Math.abs(dragShift)) {
 			this.stopDrag();
-			if (dragShift > 0) {
-				window.addEventListener('pointermove', () => {
-					body.style.transition = 'transform 0.8s ease-out';
-					body.style.transform = `translateY(${this.clickY}px)`;
-				});
-			} else {
-				window.addEventListener('pointermove', () => {
-					body.style.transition = 'transform 0.8s ease-out';
-					body.style.transform = `translateY(-${this.clickY}px)`;
-				});
+			if (dragShiftY > 0) {
+				window.scrollBy(0, -this.dragY);
+			}
+			if (dragShiftY < 0) {
+				window.scrollBy(0, this.dragY);
 			}
 		}
 
