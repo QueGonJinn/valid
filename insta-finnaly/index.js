@@ -161,18 +161,6 @@ class Slider {
 		this.x = Math.max(Math.min(this.startX + dragShift, easing), this.maximumX + easing);
 		this.setStylePosition();
 
-		/* if (dragShiftY > 60) {
-			this.stopDrag();
-			swiper.style.overflow = 'auto';
-		}
-		if (dragShiftY < -60) {
-			this.stopDrag();
-		} */
-
-		console.log('y', dragShiftY);
-		console.log('x', dragShift);
-		console.log('this y', this.dragY);
-
 		if (Math.abs(dragShiftY) > Math.abs(dragShift)) {
 			this.stopDrag();
 			if (dragShiftY > 0) {
