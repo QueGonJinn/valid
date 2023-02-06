@@ -175,8 +175,17 @@ class Slider {
 
 		if (Math.abs(dragShiftY) > Math.abs(dragShift)) {
 			this.stopDrag();
-			body.style.transition = 'transform 0.8s ease-out';
-			body.style.transform = `translate3d(0, -${this.dragY}px, 0)`;
+			if (dragShift > 0) {
+				window.addEventListener('pointermove', () => {
+					body.style.transition = 'transform 0.8s ease-out';
+					body.style.transform = `translateY(${this.clickY}px)`;
+				});
+			} else {
+				window.addEventListener('pointermove', () => {
+					body.style.transition = 'transform 0.8s ease-out';
+					body.style.transform = `translateY(-${this.clickY}px)`;
+				});
+			}
 		}
 
 		if (dragShift > 80 && dragShift > 0 && !this.currentSlideWasChange && this.currentSlide > 0) {
