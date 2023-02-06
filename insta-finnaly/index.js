@@ -1,0 +1,274 @@
+//Text collapsing
+const colapseText = document.querySelector('.company-name__info-about');
+const textCollapseParamWidth = colapseText.getBoundingClientRect().width;
+const textCollapseParamHeight = colapseText.getBoundingClientRect().height;
+const moreDetails = document.querySelector('.info-btn');
+const body = document.querySelector('body');
+
+textCollapseParamHeight <= 138
+	? moreDetails.classList.add('display-hide')
+	: moreDetails.classList.remove('display-hide');
+
+textCollapseParamHeight > 138
+	? colapseText.classList.add('collapse-text')
+	: colapseText.classList.remove('collapse-text');
+
+moreDetails.addEventListener('click', () => {
+	colapseText.classList.remove('collapse-text');
+
+	moreDetails.classList.add('display-hide');
+});
+
+//Slider
+const SliderClassName = 'slider';
+const SliderLineClassName = 'slider-line';
+const SliderSlideClassName = 'slider-slide';
+const SliderDotsClassName = 'slider-dot';
+const SliderDotClassName = 'dot';
+const SliderDotsActiveClassName = 'dot-active';
+const swiper = document.querySelector('.swiper');
+
+class Slider {
+	constructor(elem, options = {}) {
+		this.containerNode = elem;
+		this.size = elem.childElementCount;
+		this.currentSlide = 0;
+		this.currentSlideWasChange = false;
+		this.settings = {
+			margin: options.margin || 0,
+		};
+
+		this.manageHTML = this.manageHTML.bind(this);
+		this.setParrameters = this.setParrameters.bind(this);
+		this.setEvents = this.setEvents.bind(this);
+		this.resizeSlider = this.resizeSlider.bind(this);
+		this.startDrag = this.startDrag.bind(this);
+		this.stopDrag = this.stopDrag.bind(this);
+		this.dragging = this.dragging.bind(this);
+		this.startDragPage = this.dragging.bind(this);
+		this.setStylePosition = this.setStylePosition.bind(this);
+		this.setStylePositionReset = this.setStylePositionReset.bind(this);
+		this.clickDots = this.clickDots.bind(this);
+
+		this.changeCurrentSlide = this.changeCurrentSlide.bind(this);
+		this.changeActiveDotClass = this.changeActiveDotClass.bind(this);
+
+		this.manageHTML();
+		this.setParrameters();
+		this.setEvents();
+	}
+	manageHTML() {
+		this.containerNode.classList.add(SliderClassName);
+		this.containerNode.innerHTML = `
+			<div class="${SliderLineClassName}">
+				${this.containerNode.innerHTML}
+			</div>
+			
+			<div class="${SliderDotsClassName}"></div>
+		`;
+
+		this.lineNode = this.containerNode.querySelector(`.${SliderLineClassName}`);
+		this.dotsNode = this.containerNode.querySelector(`.${SliderDotsClassName}`);
+
+		this.slideNodes = Array.from(this.lineNode.children).map((childNode) => {
+			return wrpapElementByDiv({
+				element: childNode,
+				className: SliderSlideClassName,
+			});
+		});
+
+		this.dotsNode.innerHTML = Array.from(Array(this.size).keys())
+			.map((key) => {
+				return `<button class="${SliderDotClassName} ${
+					key === this.currentSlide ? SliderDotsActiveClassName : ''
+				}"></button>`;
+			})
+			.join('');
+
+		this.dotNodes = this.dotsNode.querySelectorAll(`.${SliderDotClassName}`);
+	}
+
+	setParrameters() {
+		const coordsContainer = this.containerNode.getBoundingClientRect();
+		this.width = coordsContainer.width;
+		this.maximumX = -(this.size - 1) * (this.width + this.settings.margin);
+		this.x = -this.currentSlide * (this.width + this.settings.margin);
+
+		this.lineNode.style.width = `${this.size * (this.width + this.settings.margin)}px`;
+		this.setStylePosition();
+		Array.from(this.slideNodes).forEach((slideNode) => {
+			return (slideNode.style.width = `${this.width}px`);
+		});
+		Array.from(this.slideNodes).forEach((slideNode) => {
+			return (slideNode.style.marginRight = `${this.settings.margin}px`);
+		});
+
+		if (this.size === 1) {
+			this.dotsNode.style.visibility = 'hidden';
+		}
+	}
+
+	setEvents() {
+		this.debouncedResizeSlider = debounce(this.resizeSlider);
+		window.addEventListener('resize', this.debouncedResizeSlider);
+		this.lineNode.addEventListener('pointerdown', this.startDrag);
+		window.addEventListener('pointerup', this.stopDrag);
+		window.addEventListener('pointercancel', this.stopDrag);
+
+		this.dotsNode.addEventListener('click', this.clickDots);
+	}
+
+	destroyEvents() {
+		window.removeEventListener('resize', this.debouncedResizeSlider);
+		this.lineNode.removeEventListener('pointerdown', this.startDrag);
+		window.removeEventListener('pointerup', this.stopDrag);
+		window.removeEventListener('pointercancel', this.stopDrag);
+
+		this.dotsNode.removeEventListener('click', this.clickDots);
+	}
+
+	resizeSlider() {
+		this.setParrameters();
+	}
+
+	startDrag(evt) {
+		this.currentSlideWasChange = false;
+		this.clickX = evt.pageX;
+		this.clickY = evt.pageY;
+		this.startX = this.x;
+		this.resetStyleTransition();
+		window.addEventListener('pointermove', this.dragging);
+	}
+
+	stopDrag() {
+		window.removeEventListener('pointermove', this.dragging);
+		this.x = -this.currentSlide * (this.width + this.settings.margin);
+		this.setStylePosition();
+		this.setStyleTransition();
+		this.changeCurrentSlide();
+	}
+
+	startDragPage() {}
+
+	dragging(evt) {
+		this.dragX = evt.pageX;
+		this.dragY = evt.pageY;
+
+		let dragShiftY = this.dragY - this.clickY;
+		const dragShift = this.dragX - this.clickX;
+		const easing = dragShift / 5;
+
+		this.x = Math.max(Math.min(this.startX + dragShift, easing), this.maximumX + easing);
+		this.setStylePosition();
+
+		/* if (dragShiftY > 60) {
+			this.stopDrag();
+			swiper.style.overflow = 'auto';
+		}
+		if (dragShiftY < -60) {
+			this.stopDrag();
+		} */
+
+		console.log('y', dragShiftY);
+		console.log('x', dragShift);
+		console.log('this y', this.dragY);
+
+		if (Math.abs(dragShiftY) > Math.abs(dragShift)) {
+			this.stopDrag();
+			body.style.transition = 'transform 0.8s ease-out';
+			body.style.transform = `translate3d(0, -${this.dragY}px, 0)`;
+		}
+
+		if (dragShift > 80 && dragShift > 0 && !this.currentSlideWasChange && this.currentSlide > 0) {
+			this.currentSlideWasChange = true;
+			this.currentSlide = this.currentSlide - 1;
+		}
+
+		if (
+			dragShift < -80 &&
+			dragShift < 0 &&
+			!this.currentSlideWasChange &&
+			this.currentSlide < this.size - 1
+		) {
+			this.currentSlideWasChange = true;
+			this.currentSlide = this.currentSlide + 1;
+		}
+	}
+
+	clickDots(evt) {
+		const dotNode = evt.target.closest('button');
+		if (!dotNode) {
+			return;
+		}
+		let dotNumber;
+		for (let i = 0; i < this.dotNodes.length; i++) {
+			if (this.dotNodes[i] === dotNode) {
+				dotNumber = i;
+				break;
+			}
+		}
+		if (dotNumber === this.currentSlide) {
+			return;
+		}
+
+		this.currentSlide = dotNumber;
+		this.changeCurrentSlide();
+	}
+
+	changeCurrentSlide() {
+		this.x = -this.currentSlide * (this.width + this.settings.margin);
+		this.setStylePosition();
+		this.setStyleTransition();
+		this.changeActiveDotClass();
+	}
+
+	changeActiveDotClass() {
+		for (let i = 0; i < this.dotNodes.length; i++) {
+			this.dotNodes[i].classList.remove(SliderDotsActiveClassName);
+		}
+
+		this.dotNodes[this.currentSlide].classList.add(SliderDotsActiveClassName);
+	}
+
+	setStylePosition() {
+		this.lineNode.style.transform = `translate3d(${this.x}px, 0, 0)`;
+	}
+
+	setStylePositionReset() {
+		this.lineNode.style.transform = `translate3d(${
+			this.x - this.width * this.currentSlide
+		}px, 0, 0)`;
+	}
+
+	setStyleTransition() {
+		this.lineNode.style.transition = `all 0.25s ease 0s`;
+	}
+	setStyleTransitionEnd() {
+		this.lineNode.style.transition = `all 0s ease 0s`;
+	}
+
+	resetStyleTransition() {
+		this.lineNode.style.transition = `all 0s ease 0s`;
+	}
+}
+
+function wrpapElementByDiv({ element, className }) {
+	const wrapperNode = document.createElement('div');
+	wrapperNode.classList.add(className);
+	element.parentNode.insertBefore(wrapperNode, element);
+	wrapperNode.appendChild(element);
+
+	return wrapperNode;
+}
+
+function debounce(func, time = 100) {
+	let timer;
+	return function (event) {
+		clearTimeout(timer);
+		timer = setTimeout(func, time, event);
+	};
+}
+
+new Slider(document.getElementById('slider-one'), {
+	margin: 10,
+});

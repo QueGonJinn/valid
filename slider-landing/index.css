@@ -1,6 +1,4 @@
-html {
-	scroll-behavior: smooth;
-}
+html {	scroll-behavior: smooth;}
 .container-insta {
 	max-width: 1170px;
 	margin: 0 auto;
