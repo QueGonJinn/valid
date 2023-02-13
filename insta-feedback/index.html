@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="index.css" />
+		<title>Document</title>
+	</head>
+	<body>
+		<div class="column-feedback">
+			<h2>Оставить отзыв</h2>
+
+			<form
+				id="request-feedback-form"
+				class="request-article-form"
+				action="/insta/370"
+				onsubmit="return checkLoginUserLanding('/landing/ajax-check-login-user/370')"
+				method="post"
+				novalidate=""
+				enctype="multipart/form-data"
+				style="margin-bottom: 10px"
+			>
+				<input
+					type="hidden"
+					id="seller_landing_feedback__token"
+					name="seller_landing_feedback[_token]"
+					value="2e1fd9d9.x3RjL0DZwWrQZHbjAIkMVeVHXAHIOyq4k_RMZ_Q7P5o.9iEueXao9juqVUKhObhuYpN_A2uOc2bZ_Z8YD61kVKOLPyBdAbeoA6EBGQ"
+				/>
+				<div class="input-outter">
+					<input
+						type="text"
+						id="seller_landing_feedback_name"
+						name="seller_landing_feedback[name]"
+						required="required"
+						class="firstname"
+						placeholder=" "
+						value="Юрий"
+					/>
+					<label for="seller_landing_feedback_name">Ваше Имя (обязательно)</label>
+				</div>
+				<div class="input-outter">
+					<input
+						type="text"
+						id="seller_landing_feedback_phone"
+						name="seller_landing_feedback[phone]"
+						class="lastname"
+						placeholder=" "
+						value="+375297026403"
+					/>
+					<label for="seller_landing_feedback_phone">Ваш номер телефона</label>
+				</div>
+				<div class="input-outter">
+					<input
+						type="email"
+						id="seller_landing_feedback_email"
+						name="seller_landing_feedback[email]"
+						required="required"
+						class="lastname"
+						placeholder=" "
+						value="molialow13@gmail.com"
+					/>
+					<label for="seller_landing_feedback_email">Ваш email (обязательно)</label>
+				</div>
+				<div class="input-outter-comment">
+					<textarea
+						id="seller_landing_feedback_message"
+						name="seller_landing_feedback[message]"
+						required="required"
+						placeholder=" "
+						style="height: 170px"
+					></textarea>
+					<label for="seller_landing_feedback_message">Ваше сообщение или комментарий</label>
+				</div>
+
+				<button
+					type="submit"
+					id="seller_landing_feedback_submit"
+					name="seller_landing_feedback[submit]"
+				>
+					Отправить
+				</button>
+			</form>
+
+			<span id="register-message-feedback" style="color: green; display: none"></span>
+		</div>
+		<script src="./index.js"></script>
+	</body>
+</html>

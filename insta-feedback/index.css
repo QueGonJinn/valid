@@ -1,0 +1,14 @@
+.column-feedback {
+	width: 100%;
+	max-width: 800px;
+	padding: 10px;
+	margin: 6px auto;
+}
+
+button[type='submit'] {
+	font-size: 18px;
+	background-color: #4caf50;
+	color: white;
+	padding: 5px;
+	border: none;
+}
