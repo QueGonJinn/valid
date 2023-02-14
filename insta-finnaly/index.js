@@ -156,7 +156,7 @@ class Slider {
 
 		let dragShiftY = this.dragY - this.clickY;
 		const dragShift = this.dragX - this.clickX;
-		const easing = dragShift / 5;
+		const easing = dragShift / 50000;
 
 		this.x = Math.max(Math.min(this.startX + dragShift, easing), this.maximumX + easing);
 		this.setStylePosition();
@@ -164,10 +164,10 @@ class Slider {
 		if (Math.abs(dragShiftY) > Math.abs(dragShift)) {
 			this.stopDrag();
 			if (dragShiftY > 0) {
-				window.scrollBy(0, -this.dragY);
+				window.scrollBy(0, -this.dragY/2);
 			}
 			if (dragShiftY < 0) {
-				window.scrollBy(0, this.dragY);
+				window.scrollBy(0, this.dragY/2);
 			}
 		}
 
