@@ -1,12 +1,33 @@
+ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+li {
+	list-style: none;
+}
+a {
+	text-decoration: none;
+}
+
 .container {
 	max-width: 1000px;
+	margin: 0 auto;
+}
+
+.showMoreModel {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	overflow: hidden;
 }
 
 .mod-link {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	border-bottom: 1px solid #737373;
 	font-size: 16px;
 	line-height: 16px;
 	color: #444444;
@@ -24,4 +45,12 @@
 
 .show-m li {
 	width: 100%;
+}
+
+.mod-link img {
+	width: 100px px;
+	height: 100px;
+}
+.showMoreModel li {
+	margin: 0 10px 15px;
 }
