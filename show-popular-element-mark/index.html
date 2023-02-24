@@ -4544,6 +4544,8 @@
 				</div>
 			</section>
 		</div>
-		<script src="./index.min.js"></script>
+		<script async>
+			const detailBlock=document.querySelectorAll(".showMoreModel li"),buttonShow=document.querySelectorAll(".initiator-scroll"),title=document.querySelector(".mod-title");buttonShow[1].setAttribute("style","display: none;"),detailBlock.forEach(t=>{"showAll"==t.getAttribute("ng-show")&&(t.hidden=!0)}),buttonShow[0].addEventListener("click",t=>{t.preventDefault(),detailBlock.forEach(t=>{"showAll"==t.getAttribute("ng-show")&&(t.hidden=!1),title.scrollIntoView({behavior:"smooth"}),buttonShow[1].setAttribute("style","display: block;"),buttonShow[0].setAttribute("style","display: none;")})}),buttonShow[1].addEventListener("click",t=>{t.preventDefault(),detailBlock.forEach(t=>{"showAll"==t.getAttribute("ng-show")&&(t.hidden=!0),title.scrollIntoView({behavior:"smooth"}),buttonShow[0].setAttribute("style","display: block;"),buttonShow[1].setAttribute("style","display: none;")})});
+		</script>
 	</body>
 </html>

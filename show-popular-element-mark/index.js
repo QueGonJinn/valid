@@ -6,14 +6,15 @@ buttonShow[1].setAttribute('style', 'display: none;');
 
 detailBlock.forEach((e) => {
 	if (e.getAttribute('ng-show') == 'showAll') {
-		e.setAttribute('style', 'display: none;');
+		e.hidden = true;	
 	}
 });
 
-buttonShow[0].addEventListener('click', () => {
+buttonShow[0].addEventListener('click', (elem) => {
+	elem.preventDefault();
 	detailBlock.forEach((e) => {
 		if (e.getAttribute('ng-show') == 'showAll') {
-			e.setAttribute('style', 'display: block;');
+			e.hidden = false;	
 		}
 		title.scrollIntoView({
 			behavior: 'smooth',
@@ -23,10 +24,11 @@ buttonShow[0].addEventListener('click', () => {
 	});
 });
 
-buttonShow[1].addEventListener('click', () => {
+buttonShow[1].addEventListener('click', (elem) => {
+	elem.preventDefault();
 	detailBlock.forEach((e) => {
 		if (e.getAttribute('ng-show') == 'showAll') {
-			e.setAttribute('style', 'display: none;');
+			e.hidden = true;	
 		}
 		title.scrollIntoView({
 			behavior: 'smooth',
