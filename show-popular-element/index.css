@@ -1,0 +1,27 @@
+.container {
+	max-width: 1000px;
+}
+
+.mod-link {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 1px solid #737373;
+	font-size: 16px;
+	line-height: 16px;
+	color: #444444;
+	padding: 15px 10px;
+	transition-duration: 0.2s;
+}
+
+.show-m {
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	overflow: hidden;
+	margin-bottom: 15px;
+}
+
+.show-m li {
+	width: 100%;
+}
