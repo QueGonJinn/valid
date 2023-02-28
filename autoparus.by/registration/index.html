@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="index.css" />
+		<title>Document</title>
+	</head>
+	<body>
+		<main class="container">
+			<h1 class="registration-title">Регистрация</h1>
+			<div id="form-registration-container">
+				<form
+					id="registration-form"
+					class="registration-list"
+					action="/registration"
+					method="post"
+					novalidate=""
+					enctype="multipart/form-data"
+				>
+					<input
+						type="hidden"
+						id="registration__token"
+						name="registration[_token]"
+						value="f.4EKWZXdhQqMDf7St3NCvp5OczbQ58fAUdiNlxU2yLdM.pCXaNx4jc8FvEdf9hYjdwKTb_fBzg5JcOxcupB_2af6QBt8_FTIuwTdG7Q"
+					/>
+
+					<div class="registration-block">
+						<div class="registration-name">
+							<input
+								type="text"
+								id="registration_name"
+								name="registration[name]"
+								required="required"
+								class="input-name save-field user-name"
+								placeholder=" "
+							/>
+							<label class="form-label required" for="registration_name">Ваше имя</label>
+						</div>
+						<span id="first-name-errors" class="prompt-name"></span>
+
+						<div class="registration-email">
+							<input
+								type="email"
+								id="registration_email"
+								name="registration[email]"
+								required="required"
+								class="input-email registration-email-field save-field user-email"
+								placeholder=" "
+							/>
+							<label class="form-label required" for="registration_email">e-mail</label>
+						</div>
+						<span id="first-email-errors" class="prompt-email"></span>
+
+						<div class="registration-phone">
+							<input
+								type="text"
+								id="registration_phone"
+								name="registration[phone]"
+								required="required"
+								class="input-phone phone-with-codeuser-phone"
+								placeholder=" "
+							/>
+							<label class="form-label required" for="registration_phone">Номер телефона</label>
+						</div>
+						<span id="first-phone-errors" class="prompt-phone"></span>
+
+						<div class="registration-password-first">
+							<input
+								type="password"
+								id="registration_password_first"
+								name="registration[password][first]"
+								required="required"
+								class="input-password-first"
+								placeholder=" "
+							/>
+							<label class="form-label required" for="registration_password_first">Пароль</label>
+						</div>
+						<span id="password-first-errors" class="prompt-password-first prompt-l"></span>
+						<div class="registration-password-repeat">
+							<input
+								type="password"
+								id="registration_password_second"
+								name="registration[password][second]"
+								required="required"
+								class="input-password-repeat"
+								placeholder=" "
+							/>
+							<label class="form-label required" for="registration_password_second"
+								>Повторите пароль</label
+							>
+						</div>
+						<span id="password-second-errors" class="prompt-password-repeat prompt-l"></span>
+					</div>
+
+					<div class="registration-checkbox">
+						<input
+							type="checkbox"
+							id="registration_isAgreeTerms"
+							name="registration[isAgreeTerms]"
+							required="required"
+							class="visually-hidden filter-input filter-input-checkbox save-field user-terms"
+							value="1"
+						/>
+						<label class="agreement-check" for="registration_isAgreeTerms"
+							>Создавая профиль, вы принимаете условия
+							<a class="agreement-text" href="/user-agreement"
+								>Пользовательского соглашения</a
+							></label
+						>
+					</div>
+					<div class="button-block">
+						<button
+							type="submit"
+							id="registration_submit"
+							name="registration[submit]"
+							class="button-submit"
+							disabled="true"
+							style="background: rgba(74, 91, 121, 0.89)"
+						>
+							Подтвердить
+						</button>
+					</div>
+
+					<span id="valid-message" class="check check-on" style="display: none"
+						>Для подтверждения и активации аккаунта перейдите по ссылке, посланной по СМС на
+						указанный номер, в Ваш личный кабинет.</span
+					>
+				</form>
+			</div>
+		</main>
+		<script src="./index.js"></script>
+	</body>
+</html>

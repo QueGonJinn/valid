@@ -8,11 +8,11 @@ console.log(textHeight);
 
 textHeight <= 154 && textWidth <= 410
 	? moreDetails.classList.add('display-hide')
-	: textHeight <= 130 && textWidth >= 410
+	: textHeight <= 118 && textWidth >= 410
 	? moreDetails.classList.add('display-hide')
 	: moreDetails.classList.remove('display-hide');
 
-/* textHeight >= 154 && textWidth <= 410
+textHeight >= 154 && textWidth <= 410
 	? text.classList.add('collapse-text-mobile')
 	: textHeight >= 118 && textWidth >= 410
 	? text.classList.add('collapse-text')
@@ -22,4 +22,4 @@ moreDetails.addEventListener('click', () => {
 	text.classList.remove('collapse-text');
 	text.classList.remove('collapse-text-mobile');
 	moreDetails.classList.add('display-hide');
-}); */
+});

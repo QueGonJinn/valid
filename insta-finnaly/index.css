@@ -1,28 +1,62 @@
-.container-landing {
-	max-width: 1170px;
+html {
+	scroll-behavior: smooth;
+}
+body {
+	font-family: 'Helvetica', sans-serif;
+	margin: 0;
+}
+.container-insta {
+	max-width: 780px;
 	margin: 0 auto;
+}
+.main {
+	overflow: hidden;
+}
+.info-wrapper {
+	margin: 20px 2px 8px 7px;
+}
+.info-btn,
+.more-feedback {
+	display: block;
+	margin: 0 0 0 7px;
+	font-size: 12px;
+	color: #767676;
+}
+a {
+	text-decoration: none;
+	color: #000;
+}
+
+.art-link-slider {
+	margin-top: 20px;
+}
+
+.company-name__info {
+	margin-bottom: 10px;
+}
+
+.company-name__info-about {
+	font-size: 22px;
+}
+
+.collapse-text {
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 5;
+	-moz-line-clamp: 5;
+	-moz-box-orient: vertical;
+	-webkit-box-orient: vertical;
+}
+
+.display-hide {
+	visibility: hidden;
 }
 
 .swiper {
 	width: 100%;
 	height: 100%;
-	margin-bottom: 30px;
-	display: flex;
-	justify-content: center;
 }
 
-.swiper-next {
-	width: 100%;
-	margin: 0 auto;
-}
-
-.swiper-wrapper {
-	position: relative;
-}
-
-.nav {
-	display: none;
-}
 .slider {
 	position: relative;
 	width: 100%;
@@ -33,7 +67,6 @@
 }
 
 .slider-line {
-	width: 100%;
 	overflow: hidden;
 	touch-action: none;
 	-webkit-touch-action: none;
@@ -53,16 +86,7 @@
 	align-items: center;
 	height: auto;
 	object-fit: cover;
-	pointer-events: none;
-}
-
-.swiper-slide-three img {
 	width: 100%;
-	height: auto;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	object-fit: cover;
 	pointer-events: none;
 }
 
@@ -72,17 +96,10 @@
 	justify-content: center;
 }
 
-.slider-about {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: space-between;
-}
-
 .dot {
 	box-sizing: content-box;
 	flex: 0 1 auto;
-	width: 35px;
+	width: 30px;
 	height: 10px;
 	margin-right: 3px;
 	margin-left: 3px;

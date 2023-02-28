@@ -1,9 +1,11 @@
+//Slider
 const SliderClassName = 'slider';
 const SliderLineClassName = 'slider-line';
 const SliderSlideClassName = 'slider-slide';
 const SliderDotsClassName = 'slider-dot';
 const SliderDotClassName = 'dot';
 const SliderDotsActiveClassName = 'dot-active';
+const swiper = document.querySelector('.swiper');
 
 class Slider {
 	constructor(elem, options = {}) {
@@ -22,6 +24,7 @@ class Slider {
 		this.startDrag = this.startDrag.bind(this);
 		this.stopDrag = this.stopDrag.bind(this);
 		this.dragging = this.dragging.bind(this);
+		this.startDragPage = this.dragging.bind(this);
 		this.setStylePosition = this.setStylePosition.bind(this);
 		this.setStylePositionReset = this.setStylePositionReset.bind(this);
 		this.clickDots = this.clickDots.bind(this);
@@ -124,24 +127,18 @@ class Slider {
 		this.changeCurrentSlide();
 	}
 
+	startDragPage() {}
+
 	dragging(evt) {
 		this.dragX = evt.pageX;
 		this.dragY = evt.pageY;
 
 		let dragShiftY = this.dragY - this.clickY;
 		const dragShift = this.dragX - this.clickX;
-		const easing = dragShift / 5;
+		const easing = dragShift / 1000000;
 
 		this.x = Math.max(Math.min(this.startX + dragShift, easing), this.maximumX + easing);
 		this.setStylePosition();
-
-		if (dragShiftY > 60) {
-			console.log(dragShiftY);
-			window.scrollBy(0, -280);
-		}
-		if (dragShiftY < -60) {
-			window.scrollBy(0, 280);
-		}
 
 		if (dragShift > 80 && dragShift > 0 && !this.currentSlideWasChange && this.currentSlide > 0) {
 			this.currentSlideWasChange = true;
@@ -156,7 +153,7 @@ class Slider {
 		) {
 			this.currentSlideWasChange = true;
 			this.currentSlide = this.currentSlide + 1;
-		}	
+		}
 	}
 
 	clickDots(evt) {
@@ -234,5 +231,8 @@ function debounce(func, time = 100) {
 }
 
 new Slider(document.getElementById('slider-one'), {
+	margin: 10,
+});
+new Slider(document.getElementById('slider-three'), {
 	margin: 10,
 });

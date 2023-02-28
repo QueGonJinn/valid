@@ -1,28 +1,11 @@
-.container-landing {
-	max-width: 1170px;
-	margin: 0 auto;
+html {
+	scroll-behavior: smooth;
 }
-
 .swiper {
 	width: 100%;
 	height: 100%;
-	margin-bottom: 30px;
-	display: flex;
-	justify-content: center;
 }
 
-.swiper-next {
-	width: 100%;
-	margin: 0 auto;
-}
-
-.swiper-wrapper {
-	position: relative;
-}
-
-.nav {
-	display: none;
-}
 .slider {
 	position: relative;
 	width: 100%;
@@ -33,7 +16,6 @@
 }
 
 .slider-line {
-	width: 100%;
 	overflow: hidden;
 	touch-action: none;
 	-webkit-touch-action: none;
@@ -53,36 +35,30 @@
 	align-items: center;
 	height: auto;
 	object-fit: cover;
+	width: 100%;
 	pointer-events: none;
 }
 
 .swiper-slide-three img {
 	width: 100%;
-	height: auto;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	height: auto;
 	object-fit: cover;
+	width: 100%;
 	pointer-events: none;
 }
-
 .slider-dot {
 	display: flex;
 	margin-top: 20px;
 	justify-content: center;
 }
 
-.slider-about {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: space-between;
-}
-
 .dot {
 	box-sizing: content-box;
 	flex: 0 1 auto;
-	width: 35px;
+	width: 30px;
 	height: 10px;
 	margin-right: 3px;
 	margin-left: 3px;

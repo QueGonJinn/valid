@@ -1,0 +1,10 @@
+.registration-list {
+	margin: 0 auto;
+	padding: 20px 40px;
+	max-width: 500px;
+}
+
+.registration-checkbox {
+	padding-left: 30px;
+	margin: 40px 0 30px;
+}
