@@ -15,7 +15,7 @@ const addActive = document.querySelectorAll('.slider-items');
 addActive[0].classList.add('active');
 
 //Slider
-// В методе dragging реализовано перемещение по вертикали scrollBy
+// Так как слайдер блокирует вертикальный скролл, в методе dragging реализовано перемещение по вертикали с помощью scrollBy
 const SliderClassName = 'slider';
 const SliderLineClassName = 'slider-line';
 const SliderSlideClassName = 'slider-slide';

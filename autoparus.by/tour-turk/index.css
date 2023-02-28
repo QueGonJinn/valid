@@ -287,15 +287,15 @@ li {
 .dot {
 	box-sizing: content-box;
 	flex: 0 1 auto;
-	width: 15px;
-	height: 15px;
+	width: 30px;
+	height: 10px;
 	margin-right: 3px;
 	margin-left: 3px;
 	cursor: pointer;
 	background-color: #ccc;
 	background-clip: padding-box;
 	border: none;
-	border-radius: 15px;
+	border-radius: 3px;
 	transition: all 0.3s;
 	outline: none;
 	padding: 0;
