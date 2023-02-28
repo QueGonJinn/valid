@@ -169,7 +169,7 @@ class Slider {
 			this.currentSlide = this.currentSlide + 1;
 		}
 
-		if (Math.abs(dragShiftY) > 15) {
+		if (Math.abs(dragShiftY) > 30) {
 			this.stopDrag();
 			if (dragShiftY > 10) {
 				window.scrollBy(0, -dragShiftY * 20);
