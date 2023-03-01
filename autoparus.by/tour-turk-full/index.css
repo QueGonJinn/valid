@@ -107,7 +107,7 @@ li {
 
 .slider-items img {
 	width: 100%;
-	min-height: 300px;
+
 	height: auto;
 	object-fit: contain;
 	-webkit-filter: brightness(60%);
