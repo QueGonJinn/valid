@@ -107,9 +107,9 @@ li {
 
 .slider-items img {
 	width: 100%;
-	min-height: 400px;
-	height: 100%;
-	object-fit: cover;
+	min-height: 300px;
+	height: auto;
+	object-fit: contain;
 	-webkit-filter: brightness(60%);
 	filter: brightness(60%);
 	pointer-events: none;
