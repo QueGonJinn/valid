@@ -205,12 +205,19 @@ li {
 }
 
 .advantages-block {
+	max-width: 100%;
 	margin-bottom: 20px;
 }
 
 .advantages-block p {
 	font-size: 20px;
 	margin: 0 0 10px 0;
+}
+
+.advantages-block p img {
+	max-width: 100%;
+	max-height: 400px;
+	object-fit: cover;
 }
 
 .advantages-block p:nth-last-child() {
