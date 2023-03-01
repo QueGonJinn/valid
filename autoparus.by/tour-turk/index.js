@@ -1,16 +1,3 @@
-const information = document.querySelectorAll('.advantages-block p');
-const fullInformation = document.querySelector('.read-full');
-
-information.forEach((elem) => {
-	elem.setAttribute('style', 'display: none');
-});
-
-fullInformation.addEventListener('click', () => {
-	information.forEach((elem) => {
-		elem.setAttribute('style', 'display: block');
-	});
-});
-
 const addActive = document.querySelectorAll('.slider-items');
 addActive[0].classList.add('active');
 
