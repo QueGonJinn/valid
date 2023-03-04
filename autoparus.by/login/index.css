@@ -1,0 +1,112 @@
+.registration-list {
+	margin: 0 auto;
+	padding: 20px 40px 90px;
+	max-width: 500px;
+}
+
+h1 {
+	text-align: center;
+	font-size: 26px;
+	color: #2c659be3;
+	margin: 50px 0 0;
+}
+
+.registration-block {
+	margin: 0 auto 30px;
+}
+
+.registration-username,
+.block-registration-pas {
+	position: relative;
+	background-color: #fff;
+	margin: 14px 0;
+}
+
+.type-username,
+.input-pas {
+	width: 100%;
+	padding: 8px 8px 4px;
+	font-size: 24px;
+	border: 1px solid rgba(0, 0, 0, 0.24);
+	box-sizing: border-box;
+}
+
+.form-label {
+	position: absolute;
+	top: 9px;
+	left: 5px;
+	padding: 0 5px;
+	font-size: 20px;
+	color: #a9a9a9;
+	background-color: #fff;
+}
+
+.input:not(:placeholder-shown) ~ .form-label,
+.input:focus ~ .form-label,
+.input-pas:not(:placeholder-shown) ~ .form-label,
+.input-pas:focus ~ .form-label {
+	top: -12px;
+	font-size: 12px;
+	left: 10px;
+	transition: all 0.3s;
+}
+
+.pas-forgot,
+.fieldset-link-reg {
+	margin: 20px 0 0;
+	color: #2474bd;
+}
+
+.pas-forgot:hover,
+.fieldset-link-reg:hover {
+	text-decoration: underline;
+	color: red;
+}
+
+.button-submit {
+	margin: 25px auto;
+	display: block;
+	padding: 8px 30px 7px;
+	border: none;
+	color: #fff;
+	cursor: pointer;
+	font-size: 26px;
+	background: #1a5b99e3;
+	transition: background 0.4s ease-in-out;
+}
+
+.button-submit:hover {
+	background-color: #2c659be3;
+}
+
+.description_other {
+	padding: 20px 0;
+	font-size: 12px;
+	font-weight: bold;
+	color: #ccc;
+}
+
+.prompt {
+	display: block;
+	font-size: 12px;
+	padding-top: 3px;
+	color: red;
+	text-align: center;
+}
+
+.preloader-block {
+	margin: 0 auto;
+}
+
+.preloader-img {
+	display: block;
+	height: 80px;
+	width: 80px;
+	margin: 5px auto;
+}
+
+.load {
+	display: block;
+	font-size: 20px;
+	text-align: center;
+}

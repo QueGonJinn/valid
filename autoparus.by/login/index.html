@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="index.css" />
+		<title>Document</title>
+	</head>
+	<body>
+		<main class="container">
+			<h1>Вход</h1>
+			<div id="form-login-container">
+				<form
+					id="login-form"
+					class="registration-list login-form login-form1"
+					method="post"
+					novalidate=""
+					action=""
+				>
+					<input
+						type="hidden"
+						id="login__token"
+						name="login[_token]"
+						value="0b8.wjITsvkKb6AJpRRyPa_AasRB3AfpCgiBzTAo9lKFeKU.jUdK6rxwKMxNzn0iZOn5A6URkH2FPDnm-ERQxQbUHO6EW2D9o0cNz0yUIA"
+					/>
+					<div class="registration-block">
+						<div class="registration-username">
+							<input
+								type="text"
+								id="login_username"
+								name="login[username]"
+								required="required"
+								placeholder=" "
+								class="input type-username"
+							/>
+							<label class="form-label required" for="login_username">Ваш e-mail или телефон</label>
+						</div>
+						<div class="block-registration-pas">
+							<input
+								type="password"
+								id="login_password"
+								name="login[password]"
+								required="required"
+								placeholder=" "
+								class="input-pas"
+							/>
+							<label class="form-label required" for="login_password">Пароль</label>
+						</div>
+					</div>
+					<span style="color: red"></span>
+
+					<a href="/forgot-password" class="pas-forgot pas">Забыли пароль?</a>
+
+					<button
+						type="submit"
+						id="login_submit"
+						name="login[submit]"
+						class="button-submit button-show"
+					>
+						Войти
+					</button>
+
+					<div id="preloader-view" class="preloader-block" style="display: none">
+						<img class="preloader-img" src="./preload-gear.svg" />
+						<span class="load" style="color: green">Проверяем соответствие</span>
+					</div>
+
+					<a class="fieldset-link-reg" href="/registration">Зарегистрироваться</a>
+					<div class="description_other">© 2020 Autoparus.by</div>
+				</form>
+			</div>
+		</main>
+		<script src="./index.js"></script>
+	</body>
+</html>

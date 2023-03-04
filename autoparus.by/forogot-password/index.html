@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="index.css" />
+		<title>Document</title>
+	</head>
+	<body>
+		<main class="container">
+			<h1>Восстановление пароля</h1>
+			<div id="form-forgot-password-container">
+				<form
+					id="forgot-password-form"
+					class="forgot-password"
+					action=""
+					method="post"
+					novalidate=""
+				>
+					<input
+						type="hidden"
+						id="forgot_password__token"
+						name="forgot_password[_token]"
+						value="e41278bcc.SOg46WW0Wu5C2MM1-GvfTSSFPrtvudzTEDtA_syAh4w.Gt0AmwSGb4hxuq0BoVyLIFHUTPNWgOjhWAgKi4rO7eYKg16FVOdtmgyxpA"
+					/>
+					<h2 class="text">Введите номер телефона, указанный при регистрации:</h2>
+					<div class="block-tel-email">
+						<input
+							type="tel"
+							id="forgot_password_phone"
+							name="forgot_password[phone]"
+							required="required"
+							placeholder="Номер телефона"
+							class="input type-username input-forgot"
+						/>
+					</div>
+					<span id="first-phone-errors" class="prompt-phone" style="color: red"></span>
+
+					<button
+						type="submit"
+						id="forgot_password_submit"
+						name="forgot_password[submit]"
+						label="Восстановить пароль"
+						class="button-show"
+					>
+						Восстановить пароль
+					</button>
+
+					<div id="preloader-view" style="display: none">
+						<img class="preloader-img" src="./preload-gear.svg" />
+						<span class="load" style="color: green">Идет проверка на соответствие</span>
+					</div>
+					<span class="massage-ok" style="color: #0060ae"></span>
+				</form>
+			</div>
+		</main>
+		<script src="./index.js"></script>
+	</body>
+</html>
