@@ -281,7 +281,7 @@ li {
 }
 
 .slider-items img {
-	max-width: 400px;
+	width: 400px;
 	height: auto;
 	object-fit: cover;
 	-webkit-filter: brightness(60%);
@@ -317,4 +317,16 @@ li {
 
 .active {
 	background: #888;
+}
+
+@media screen and (max-width: 375px) {
+	.slider-items img {
+		width: 359px;
+	}
+}
+
+@media screen and (max-width: 320px) {
+	.slider-items img {
+		width: 304px;
+	}
 }
