@@ -319,6 +319,12 @@ li {
 	background: #888;
 }
 
+@media screen and (max-width: 400px) {
+	.slider-items img {
+		width: 384px;
+	}
+}
+
 @media screen and (max-width: 375px) {
 	.slider-items img {
 		width: 359px;
