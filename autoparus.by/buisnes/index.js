@@ -6,6 +6,15 @@ const companySite = document.getElementById('seller_sellerCompany_siteAddress');
 const companyAbout = document.getElementById('seller_sellerCompany_activityDescription');
 const companyDelivery = document.getElementById('seller_sellerCompany_workflow_deliveryDetail');
 const companyGuarantee = document.getElementById('seller_sellerCompany_workflow_guaranteeDetail');
+const comments = document.getElementById('seller_commentOrDescription');
+const youtubeLink = document.getElementById('seller_social_youtubeLink');
+
+const advantagesOne = document.getElementById('seller_advantages_advantage1');
+const advantagesTwo = document.getElementById('seller_advantages_advantage2');
+const advantagesThree = document.getElementById('seller_advantages_advantage3');
+const advantagesFour = document.getElementById('seller_advantages_advantage4');
+const advantagesFives = document.getElementById('seller_advantages_advantage5');
+const advantagesBlocks = document.querySelectorAll('.advantages-outter');
 
 const deliveryYes = document.getElementById('seller_sellerCompany_workflow_delivery_0');
 const deliveryNo = document.getElementById('seller_sellerCompany_workflow_delivery_1');
@@ -25,10 +34,18 @@ fieldBlock.forEach((e) => {
 	e.style.cssText = 'display: flex; width: 100%; align-items: flex-start; flex-direction: column; ';
 });
 
+const commentParrent = document.querySelector('.textarea-bus-comment');
+commentParrent.style.cssText =
+	'display: flex; width: 100%; align-items: flex-start; flex-direction: column; ';
+
 const textWidth = document.querySelectorAll('.delivery-text');
 textWidth.forEach((e) => {
 	e.setAttribute('style', 'width: 100%');
 });
+
+const informComments = document.createElement('span');
+commentParrent.appendChild(informComments);
+informComments.setAttribute('style', 'color: #84a98c; margin-bottom: 10px');
 
 const informName = document.createElement('span');
 parrentBlock[0].appendChild(informName);
@@ -50,6 +67,26 @@ const informAbout = document.createElement('span');
 parrentBlock[6].appendChild(informAbout);
 informAbout.setAttribute('style', 'color: #84a98c; margin-bottom: 10px');
 
+const informAd1 = document.createElement('span');
+parrentBlock[7].appendChild(informAd1);
+informAd1.setAttribute('style', 'color: #84a98c; margin-bottom: 10px');
+
+const informAd2 = document.createElement('span');
+parrentBlock[8].appendChild(informAd2);
+informAd2.setAttribute('style', 'color: #84a98c; margin-bottom: 10px');
+
+const informAd3 = document.createElement('span');
+parrentBlock[9].appendChild(informAd3);
+informAd3.setAttribute('style', 'color: #84a98c; margin-bottom: 10px');
+
+const informAd4 = document.createElement('span');
+parrentBlock[10].appendChild(informAd4);
+informAd4.setAttribute('style', 'color: #84a98c; margin-bottom: 10px');
+
+const informAd5 = document.createElement('span');
+parrentBlock[11].appendChild(informAd5);
+informAd5.setAttribute('style', 'color: #84a98c; margin-bottom: 10px');
+
 const informDeliveri = document.createElement('span');
 fieldBlock[0].appendChild(informDeliveri);
 informDeliveri.setAttribute('style', 'color: #84a98c; margin-bottom: 10px; margin-top: 10px;');
@@ -59,26 +96,68 @@ fieldBlock[1].appendChild(informGuranties);
 informGuranties.setAttribute('style', 'color: #84a98c; margin-bottom: 10px; margin-top: 10px;');
 
 window.onload = () => {
-	deliveryYes.setAttribute('checked', 'true');
-	guarantiesYes.setAttribute('checked', 'true');
-	deliveryText.setAttribute('style', 'display: none');
-	guarantiesText.setAttribute('style', 'display: none');
+	if (!companyDelivery.value.length) {
+		deliveryNo.setAttribute('checked', 'true');
+		deliveryText.setAttribute('style', 'display: none');
+	} else {
+		deliveryYes.setAttribute('checked', 'true');
+		deliveryNo.setAttribute('disabled', 'true');
+	}
+
+	if (!companyGuarantee.value.length) {
+		guarantiesNo.setAttribute('checked', 'true');
+		guarantiesText.setAttribute('style', 'display: none');
+	} else {
+		guarantiesYes.setAttribute('checked', 'true');
+		guarantiesNo.setAttribute('disabled', 'true');
+	}
+
+	if (
+		advantagesTwo.value.length === 0 &&
+		advantagesOne.value.length === 0 &&
+		advantagesThree.value.length === 0 &&
+		advantagesFour.value.length === 0 &&
+		advantagesFives.value.length === 0
+	) {
+		advantagesBlocks[4].setAttribute('style', 'display: none');
+		advantagesBlocks[3].setAttribute('style', 'display: none');
+		advantagesBlocks[2].setAttribute('style', 'display: none');
+	}
+	if (
+		advantagesOne.value.length > 0 ||
+		(advantagesTwo.value.length > 0 &&
+			advantagesOne.value.length > 0 &&
+			advantagesThree.value.length === 0)
+	) {
+		advantagesBlocks[4].setAttribute('style', 'display: none');
+		advantagesBlocks[3].setAttribute('style', 'display: none');
+		advantagesBlocks[2].setAttribute('style', 'display: block');
+	}
+	if (
+		advantagesTwo.value.length > 0 &&
+		advantagesOne.value.length > 0 &&
+		advantagesThree.value.length > 0
+	) {
+		advantagesBlocks[4].setAttribute('style', 'display: block');
+		advantagesBlocks[3].setAttribute('style', 'display: block');
+		advantagesBlocks[2].setAttribute('style', 'display: block');
+	}
 };
 
 deliveryNo.addEventListener('change', () => {
-	deliveryText.setAttribute('style', 'display: block');
-});
-
-guarantiesNo.addEventListener('change', () => {
-	guarantiesText.setAttribute('style', 'display: block');
-});
-
-deliveryYes.addEventListener('change', () => {
 	deliveryText.setAttribute('style', 'display: none');
 });
 
-guarantiesYes.addEventListener('change', () => {
+guarantiesNo.addEventListener('change', () => {
 	guarantiesText.setAttribute('style', 'display: none');
+});
+
+deliveryYes.addEventListener('change', () => {
+	deliveryText.setAttribute('style', 'display: block');
+});
+
+guarantiesYes.addEventListener('change', () => {
+	guarantiesText.setAttribute('style', 'display: block');
 });
 
 companyName.addEventListener('input', (e) => {
@@ -93,6 +172,11 @@ companyName.addEventListener('input', (e) => {
 	if (!validateCompanyName(e.target.value)) {
 		informName.innerHTML = 'Неприемлемый символ';
 	}
+
+	if (e.target.value.length === 0) {
+		informName.innerHTML = '';
+	}
+
 	if (e.target.value[i - 1] === ' ' && e.target.value[i] === ' ') {
 		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[ ]/, '');
 	}
@@ -155,6 +239,10 @@ companyUNP.addEventListener('input', (e) => {
 	}
 	if (!validateCompanyName(e.target.value)) {
 		informUNP.innerHTML = 'Неприемлемый символ';
+	}
+
+	if (e.target.value.length === 0) {
+		informUNP.innerHTML = '';
 	}
 	if (e.target.value[i - 1] === ' ' && e.target.value[i] === ' ') {
 		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[ ]/, '');
@@ -219,6 +307,11 @@ companyCity.addEventListener('input', (e) => {
 	if (!validateCompanyCity(e.target.value)) {
 		informCity.innerHTML = 'Неприемлемый символ';
 	}
+
+	if (e.target.value.length === 0) {
+		informCity.innerHTML = '';
+	}
+
 	if (e.target.value[i - 1] === ' ' || e.target.value[i - 1] === '-') {
 		e.target.value = e.target.value.substr(0, i) + e.target.value[i].toUpperCase();
 	}
@@ -252,6 +345,11 @@ companyLegalAddress.addEventListener('input', (e) => {
 	if (!validateCompanyName(e.target.value)) {
 		informLegalAddress.innerHTML = 'Неприемлемый символ';
 	}
+
+	if (e.target.value.length === 0) {
+		informLegalAddress.innerHTML = '';
+	}
+
 	if (e.target.value[i - 1] === ' ' && e.target.value[i] === ' ') {
 		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[ ]/, '');
 	}
@@ -321,6 +419,11 @@ companyAbout.addEventListener('input', (e) => {
 	if (!validateCompanyName(e.target.value)) {
 		informAbout.innerHTML = 'Неприемлемый символ';
 	}
+
+	if (e.target.value.length === 0) {
+		informAbout.innerHTML = '';
+	}
+
 	if (e.target.value[i - 1] === ' ' && e.target.value[i] === ' ') {
 		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[ ]/, '');
 	}
@@ -361,9 +464,9 @@ companyAbout.addEventListener('input', (e) => {
 		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[;]/, '');
 	}
 
-	if (e.target.value.length > 300) {
-		informAbout.innerHTML = 'Достигнут лимит в 300 символов';
-		e.target.value = e.target.value.substr(0, 300);
+	if (e.target.value.length > 700) {
+		informAbout.innerHTML = 'Достигнут лимит в 700 символов';
+		e.target.value = e.target.value.substr(0, 700);
 	}
 
 	if (e.target.value.match(/^[_~№#&/|,.`?\\|!"«»%=*^$()'+@\[\]{}<> -]/)) {
@@ -373,6 +476,10 @@ companyAbout.addEventListener('input', (e) => {
 });
 
 companyDelivery.addEventListener('input', (e) => {
+	deliveryNo.setAttribute('disabled', 'true');
+	if (e.target.value.length === 0) {
+		deliveryNo.removeAttribute('disabled');
+	}
 	let i = e.target.value.length - 1;
 	if (e.target.value.match(/^[a-zA-Zа-яА-ЯёЁ]/)) {
 		let s = e.target.value;
@@ -385,6 +492,10 @@ companyDelivery.addEventListener('input', (e) => {
 		informDeliveri.innerHTML = 'Неприемлемый символ';
 	}
 
+	if (e.target.value.length === 0) {
+		informDeliveri.innerHTML = '';
+	}
+
 	if (e.target.value[i - 1] === ' ' && e.target.value[i] === ' ') {
 		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[ ]/, '');
 	}
@@ -425,9 +536,9 @@ companyDelivery.addEventListener('input', (e) => {
 		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[;]/, '');
 	}
 
-	if (e.target.value.length > 180) {
-		informDeliveri.innerHTML = 'Достигнут лимит в 180 символов';
-		e.target.value = e.target.value.substr(0, 180);
+	if (e.target.value.length > 350) {
+		informDeliveri.innerHTML = 'Достигнут лимит в 350 символов';
+		e.target.value = e.target.value.substr(0, 350);
 	}
 
 	if (e.target.value.match(/^[_~№#&/|,.`?\\|!"«»%=*^$()'+@\[\]{}<> -]/)) {
@@ -437,6 +548,10 @@ companyDelivery.addEventListener('input', (e) => {
 });
 
 companyGuarantee.addEventListener('input', (e) => {
+	guarantiesNo.setAttribute('disabled', 'true');
+	if (e.target.value.length === 0) {
+		guarantiesNo.removeAttribute('disabled');
+	}
 	let i = e.target.value.length - 1;
 	if (e.target.value.match(/^[a-zA-Zа-яА-ЯёЁ]/)) {
 		let s = e.target.value;
@@ -448,6 +563,11 @@ companyGuarantee.addEventListener('input', (e) => {
 	if (!validateCompanyName(e.target.value)) {
 		informGuranties.innerHTML = 'Неприемлемый символ';
 	}
+
+	if (e.target.value.length === 0) {
+		informGuranties.innerHTML = '';
+	}
+
 	if (e.target.value[i - 1] === ' ' && e.target.value[i] === ' ') {
 		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[ ]/, '');
 	}
@@ -488,15 +608,457 @@ companyGuarantee.addEventListener('input', (e) => {
 		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[;]/, '');
 	}
 
-	if (e.target.value.length > 180) {
-		informGuranties.innerHTML = 'Достигнут лимит в 180 символов';
-		e.target.value = e.target.value.substr(0, 180);
+	if (e.target.value.length > 350) {
+		informGuranties.innerHTML = 'Достигнут лимит в 350 символов';
+		e.target.value = e.target.value.substr(0, 350);
 	}
 
 	if (e.target.value.match(/^[_~№#&/|,.`?\\|!"«»%=*^$()'+@\[\]{}<> -]/)) {
 		e.target.value = '';
 	}
 	e.target.value = e.target.value.replace(/([_~`?/\\|!=%*'^$()@\[\]{}<>])/gi, '');
+});
+
+advantagesOne.addEventListener('input', (e) => {
+	if (e.target.value.length > 0) {
+		advantagesBlocks[2].setAttribute('style', 'display: block');
+	}
+	if (e.target.value.length === 0) {
+		advantagesBlocks[2].setAttribute('style', 'display: none');
+	}
+
+	let i = e.target.value.length - 1;
+	if (e.target.value.match(/^[a-zA-Zа-яА-ЯёЁ]/)) {
+		let s = e.target.value;
+		e.target.value = s[0].toUpperCase() + s.slice(1);
+	}
+	if (validateCompanyName(e.target.value)) {
+		informAd1.innerHTML = '';
+	}
+	if (!validateCompanyName(e.target.value)) {
+		informAd1.innerHTML = 'Неприемлемый символ';
+	}
+
+	if (e.target.value.length === 0) {
+		informAd1.innerHTML = '';
+	}
+
+	if (e.target.value[i - 1] === ' ' && e.target.value[i] === ' ') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[ ]/, '');
+	}
+	if (e.target.value[i - 1] === '-' && e.target.value[i] === '-') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[-]/, '');
+	}
+	if (e.target.value[i - 1] === '&' && e.target.value[i] === '&') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[&]/, '');
+	}
+	if (e.target.value[i - 1] === '.' && e.target.value[i] === '.') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[.]/, '');
+	}
+	if (e.target.value[i - 1] === ',' && e.target.value[i] === ',') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[,]/, '');
+	}
+	if (e.target.value[i - 1] === '«' && e.target.value[i] === '«') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[«]/, '');
+	}
+	if (e.target.value[i - 1] === '»' && e.target.value[i] === '»') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[»]/, '');
+	}
+	if (e.target.value[i - 1] === '"' && e.target.value[i] === '"') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/["]/, '');
+	}
+	if (e.target.value[i - 1] === ':' && e.target.value[i] === ':') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[:]/, '');
+	}
+	if (e.target.value[i - 1] === '#' && e.target.value[i] === '#') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[#]/, '');
+	}
+	if (e.target.value[i - 1] === '№' && e.target.value[i] === '№') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[№]/, '');
+	}
+	if (e.target.value[i - 1] === '+' && e.target.value[i] === '+') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[+]/, '');
+	}
+	if (e.target.value[i - 1] === ';' && e.target.value[i] === ';') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[;]/, '');
+	}
+
+	if (e.target.value.length > 200) {
+		informAd1.innerHTML = 'Достигнут лимит в 200 символов';
+		e.target.value = e.target.value.substr(0, 200);
+	}
+
+	if (e.target.value.match(/^[_~№#&/|,.`?\\|!"«»%=*^$()'+@\[\]{}<> -]/)) {
+		e.target.value = '';
+	}
+	e.target.value = e.target.value.replace(/([_~`?/\\|!=%*'^$()@\[\]{}<>])/gi, '');
+});
+
+advantagesTwo.addEventListener('input', (e) => {
+	let i = e.target.value.length - 1;
+	if (e.target.value.match(/^[a-zA-Zа-яА-ЯёЁ]/)) {
+		let s = e.target.value;
+		e.target.value = s[0].toUpperCase() + s.slice(1);
+	}
+	if (validateCompanyName(e.target.value)) {
+		informAd2.innerHTML = '';
+	}
+	if (!validateCompanyName(e.target.value)) {
+		informAd2.innerHTML = 'Неприемлемый символ';
+	}
+
+	if (e.target.value.length === 0) {
+		informAd2.innerHTML = '';
+	}
+
+	if (e.target.value[i - 1] === ' ' && e.target.value[i] === ' ') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[ ]/, '');
+	}
+	if (e.target.value[i - 1] === '-' && e.target.value[i] === '-') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[-]/, '');
+	}
+	if (e.target.value[i - 1] === '&' && e.target.value[i] === '&') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[&]/, '');
+	}
+	if (e.target.value[i - 1] === '.' && e.target.value[i] === '.') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[.]/, '');
+	}
+	if (e.target.value[i - 1] === ',' && e.target.value[i] === ',') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[,]/, '');
+	}
+	if (e.target.value[i - 1] === '«' && e.target.value[i] === '«') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[«]/, '');
+	}
+	if (e.target.value[i - 1] === '»' && e.target.value[i] === '»') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[»]/, '');
+	}
+	if (e.target.value[i - 1] === '"' && e.target.value[i] === '"') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/["]/, '');
+	}
+	if (e.target.value[i - 1] === ':' && e.target.value[i] === ':') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[:]/, '');
+	}
+	if (e.target.value[i - 1] === '#' && e.target.value[i] === '#') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[#]/, '');
+	}
+	if (e.target.value[i - 1] === '№' && e.target.value[i] === '№') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[№]/, '');
+	}
+	if (e.target.value[i - 1] === '+' && e.target.value[i] === '+') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[+]/, '');
+	}
+	if (e.target.value[i - 1] === ';' && e.target.value[i] === ';') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[;]/, '');
+	}
+
+	if (e.target.value.length > 200) {
+		informAd2.innerHTML = 'Достигнут лимит в 200 символов';
+		e.target.value = e.target.value.substr(0, 200);
+	}
+
+	if (e.target.value.match(/^[_~№#&/|,.`?\\|!"«»%=*^$()'+@\[\]{}<> -]/)) {
+		e.target.value = '';
+	}
+	e.target.value = e.target.value.replace(/([_~`?/\\|!=%*'^$()@\[\]{}<>])/gi, '');
+});
+
+advantagesThree.addEventListener('input', (e) => {
+	if (e.target.value.length > 0) {
+		advantagesBlocks[4].setAttribute('style', 'display: block');
+		advantagesBlocks[3].setAttribute('style', 'display: block');
+	}
+	if (e.target.value.length === 0) {
+		advantagesBlocks[4].setAttribute('style', 'display: none');
+		advantagesBlocks[3].setAttribute('style', 'display: none');
+	}
+	let i = e.target.value.length - 1;
+	if (e.target.value.match(/^[a-zA-Zа-яА-ЯёЁ]/)) {
+		let s = e.target.value;
+		e.target.value = s[0].toUpperCase() + s.slice(1);
+	}
+	if (validateCompanyName(e.target.value)) {
+		informAd3.innerHTML = '';
+	}
+	if (!validateCompanyName(e.target.value)) {
+		informAd3.innerHTML = 'Неприемлемый символ';
+	}
+
+	if (e.target.value.length === 0) {
+		informAd3.innerHTML = '';
+	}
+
+	if (e.target.value[i - 1] === ' ' && e.target.value[i] === ' ') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[ ]/, '');
+	}
+	if (e.target.value[i - 1] === '-' && e.target.value[i] === '-') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[-]/, '');
+	}
+	if (e.target.value[i - 1] === '&' && e.target.value[i] === '&') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[&]/, '');
+	}
+	if (e.target.value[i - 1] === '.' && e.target.value[i] === '.') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[.]/, '');
+	}
+	if (e.target.value[i - 1] === ',' && e.target.value[i] === ',') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[,]/, '');
+	}
+	if (e.target.value[i - 1] === '«' && e.target.value[i] === '«') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[«]/, '');
+	}
+	if (e.target.value[i - 1] === '»' && e.target.value[i] === '»') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[»]/, '');
+	}
+	if (e.target.value[i - 1] === '"' && e.target.value[i] === '"') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/["]/, '');
+	}
+	if (e.target.value[i - 1] === ':' && e.target.value[i] === ':') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[:]/, '');
+	}
+	if (e.target.value[i - 1] === '#' && e.target.value[i] === '#') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[#]/, '');
+	}
+	if (e.target.value[i - 1] === '№' && e.target.value[i] === '№') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[№]/, '');
+	}
+	if (e.target.value[i - 1] === '+' && e.target.value[i] === '+') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[+]/, '');
+	}
+	if (e.target.value[i - 1] === ';' && e.target.value[i] === ';') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[;]/, '');
+	}
+
+	if (e.target.value.length > 200) {
+		informAd3.innerHTML = 'Достигнут лимит в 200 символов';
+		e.target.value = e.target.value.substr(0, 200);
+	}
+
+	if (e.target.value.match(/^[_~№#&/|,.`?\\|!"«»%=*^$()'+@\[\]{}<> -]/)) {
+		e.target.value = '';
+	}
+	e.target.value = e.target.value.replace(/([_~`?/\\|!=%*'^$()@\[\]{}<>])/gi, '');
+});
+
+advantagesFour.addEventListener('input', (e) => {
+	let i = e.target.value.length - 1;
+	if (e.target.value.match(/^[a-zA-Zа-яА-ЯёЁ]/)) {
+		let s = e.target.value;
+		e.target.value = s[0].toUpperCase() + s.slice(1);
+	}
+	if (validateCompanyName(e.target.value)) {
+		informAd4.innerHTML = '';
+	}
+	if (!validateCompanyName(e.target.value)) {
+		informAd4.innerHTML = 'Неприемлемый символ';
+	}
+
+	if (e.target.value.length === 0) {
+		informAd4.innerHTML = '';
+	}
+
+	if (e.target.value[i - 1] === ' ' && e.target.value[i] === ' ') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[ ]/, '');
+	}
+	if (e.target.value[i - 1] === '-' && e.target.value[i] === '-') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[-]/, '');
+	}
+	if (e.target.value[i - 1] === '&' && e.target.value[i] === '&') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[&]/, '');
+	}
+	if (e.target.value[i - 1] === '.' && e.target.value[i] === '.') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[.]/, '');
+	}
+	if (e.target.value[i - 1] === ',' && e.target.value[i] === ',') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[,]/, '');
+	}
+	if (e.target.value[i - 1] === '«' && e.target.value[i] === '«') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[«]/, '');
+	}
+	if (e.target.value[i - 1] === '»' && e.target.value[i] === '»') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[»]/, '');
+	}
+	if (e.target.value[i - 1] === '"' && e.target.value[i] === '"') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/["]/, '');
+	}
+	if (e.target.value[i - 1] === ':' && e.target.value[i] === ':') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[:]/, '');
+	}
+	if (e.target.value[i - 1] === '#' && e.target.value[i] === '#') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[#]/, '');
+	}
+	if (e.target.value[i - 1] === '№' && e.target.value[i] === '№') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[№]/, '');
+	}
+	if (e.target.value[i - 1] === '+' && e.target.value[i] === '+') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[+]/, '');
+	}
+	if (e.target.value[i - 1] === ';' && e.target.value[i] === ';') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[;]/, '');
+	}
+
+	if (e.target.value.length > 200) {
+		informAd4.innerHTML = 'Достигнут лимит в 200 символов';
+		e.target.value = e.target.value.substr(0, 200);
+	}
+
+	if (e.target.value.match(/^[_~№#&/|,.`?\\|!"«»%=*^$()'+@\[\]{}<> -]/)) {
+		e.target.value = '';
+	}
+	e.target.value = e.target.value.replace(/([_~`?/\\|!=%*'^$()@\[\]{}<>])/gi, '');
+});
+
+advantagesFives.addEventListener('input', (e) => {
+	let i = e.target.value.length - 1;
+	if (e.target.value.match(/^[a-zA-Zа-яА-ЯёЁ]/)) {
+		let s = e.target.value;
+		e.target.value = s[0].toUpperCase() + s.slice(1);
+	}
+	if (validateCompanyName(e.target.value)) {
+		informAd5.innerHTML = '';
+	}
+	if (!validateCompanyName(e.target.value)) {
+		informAd5.innerHTML = 'Неприемлемый символ';
+	}
+
+	if (e.target.value.length === 0) {
+		informAd5.innerHTML = '';
+	}
+
+	if (e.target.value[i - 1] === ' ' && e.target.value[i] === ' ') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[ ]/, '');
+	}
+	if (e.target.value[i - 1] === '-' && e.target.value[i] === '-') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[-]/, '');
+	}
+	if (e.target.value[i - 1] === '&' && e.target.value[i] === '&') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[&]/, '');
+	}
+	if (e.target.value[i - 1] === '.' && e.target.value[i] === '.') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[.]/, '');
+	}
+	if (e.target.value[i - 1] === ',' && e.target.value[i] === ',') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[,]/, '');
+	}
+	if (e.target.value[i - 1] === '«' && e.target.value[i] === '«') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[«]/, '');
+	}
+	if (e.target.value[i - 1] === '»' && e.target.value[i] === '»') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[»]/, '');
+	}
+	if (e.target.value[i - 1] === '"' && e.target.value[i] === '"') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/["]/, '');
+	}
+	if (e.target.value[i - 1] === ':' && e.target.value[i] === ':') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[:]/, '');
+	}
+	if (e.target.value[i - 1] === '#' && e.target.value[i] === '#') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[#]/, '');
+	}
+	if (e.target.value[i - 1] === '№' && e.target.value[i] === '№') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[№]/, '');
+	}
+	if (e.target.value[i - 1] === '+' && e.target.value[i] === '+') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[+]/, '');
+	}
+	if (e.target.value[i - 1] === ';' && e.target.value[i] === ';') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[;]/, '');
+	}
+
+	if (e.target.value.length > 200) {
+		informAd5.innerHTML = 'Достигнут лимит в 200 символов';
+		e.target.value = e.target.value.substr(0, 200);
+	}
+
+	if (e.target.value.match(/^[_~№#&/|,.`?\\|!"«»%=*^$()'+@\[\]{}<> -]/)) {
+		e.target.value = '';
+	}
+	e.target.value = e.target.value.replace(/([_~`?/\\|!=%*'^$()@\[\]{}<>])/gi, '');
+});
+
+comments.addEventListener('input', (e) => {
+	let i = e.target.value.length - 1;
+	if (e.target.value.match(/^[a-zA-Zа-яА-ЯёЁ]/)) {
+		let s = e.target.value;
+		e.target.value = s[0].toUpperCase() + s.slice(1);
+	}
+	if (validateCompanyName(e.target.value)) {
+		informComments.innerHTML = '';
+	}
+	if (!validateCompanyName(e.target.value)) {
+		informComments.innerHTML = 'Неприемлемый символ';
+	}
+
+	if (e.target.value.length === 0) {
+		informComments.innerHTML = '';
+	}
+
+	if (e.target.value[i - 1] === ' ' && e.target.value[i] === ' ') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[ ]/, '');
+	}
+	if (e.target.value[i - 1] === '-' && e.target.value[i] === '-') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[-]/, '');
+	}
+	if (e.target.value[i - 1] === '&' && e.target.value[i] === '&') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[&]/, '');
+	}
+	if (e.target.value[i - 1] === '.' && e.target.value[i] === '.') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[.]/, '');
+	}
+	if (e.target.value[i - 1] === ',' && e.target.value[i] === ',') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[,]/, '');
+	}
+	if (e.target.value[i - 1] === '«' && e.target.value[i] === '«') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[«]/, '');
+	}
+	if (e.target.value[i - 1] === '»' && e.target.value[i] === '»') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[»]/, '');
+	}
+	if (e.target.value[i - 1] === '"' && e.target.value[i] === '"') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/["]/, '');
+	}
+	if (e.target.value[i - 1] === ':' && e.target.value[i] === ':') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[:]/, '');
+	}
+	if (e.target.value[i - 1] === '#' && e.target.value[i] === '#') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[#]/, '');
+	}
+	if (e.target.value[i - 1] === '№' && e.target.value[i] === '№') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[№]/, '');
+	}
+	if (e.target.value[i - 1] === '+' && e.target.value[i] === '+') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[+]/, '');
+	}
+	if (e.target.value[i - 1] === ';' && e.target.value[i] === ';') {
+		e.target.value = e.target.value.substr(0, i) + e.target.value[i].replace(/[;]/, '');
+	}
+
+	if (e.target.value.length > 200) {
+		informComments.innerHTML = 'Достигнут лимит в 200 символов';
+		e.target.value = e.target.value.substr(0, 200);
+	}
+
+	if (e.target.value.match(/^[_~№#&/|,.`?\\|!"«»%=*^$()'+@\[\]{}<> -]/)) {
+		e.target.value = '';
+	}
+	e.target.value = e.target.value.replace(/([_~`?/\\|!=%*'^$()@\[\]{}<>])/gi, '');
+});
+
+youtubeLink.addEventListener('input', (e) => {
+	e.target.value = e.target.value.replace('https://', '');
+	e.target.value = e.target.value.replace('www.', '');
+	if (e.target.value.match(/^[_~#&/|,.`?\\|!"«»%=*^$()'+@\[\]{}<> -]/)) {
+		e.target.value = '';
+	}
+	let sYoutube = 'youtube.com/embed/';
+	if (e.target.value.includes('watch')) {
+		e.target.value = sYoutube + e.target.value.split('v=')[1];
+	}
+	if (e.target.value.includes('live')) {
+		e.target.value = sYoutube + e.target.value.split('/')[2];
+		e.target.value = e.target.value.split('?')[0];
+	}
+	if (e.target.value.includes('youtu.be')) {
+		e.target.value = sYoutube + e.target.value.split('/')[1];
+	}
 });
 
 function validateCompanyName(name) {
