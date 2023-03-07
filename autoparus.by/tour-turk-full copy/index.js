@@ -1,247 +1,94 @@
 const addActive = document.querySelectorAll('.slider-items');
-addActive[0].classList.add('active');
+addActive[0].classList.add('activetes');
 
 //Slider
-// Так как слайдер блокирует вертикальный скролл, в методе dragging реализовано перемещение по вертикали с помощью scrollBy
-const SliderClassName = 'slider';
-const SliderLineClassName = 'slider-line';
-const SliderSlideClassName = 'slider-slide';
-const SliderDotsClassName = 'slider-dot';
-const SliderDotClassName = 'dot';
-const SliderDotsActiveClassName = 'dot-active';
 
-class Slider {
-	constructor(elem, options = {}) {
-		this.containerNode = elem;
-		this.size = elem.childElementCount;
-		this.currentSlide = 0;
-		this.currentSlideWasChange = false;
-		this.settings = {
-			margin: options.margin || 0,
-		};
+const slider = document.querySelector('.slider');
+const slides = slider.querySelectorAll('.slider-items');
+const dotsContainer = slider.querySelector('.dots');
+let currentSlide = 0;
+let startX,
+	startY,
+	distX,
+	distY = 0;
 
-		this.manageHTML = this.manageHTML.bind(this);
-		this.setParrameters = this.setParrameters.bind(this);
-		this.setEvents = this.setEvents.bind(this);
-		this.resizeSlider = this.resizeSlider.bind(this);
-		this.startDrag = this.startDrag.bind(this);
-		this.stopDrag = this.stopDrag.bind(this);
-		this.dragging = this.dragging.bind(this);
-		this.startDragPage = this.dragging.bind(this);
-		this.setStylePosition = this.setStylePosition.bind(this);
-		this.setStylePositionReset = this.setStylePositionReset.bind(this);
-		this.clickDots = this.clickDots.bind(this);
+console.log(slides);
 
-		this.changeCurrentSlide = this.changeCurrentSlide.bind(this);
-		this.changeActiveDotClass = this.changeActiveDotClass.bind(this);
-
-		this.manageHTML();
-		this.setParrameters();
-		this.setEvents();
+// Добавим точки для индикации
+for (let i = 0; i < slides.length; i++) {
+	const dot = document.createElement('div');
+	dot.classList.add('dot');
+	if (i === currentSlide) {
+		dot.classList.add('active');
 	}
-	manageHTML() {
-		this.containerNode.classList.add(SliderClassName);
-		this.containerNode.innerHTML = `
-			<div class="${SliderLineClassName}">
-				${this.containerNode.innerHTML}
-			</div>
-			
-			<div class="${SliderDotsClassName}"></div>
-		`;
-
-		this.lineNode = this.containerNode.querySelector(`.${SliderLineClassName}`);
-		this.dotsNode = this.containerNode.querySelector(`.${SliderDotsClassName}`);
-
-		this.slideNodes = Array.from(this.lineNode.children).map((childNode) => {
-			return wrpapElementByDiv({
-				element: childNode,
-				className: SliderSlideClassName,
-			});
-		});
-
-		this.dotsNode.innerHTML = Array.from(Array(this.size).keys())
-			.map((key) => {
-				return `<button class="${SliderDotClassName} ${
-					key === this.currentSlide ? SliderDotsActiveClassName : ''
-				}"></button>`;
-			})
-			.join('');
-
-		this.dotNodes = this.dotsNode.querySelectorAll(`.${SliderDotClassName}`);
-	}
-
-	setParrameters() {
-		const coordsContainer = this.containerNode.getBoundingClientRect();
-		this.width = coordsContainer.width;
-		this.maximumX = -(this.size - 1) * (this.width + this.settings.margin);
-		this.x = -this.currentSlide * (this.width + this.settings.margin);
-
-		this.lineNode.style.width = `${this.size * (this.width + this.settings.margin)}px`;
-		this.setStylePosition();
-		Array.from(this.slideNodes).forEach((slideNode) => {
-			return (slideNode.style.width = `${this.width}px`);
-		});
-		Array.from(this.slideNodes).forEach((slideNode) => {
-			return (slideNode.style.marginRight = `${this.settings.margin}px`);
-		});
-
-		if (this.size === 1) {
-			this.dotsNode.style.visibility = 'hidden';
-		}
-	}
-
-	setEvents() {
-		this.debouncedResizeSlider = debounce(this.resizeSlider);
-		window.addEventListener('resize', this.debouncedResizeSlider);
-		this.lineNode.addEventListener('mousedown', this.startDrag);
-		this.lineNode.addEventListener('touchstart', this.startDrag);
-		window.addEventListener('mouseup', this.stopDrag);
-		window.addEventListener('touchend', this.stopDrag);
-		window.addEventListener('mouseleave', this.stopDrag);
-		window.addEventListener('touchcancel', this.stopDrag);
-
-		this.dotsNode.addEventListener('click', this.clickDots);
-	}
-
-	destroyEvents() {
-		window.removeEventListener('resize', this.debouncedResizeSlider);
-		this.lineNode.removeEventListener('mousedown', this.startDrag);
-		this.lineNode.removeEventListener('touchstart', this.startDrag);
-		window.removeEventListener('mouseup', this.stopDrag);
-		window.removeEventListener('touchend', this.stopDrag);
-		window.removeEventListener('mouseleave', this.stopDrag);
-		window.removeEventListener('touchcancel', this.stopDrag);
-
-		this.dotsNode.removeEventListener('click', this.clickDots);
-	}
-
-	resizeSlider() {
-		this.setParrameters();
-	}
-
-	startDrag(evt) {
-		evt.preventDefault();
-		this.currentSlideWasChange = false;
-		this.clickX = evt.pageX;
-		this.clickY = evt.pageY;
-		this.startX = this.x;
-		this.resetStyleTransition();
-		window.addEventListener('mousemove', this.dragging);
-		window.addEventListener('touchmove', this.dragging);
-	}
-
-	stopDrag(evt) {
-		evt.preventDefault();
-		window.removeEventListener('mousemove', this.dragging);
-		window.removeEventListener('touchmove', this.dragging);
-
-		this.x = -this.currentSlide * (this.width + this.settings.margin);
-		this.setStylePosition();
-		this.setStyleTransition();
-		this.changeCurrentSlide();
-	}
-
-	dragging(evt) {
-		this.dragX = evt.pageX;
-		this.dragY = evt.pageY;
-
-		let dragShiftY = this.dragY - this.clickY;
-		const dragShift = this.dragX - this.clickX;
-		const easing = dragShift / 1000000;
-
-		this.x = Math.max(Math.min(this.startX + dragShift, easing), this.maximumX + easing);
-		this.setStylePosition();
-
-		if (dragShift > 80 && dragShift > 0 && !this.currentSlideWasChange && this.currentSlide > 0) {
-			this.currentSlideWasChange = true;
-			this.currentSlide = this.currentSlide - 1;
-		}
-
-		if (
-			dragShift < -80 &&
-			dragShift < 0 &&
-			!this.currentSlideWasChange &&
-			this.currentSlide < this.size - 1
-		) {
-			this.currentSlideWasChange = true;
-			this.currentSlide = this.currentSlide + 1;
-		}
-	}
-
-	clickDots(evt) {
-		const dotNode = evt.target.closest('button');
-		if (!dotNode) {
-			return;
-		}
-		let dotNumber;
-		for (let i = 0; i < this.dotNodes.length; i++) {
-			if (this.dotNodes[i] === dotNode) {
-				dotNumber = i;
-				break;
-			}
-		}
-		if (dotNumber === this.currentSlide) {
-			return;
-		}
-
-		this.currentSlide = dotNumber;
-		this.changeCurrentSlide();
-	}
-
-	changeCurrentSlide() {
-		this.x = -this.currentSlide * (this.width + this.settings.margin);
-		this.setStylePosition();
-		this.setStyleTransition();
-		this.changeActiveDotClass();
-	}
-
-	changeActiveDotClass() {
-		for (let i = 0; i < this.dotNodes.length; i++) {
-			this.dotNodes[i].classList.remove(SliderDotsActiveClassName);
-		}
-
-		this.dotNodes[this.currentSlide].classList.add(SliderDotsActiveClassName);
-	}
-
-	setStylePosition() {
-		this.lineNode.style.transform = `translate3d(${this.x}px, 0, 0)`;
-	}
-
-	setStylePositionReset() {
-		this.lineNode.style.transform = `translate3d(${
-			this.x - this.width * this.currentSlide
-		}px, 0, 0)`;
-	}
-
-	setStyleTransition() {
-		this.lineNode.style.transition = `all 0.25s ease 0s`;
-	}
-	setStyleTransitionEnd() {
-		this.lineNode.style.transition = `all 0s ease 0s`;
-	}
-
-	resetStyleTransition() {
-		this.lineNode.style.transition = `all 0s ease 0s`;
-	}
+	dot.addEventListener('click', () => {
+		goToSlide(i);
+	});
+	dotsContainer.append(dot);
 }
 
-function wrpapElementByDiv({ element, className }) {
-	const wrapperNode = document.createElement('div');
-	wrapperNode.classList.add(className);
-	element.parentNode.insertBefore(wrapperNode, element);
-	wrapperNode.appendChild(element);
-
-	return wrapperNode;
-}
-
-function debounce(func, time = 100) {
-	let timer;
-	return function (event) {
-		clearTimeout(timer);
-		timer = setTimeout(func, time, event);
-	};
-}
-
-new Slider(document.querySelector('.slider-country'), {
-	margin: 10,
+slider.addEventListener('touchstart', (event) => {
+	startX = event.touches[0].clientX;
+	startY = event.touches[0].clientY;
 });
+
+slider.addEventListener('touchmove', (event) => {
+	distX = event.touches[0].clientX - startX;
+	distY = event.touches[0].clientY - startY;
+	if (Math.abs(distX) > Math.abs(distY)) {
+		event.preventDefault();
+		slides.forEach(
+			(slide) =>
+				(slide.style.transform = `translateX(${-currentSlide * slider.offsetWidth + distX}px)`),
+		);
+	}
+});
+
+slider.addEventListener('touchend', (event) => {
+	if (Math.abs(distX) > slider.offsetWidth / 3 && distX > 0 && currentSlide !== 0) {
+		currentSlide--;
+	} else if (
+		Math.abs(distX) > slider.offsetWidth / 3 &&
+		distX < 0 &&
+		currentSlide !== slides.length - 1
+	) {
+		currentSlide++;
+	}
+	goToSlide(currentSlide);
+});
+
+// Обработка событий мыши
+let isDragging = false;
+let startPos = 0;
+let currentPos = 0;
+
+slider.addEventListener('mousedown', (event) => {
+	isDragging = true;
+	startPos = event.clientX;
+});
+
+slider.addEventListener('mouseup', (event) => {
+	if (isDragging) {
+		currentPos = event.clientX;
+		if (currentPos > startPos && currentSlide !== 0) {
+			currentSlide--;
+		} else if (currentPos < startPos && currentSlide !== slides.length - 1) {
+			currentSlide++;
+		}
+		goToSlide(currentSlide);
+		isDragging = false;
+	}
+});
+
+slider.addEventListener('mouseleave', () => {
+	isDragging = false;
+});
+
+function goToSlide(slideIndex) {
+	currentSlide = slideIndex;
+	slides.forEach(
+		(slide) => (slide.style.transform = `translateX(${-currentSlide * slider.offsetWidth}px)`),
+	);
+	dotsContainer.querySelectorAll('.dot').forEach((dot) => dot.classList.remove('active'));
+	dotsContainer.querySelectorAll('.dot')[currentSlide].classList.add('active');
+}
