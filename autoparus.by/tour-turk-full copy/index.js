@@ -1,18 +1,35 @@
 const addActive = document.querySelectorAll('.slider-items');
 addActive[0].classList.add('activetes');
 
+const dotNode = document.createElement('div');
+dotNode.classList.add('dots');
+
 //Slider
 
-const slider = document.querySelector('.slider');
+const slider = document.querySelector('.slider-country');
+slider.after(dotNode);
+slider.innerHTML = `
+			<div class="slides">
+				${slider.innerHTML}
+			</div>
+		`;
 const slides = slider.querySelectorAll('.slider-items');
-const dotsContainer = slider.querySelector('.dots');
+const slideList = slider.querySelector('.slides');
+const dotsContainer = document.querySelector('.dots');
 let currentSlide = 0;
 let startX,
 	startY,
 	distX,
 	distY = 0;
 
-console.log(slides);
+const coordsContainer = slider.getBoundingClientRect();
+const width = coordsContainer.width;
+
+slideList.style.width = `${slides.length * width}px`;
+
+slides.forEach((e) => {
+	e.style.width = `${width}px`;
+});
 
 // Добавим точки для индикации
 for (let i = 0; i < slides.length; i++) {
@@ -28,8 +45,8 @@ for (let i = 0; i < slides.length; i++) {
 }
 
 slider.addEventListener('touchstart', (event) => {
-	startX = event.touches[0].clientX;
-	startY = event.touches[0].clientY;
+	startX = event.touches[0].clientX + 100;
+	startY = event.touches[0].clientY + 100;
 });
 
 slider.addEventListener('touchmove', (event) => {
