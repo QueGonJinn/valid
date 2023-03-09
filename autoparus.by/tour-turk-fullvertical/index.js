@@ -46,6 +46,7 @@ for (let i = 0; i < slides.length; i++) {
 
 slider.addEventListener('touchstart', (event) => {
 	startX = event.touches[0].clientX;
+	console.log(startX);
 	startY = event.touches[0].clientY;
 });
 
@@ -56,16 +57,16 @@ slider.addEventListener('touchmove', (event) => {
 		event.preventDefault();
 		slides.forEach(
 			(slide) =>
-				(slide.style.transform = `translateX(${-currentSlide * slider.offsetWidth + distX}px)`),
+				(slide.style.transform = `translateX(${-currentSlide * slider.offsetWidth + distX / 2}px)`),
 		);
 	}
 });
 
 slider.addEventListener('touchend', (event) => {
-	if (Math.abs(distX) > slider.offsetWidth / 4 && distX > 0 && currentSlide !== 0) {
+	if (Math.abs(distX) > slider.offsetWidth / slides.length && distX > 50 && currentSlide !== 0) {
 		currentSlide--;
 	} else if (
-		Math.abs(distX) > slider.offsetWidth / 4 &&
+		Math.abs(distX) > slider.offsetWidth / slides.length &&
 		distX < 0 &&
 		currentSlide !== slides.length - 1
 	) {
